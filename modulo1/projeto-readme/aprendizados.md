@@ -1,0 +1,3 @@
+# Aprendizados da semana
+
+Nessa semana **iniciei** o curso de **Desenvolvimento Web FullStack** na **Labenu** enquanto Desenvolvedora Iniciante na **Loggi**. Durante o **Onboarding** conheci mais sobre meus colegas de curso, sobre os instrutores, as ferramentas necessárias para acompanhar as aulas, estou aprendendo a usar a IDE VSCode e passando nervoso aprendendo os comandos do git. Mas se uva passa, esse nervoso também passará e acredito que em breve terei menos dificuldades.
