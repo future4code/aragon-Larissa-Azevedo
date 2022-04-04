@@ -84,7 +84,6 @@ function retornaObjetoEntreDoisNumeros(num1, num2) {
             maiorDivisivelPorMenor: num1 % num2 ===0,
             diferenca: num1-num2
         }  
-
     } 
 
     return numeros
@@ -92,18 +91,19 @@ function retornaObjetoEntreDoisNumeros(num1, num2) {
 
 // EXERCÍCIO 08
 function retornaNPrimeirosPares(n) {
-        let pares = [];
-        for (let i = 0; pares.length < n; i++) {
-            if (i % 2 == 0) {
-                pares.push(i);
-            }
+    let pares = [];
+    for (let i = 0; pares.length < n; i++) {
+        if (i % 2 == 0) {
+            pares.push(i);
         }
+    }
         return pares;
 }
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
-
+   
+    
 }
 
 // EXERCÍCIO 10
@@ -139,10 +139,18 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+
+    const retorna = consultas
+    return retorna.sort(function compare(a, b) {
+      if (a.nome < b.nome) 
+      return -1;
+      if (a.nome > b.nome) 
+      return 1; 
+  })
 }
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
+    
    
 }
