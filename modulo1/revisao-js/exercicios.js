@@ -52,9 +52,13 @@ function retornaNumerosParesElevadosADois(array) {
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
 
-const max = Math.max(...array);
-    return max;
-  
+   let maiorNumero = -Infinity
+   for (let i = 0; i < array.length; i++) {
+       if (array[i] > maiorNumero){
+        maiorNumero = array[i]
+       }
+   }
+  return maiorNumero
 }
 
 // EXERCÍCIO 07
