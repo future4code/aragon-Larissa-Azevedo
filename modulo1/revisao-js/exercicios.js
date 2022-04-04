@@ -28,14 +28,17 @@ function retornaArrayOrdenado(array) {
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-    return array %2===0
+    
+    const pares = array.filter((numero) => {
+        return numero % 2 === 0
+    })
+    return pares
 }
-const numerosPares = array.filter(retornaNumerosPares, index);
-console.log (numerosPares)
+
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
-    
+
 }
 
 // EXERCÍCIO 06
