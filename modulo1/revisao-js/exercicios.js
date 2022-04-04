@@ -28,16 +28,21 @@ function retornaArrayOrdenado(array) {
 
 // EXERCÍCIO 04
 function retornaNumerosPares(array) {
-  
+    return array %2===0
 }
+const numerosPares = array.filter(retornaNumerosPares, index);
+console.log (numerosPares)
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
- 
+    
 }
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
+
+const max = Math.max(...array);
+    return max;
   
 }
 
@@ -68,8 +73,9 @@ function retornaChamadaDeFilme(filme) {
 
 // EXERCÍCIO 12
 function retornaPessoaAnonimizada(pessoa) {
-   
+    
 }
+
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
