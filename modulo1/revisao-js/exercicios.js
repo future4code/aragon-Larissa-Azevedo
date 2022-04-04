@@ -4,7 +4,6 @@
 
 
 // EXERCÍCIO 01
-const array = [7, 8, 9, 10]
 function retornaTamanhoArray(array) {
     const retorna = array
     return retorna.length
@@ -12,6 +11,8 @@ function retornaTamanhoArray(array) {
 
 // EXERCÍCIO 02
 function retornaArrayInvertido(array) {
+    const retorna = array
+    return retorna.reverse()
   
 }
 
