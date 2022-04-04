@@ -4,8 +4,10 @@
 
 
 // EXERCÍCIO 01
+const array = [7, 8, 9, 10]
 function retornaTamanhoArray(array) {
-   
+    const retorna = array
+    return retorna.length
 }
 
 // EXERCÍCIO 02
