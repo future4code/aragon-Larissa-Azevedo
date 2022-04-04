@@ -38,7 +38,15 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
+    const pares = array.filter((numero) => {
+        return numero % 2 === 0
+    }) 
 
+    const paresAoQuadrado = pares.map((numero) => {
+        return numero * numero
+    })
+
+    return paresAoQuadrado
 }
 
 // EXERCÍCIO 06
