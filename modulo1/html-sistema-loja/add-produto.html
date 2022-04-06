@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Adicionar Clássico</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div>
-        <p>Questão de Clássico</p>
+        <h1 class="header"><em>Questão de Clássico</em></h1>
     </div>
     
-    <div>
+    <div class="menu">
         <a href="index.html">Página Inicial</a>
         <a href="ctrl-estoque.html">Controle de Estoque</a>
         <a href="add-produto.html">Adicionar Produto</a>
@@ -20,19 +21,19 @@
 
     
     <h2>Adicionar Produto</h2>
-    <form action="">
-        <div>
+    <form action="" class="formulario">
+        <div class="formulario">
             <label for="link-foto">Link para foto: </label>
             <input type="url" id="link-foto" name="link-foto">
         </div>
         
-        <div>
+        <div class="formulario">
             <label for="descricao">Descrição do produto: </label>
             <!-- Adicione o id apropriado para o input abaixo -->
             <input type="text" id="descricao-produto" name="descrição">
         </div>
         
-        <div>
+        <div class="formulario">
             <label for="preco">Preço (em R$): </label>
             <!-- Adicione o id apropriado e o type para receber números abaixo -->
             <input type="number" id="preco" name="preço">
