@@ -75,11 +75,12 @@ div img {
 
 #container-de-descricao {
     background-color: #2274a5;
-    color: white;
+    padding-top: 70px;
 }
 
 #container-de-descricao>ol {
     padding: 15px 0px;
+
 }
 
 #container-para-comprar {
