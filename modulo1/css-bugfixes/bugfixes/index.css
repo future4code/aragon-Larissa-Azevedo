@@ -43,7 +43,14 @@ div img {
     height: 40px;
     border-radius: 5px;
     font-size: 20px;
-    color: white;
+    color: white; 
+   
+}
+
+.botao-amarelo{
+    position: relative;
+    top: 50px;
+    right: 450px;
 }
 
 .botao-amarelo:hover {
@@ -83,6 +90,7 @@ div img {
     color: #c44f00;
     padding: 100px 0;
     font-size: 60px;
+    
 }
 
 
@@ -123,6 +131,7 @@ td button {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+   
 }
 
 #back-button:hover {
