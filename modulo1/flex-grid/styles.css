@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+
+a {
+    text-transform: uppercase;
+    color: inherit;
+}
+
+header {
+    background-color: mediumvioletred;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1{
+    padding-left: 10px;
+}
+main {
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+button{
+    padding: 10px;
+    text-align: center;
+}
+.menu{
+    padding: 20px;
+    display: grid;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: #f2d0e0;
+}
+
+
+.produtos{
+    width: 20px;
+    padding: 10px;
+    display: grid;
+
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    row-gap: 10px;
+    column-gap: 10px;
+
+}
+
+.produtos div{
+    display: grid;
+    padding: 10px;
+    background-color: white;
+    box-sizing: inherit;
+}
+
+.produtos div p {
+    margin-top: 5px;
+    text-align:center;
+}
+
+.titulo {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+}
+
+.container img{
+    width: 20px;
+    height: auto;
+}
+
+.container a{
+    align-items: center;
+    text-decoration: none;
+}
+
+.bolos{
+    display: flex;
+    flex-direction: column;
+    box-shadow: darkgray;
+
+}
+
+.bolos img{
+    width: 200px;
+}
+
+footer {
+    background-color: mediumvioletred;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    
+}
+ footer p{
+     text-align: center;
+     margin-left: 800px;     
+ }
