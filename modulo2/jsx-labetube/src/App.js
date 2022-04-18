@@ -15,7 +15,7 @@ function App() {
       <div className="tela-inteira">
         <header>
             <h1>Future Tube</h1>
-            <input type="text" placeholder="Busca" id="campoDeBusca" />
+            <input type="text" placeholder="Busca &#128270;" id="campoDeBusca" />
         </header>
 
         <main>
@@ -24,7 +24,7 @@ function App() {
                     <li className="botoes-meunu-vertical">Início</li>
                     <li className="botoes-meunu-vertical">Em alta</li>
                     <li className="botoes-meunu-vertical">Inscrições</li>
-                    <hr />
+                    <hr/>
                     <li className="botoes-meunu-vertical">Originais</li>
                     <li className="botoes-meunu-vertical">Histórico</li>
                 </ul>
@@ -34,57 +34,57 @@ function App() {
                 <div className="box-pagina-principal media1" onclick="reproduzVideo()">
                     <img src="https://picsum.photos/400/400?a=1 " alt="" />
                     <h4>{titulo}</h4>
-                    <button onClick={reproduzVideo} >
-                      Assistir Vídeo
+                    <button className='botao' onClick={reproduzVideo} >
+                      ▶ PLAY
                     </button>
                 </div>
                 <div className="box-pagina-principal media2" onclick="reproduzVideo()">
                     <img src="https://picsum.photos/400/400?a=2 " alt="" />
                     <h4>{titulo}</h4>
-                    <button onClick={reproduzVideo} >
-                      Assistir Vídeo
+                    <button className='botao' onClick={reproduzVideo} >
+                      ▶ PLAY
                     </button>
                 </div>
                 <div className="box-pagina-principal media3" onclick="reproduzVideo()">
                     <img src="https://picsum.photos/400/400?a=3 " alt="" />
                     <h4>{titulo}</h4>
-                    <button onClick={reproduzVideo} >
-                      Assistir Vídeo
+                    <button className='botao' onClick={reproduzVideo} >
+                      ▶ PLAY
                     </button>
                 </div>
                 <div className="box-pagina-principal media4" onclick="reproduzVideo()">
                     <img src="https://picsum.photos/400/400?a=4 " alt="" />
                     <h4>{titulo}</h4>
-                    <button onClick={reproduzVideo} >
-                      Assistir Vídeo
+                    <button className='botao' onClick={reproduzVideo} >
+                      ▶ PLAY
                     </button>
                 </div>
                 <div className="box-pagina-principal media5" onclick="reproduzVideo()">
                     <img src="https://picsum.photos/400/400?a=5 " alt="" />
                     <h4>{titulo}</h4>
-                    <button onClick={reproduzVideo} >
-                      Assistir Vídeo
+                    <button className='botao' onClick={reproduzVideo} >
+                      ▶ PLAY
                     </button>
                 </div>
                 <div className="box-pagina-principal media6" onclick="reproduzVideo()">
                     <img src="https://picsum.photos/400/400?a=6 " alt="" />
                     <h4>{titulo}</h4>
-                    <button onClick={reproduzVideo} >
-                      Assistir Vídeo
+                    <button className='botao' onClick={reproduzVideo} >
+                      ▶ PLAY
                     </button>
                 </div>
                 <div className="box-pagina-principal media7" onclick="reproduzVideo()">
                     <img src="https://picsum.photos/400/400?a=7 " alt="" />
                     <h4>{titulo}</h4>
-                    <button onClick={reproduzVideo} >
-                      Assistir Vídeo
+                    <button className='botao' onClick={reproduzVideo} >
+                      ▶ PLAY
                     </button>
                 </div>
                 <div className="box-pagina-principal media8" onclick="reproduzVideo()">
                     <img src="https://picsum.photos/400/400?a=8 " alt="" />
                     <h4>{titulo}</h4>
-                    <button onClick={reproduzVideo} >
-                      Assistir Vídeo
+                    <button className='botao' onClick={reproduzVideo} >
+                      ▶ PLAY
                     </button>
                 </div>
             </section>

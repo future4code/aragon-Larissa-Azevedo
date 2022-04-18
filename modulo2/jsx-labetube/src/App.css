@@ -20,6 +20,12 @@ header {
   height: 10%;
 }
 
+#campoDeBusca{
+  border: 1px solid transparent;
+  padding: 10px 20px;
+
+}
+
 main {
   min-height: 80%;
   display: flex;
@@ -94,6 +100,22 @@ main {
   align-items: start;
   justify-items: stretch;
 }
+
+.botao{
+  margin: 0 auto;
+  background-color: rgb(202, 145, 39);
+  border: 1px solid transparent;
+  padding: 2px 20px;
+  border-radius: 70px;
+  font-size: medium;
+ }
+  .botao:hover{
+    background-color: #43c7df;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: orangered;
+    cursor: pointer;
+  }
 
 
 footer {
