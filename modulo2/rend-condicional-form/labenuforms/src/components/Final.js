@@ -8,6 +8,7 @@ class Final extends React.Component {
                 <p>Muito obrigado pela participação. Aguarde contato :)</p>
             </section>
             
+            
         );
     }
 }

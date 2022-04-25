@@ -43,7 +43,7 @@ class App extends React.Component {
       case 4:
         return <Final />;
       default:
-        return <Etapa1 clicandoProximaEtapa={this.onClickProximaEtapa} />;
+        return <Etapa1/>;
     }
   };
 
