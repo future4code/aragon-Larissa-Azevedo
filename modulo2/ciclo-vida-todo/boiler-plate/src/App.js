@@ -37,12 +37,19 @@ class App extends React.Component {
       filtro: 'completa'
     }
 
-  componentDidUpdate() {
-
+  componentDidUpdate(prevProps,prevState) {
+    if(prevState.tarefas !== this.state.tarefas){ 
+    const listaTarefa = JSON.stringify(this.state.tarefas)
+    window.localStorage.setItem("tarefas", listaTarefa)}
   };
 
   componentDidMount() {
 
+    let arrayTarefa = localStorage.getItem("tarefas")
+    arrayTarefa = JSON.parse(arrayTarefa)
+    if (arrayTarefa !== null) {
+      this.setState({tarefas: arrayTarefa})
+    }
   };
 
   onChangeInput = (event) => {
