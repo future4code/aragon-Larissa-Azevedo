@@ -1,6 +1,8 @@
 import React from 'react';
 import TelaCadastro from './components/TelaCadastro';
 import TelaListaUsuarios from './components/TelaListaUsuarios';
+import styles from './styles.css'
+
 
 export default class App extends React.Component{
 
@@ -29,36 +31,10 @@ export default class App extends React.Component{
 
   render(){
     return (
-      <section>
+      <section className='principal'>
         {this.escolheTela()}
         </section>
     )
   }
 }
-
-
-
-// export default class App extends React.Component{
-//   state = {
-//     currentPage: "signUp"
-//   };
-
-//   changePage = () => {
-//     if (this.state.currentPage === "signUp") {
-//       this.setState({ currentPage: "users" });
-//     } else {
-//       this.setState({ currentPage: "signUp" });
-//     }
-//   };
-
-//   render(){
-//     return(
-//       <section>
-//         {this.setState.currentPage === "signUp" ? <Login /> : <Users/>}
-//         <button onClick={this.changePage}>Trocar a tela</button>        
-//       </section>
-//     );
-//   }
-
-// }
 
