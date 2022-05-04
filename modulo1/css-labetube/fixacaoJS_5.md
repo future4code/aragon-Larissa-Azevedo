@@ -16,3 +16,4 @@ function criarArrayNomesAnimais() {
      
      return nomeAnimais
 }
+ 

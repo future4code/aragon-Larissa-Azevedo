@@ -1,0 +1,153 @@
+body {
+    text-align:center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(#43c7df, #2A0074);
+    color: #ffffff;
+    margin: 0 0 30px 0;
+    }
+  
+  p{ 
+    font-size:18px;
+    line-height:1.5; 
+  }
+
+  p em{
+    color:#2A0074;
+  }
+
+  p strong{
+    color: #ec9717;
+  }
+  
+
+  h1{
+    font-size:60px;
+    font-weight:lighter;
+    font-family:Verdana, Geneva, Tahoma, sans-serif
+  }
+  
+  h2{
+    color:#2A0074;
+    font-size: 40px;
+  }
+  
+  h3{
+    font-size:22px;
+    font-style: underline;
+  }
+  
+  .educacao{
+      line-height: 1.5;
+      text-align: center;
+      position: relative;
+      left:100px
+  }
+  .experiencia{
+      line-height: 1.5;
+      position: relative;
+      bottom:104px;
+      left: 560px;
+      text-align: center;
+  }
+
+
+  .titulo-verde{
+    color:#04FF9F;
+    
+   }
+  
+  .titulo-vermelho{ 
+    color:#FF9E9E;
+   }
+  
+  .titulo-amarelo{
+    color:#ffe36d;
+    }
+  
+    section{
+      width:60%;
+      margin:0% auto;
+      }
+    
+    section section{
+      width: 100%;
+      }
+
+    img{
+      
+      max-width: 900px;
+      max-height: 450px;
+    }
+  
+    .oi {
+        width: 65%;
+    }
+
+    ul{
+      list-style-type:none;
+      line-height: 2;
+      padding-left:0;
+    }
+  
+  a{
+    text-decoration: none;
+    color:#373adb;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  
+  .principal {
+  background:#ec9717;
+  height: 40px;
+  max-width: 100%;
+  margin:0% auto
+  }
+  
+  .principal a:hover{
+   text-decoration:underline;
+   color: #FFF;
+   font-weight: bold;
+
+  }
+  
+  .principal li {
+    display: inline-block;
+    line-height: 2.5;
+    margin: 0 89px;
+    
+  }
+  
+  .button{
+    background-color: rgb(39, 183, 202);
+    border: 1px solid transparent;
+    padding: 2px 20px;
+    border-radius: 78px;
+    
+  }
+
+  .btn{
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 2px 20px;
+  }
+
+  .tecnologia li{
+    width: 40px;
+    margin:0% auto;
+    display: inline-block;
+    padding-right: 4px;
+
+    
+}
+
+ .botaoVoltar{
+  background-color: rgb(202, 145, 39);
+  border: 1px solid transparent;
+  padding: 2px 20px;
+  border-radius: 78px;
+  font-size: medium;
+ }
+  .botaoVoltar:hover{
+    background-color: #43c7df;
+  }
+

@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -27,11 +28,9 @@ header h1{
     padding-left: 10px;
 }
 main {
-    display: flex;
-    flex-direction: column;
+    display: grid;    
 
 }
-
 
 button{
     padding: 10px;
@@ -52,7 +51,7 @@ button{
     padding: 10px;
     display: grid;
 
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 
     row-gap: 10px;
@@ -96,7 +95,7 @@ button{
 .bolos{
     display: flex;
     flex-direction: column;
-    box-shadow: darkgray;
+    box-shadow: 2px  2px 5px darkgray;
 
 }
 
@@ -106,12 +105,13 @@ button{
 
 footer {
     background-color: mediumvioletred;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: row;
     
 }
  footer p{
      text-align: center;
-     margin-left: 800px;     
+     margin-left: 800px;
  }
+    
