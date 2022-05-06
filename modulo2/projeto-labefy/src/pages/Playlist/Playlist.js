@@ -3,19 +3,12 @@ import axios from "axios";
 import styles from "./styles.css";
 import { BASE_URL } from "./constants";
 import { AxiosConfig } from "./constants";
-import PlaylistDetails from "./pages/PlaylistDetails/PlaylistDetails"
 
 
 export default class App extends React.Component {
   state = {
     playlists: [],
-    tracks: [],
-    playlistId: [],
-    inputValue: "",
-    inputName: "",
-    inputArtist:"",
-    inputUrl:"",
-    screen:"createPlaylist"
+    inputName: ""
   };
 
   componentDidMount() {
@@ -32,6 +25,15 @@ export default class App extends React.Component {
     }
   };
 
+  getPlaylists = () => {
+    axios.get(BASE_URL, AxiosConfig)
+        .then((res) => {
+         this.setState({ playlists: res.data.result.list });
+      })
+        .catch((err) => {
+         alert(err.response.data);
+      });
+  };
 
   createPlaylist = () => {
     const body = {
@@ -53,50 +55,23 @@ export default class App extends React.Component {
             }
         });
   };
-
-  getPlaylists = () => {
-    axios.get(BASE_URL, AxiosConfig)
-        .then((res) => {
-         this.setState({ playlists: res.data.result.list });
-      })
-        .catch((err) => {
-         alert(err.response.data);
-      });
-  };
-
-  deletePlaylist = (play) => {
-    if(
-      window.confirm(`Tem certeza que deseja excluir ${play.name}?`)
-    ) 
-    {axios.delete(BASE_URL, AxiosConfig)
-      .then((res)=> {
-        this.getPlaylists();
-      })
-      .catch((err)=>{
-        alert(err.response.data.message, "Deu erro para excluir! Se quiser, tente novamente.")
-      });     
-
-  }
-}
-
+  
   render() {
     const playlistComponents = this.state.playlists.map((play) => {
       return <li key={play.id}>{play.name}</li>;
     });
 
     return (      
-        <section>
+        <section className="playlist">
           <h1>Labefy 🎧 </h1>
           <input placeholder="digite o título aqui ♪"
             onKeyDown={this.handleClickEnter}
             value={this.state.inputName}
             onChange={this.handleName}
           />
-          <button onClick={this.createPlaylist}>Criar Playlist ▶</button>          
+          <button onClick={this.createPlaylist}>Criar Playlist</button>          
           <hr />
-          
           {playlistComponents}
-          
         </section>
     );
   }

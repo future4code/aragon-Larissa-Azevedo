@@ -1,0 +1,32 @@
+body {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background: #1B4458;
+    color: #F78002;
+}
+
+h1{
+    text-align: center;
+}
+
+button{
+    background-color: #AAB8C1;
+    margin: 8px;
+    padding: 4px;
+    border-radius: 0.6em;
+    cursor: pointer;
+    align-items: center;
+}
+
+button:hover{
+    color: #1B4458;
+    background-color: #F78002;
+    text-transform: uppercase;
+}
+
+input{
+    padding: 4px;
+    width: 250px;
+    border-radius: 0.6em;
+}
