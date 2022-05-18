@@ -4,7 +4,7 @@ import MatchPage from "./MatchPage";
 import Header from "../components/Header";
 import styled from "styled-components";
 
-const Tela = styled.div`
+const PageAlign = styled.div`
 font-family: roboto;
 text-align: center;
 `
@@ -34,7 +34,7 @@ export default function MainPage() {
     };
    
         return (
-            <Tela>
+            <PageAlign>
                 <Header
                 page={page}
                 goToProfilePage={goToProfilePage}
@@ -45,7 +45,7 @@ export default function MainPage() {
                 <section>            
                 {renderCurrentPage()}   
                 </section>             
-            </Tela>
+            </PageAlign>
         );
     };
 
