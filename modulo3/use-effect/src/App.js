@@ -1,59 +1,62 @@
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PokeCard from "./components/PokeCard";
+import styled from "styled-components";
+
+const Tela = styled.div`
+font-family: roboto;
+text-align: center;
+`
 
 function App() {
-  // Passo 3b
-  // Implemente suas variáveis de estado aqui.
 
-  // Passo 3c
-  // componentDidMount = () => {
-  //   axios
-  //     .get("https://pokeapi.co/api/v2/pokemon/?limit=151")
-  //     .then((res) => {
-  //       this.setState({ pokeList: res.data.results });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const [pokeList, setPokeList] = useState([]);
+  const [pokeName, setPokeName] = useState("");
 
-  // Passo 3a
+  useEffect(()=> {
+    axios.get("https://pokeapi.co/api/v2/pokemon/?limit=151")
+    .then((response) => {
+      setPokeList(response.data.results)
+      console.log(response.data.results)
+    })
+
+    .catch((err)=> {
+      console.log(err.response.data.message)
+    })
+    
+  }, []);
+
   const changePokeName = (event) => {
-    // Passo 3d
-    // Implementa a função aqui.
+    setPokeName(event.target.value)
   };
 
-  // Passo 3e
-  // const pokeOptions = this.state.pokeList.map(pokemon => {
-  //   return (
-  //     <option key={pokemon.name} value={pokemon.name}>
-  //       {pokemon.name}
-  //     </option>
-  //   );
-  // });
-
+  const pokeOptions = pokeList.map((pokemon) =>{
+    return(
+      <option key = {pokemon.name} value = {pokemon.name}>
+        {pokemon.name}
+      </option>        
+    )
+  })
   // Passo 4a
-  const pokemon = true && <PokeCard />;
+  const pokemon = pokeName && <PokeCard pokemon={pokeName} />;
 
   return (
-    <>
+    <Tela>
       <header>
-        <h1>Exibir Pokémon</h1>
+        <h1>Quem é esse Pokémon?</h1>
       </header>
       <hr />
       <nav>
-        <label htmlFor={"select-pokemon"}>Selecione um pokemon: </label>
-         {/* Passo 3a */}
-        <select id={"select-pokemon"} >
+        <label htmlFor={"select-pokemon"}>Selecione um Pokémon: </label>
+        <select id={"select-pokemon"} onChange={changePokeName} >
           <option value={""}>Nenhum</option>
-          {/* Passo 3e */}
-          {/* {pokeOptions} */}
+            {pokeOptions}
         </select>
       </nav>
       <main>
         {pokemon}
       </main>
-    </>
+    </Tela>
   );
 };
 

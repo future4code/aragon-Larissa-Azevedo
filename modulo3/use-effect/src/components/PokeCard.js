@@ -1,7 +1,30 @@
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function PokeCard(props) {
-  // Passo 4b
+
+  const [currentPokemon, setCurrentPokemon] = useState({})
+
+
+  useEffect(()=>{
+    pegaPokemon(props.pokemon)
+  }, [props.pokemon]);
+ console.log(currentPokemon)
+ console.log(setCurrentPokemon)
+  const pegaPokemon = (pokeName) => {
+    console.log("nossa, o que rolou?")
+    axios.get(`https://pokeapi.co/api/v2/pokemon/${props.pokeName}`)
+    .then((response)=>{
+      setCurrentPokemon(response.data.results)
+    })
+    .catch((err)=>{
+      console.log(err.response)
+      console.log("O QUE??")
+    });
+  }; 
+ console.log(PokeCard)
+  // [props.pokeName];
+    // Passo 4b
   // Implementa suas variáveis de estado aqui.
 
   // Passo 4c
@@ -29,18 +52,18 @@ function PokeCard(props) {
   // };
 
   return (
-    <figure>
+    <section>
       {/* Passo 4d */}
-      <strong>Nome do Pokémon</strong>
+      <strong>{currentPokemon.name}</strong>
       {/* Passo 4d */}
-      <p>Peso: 1000 Kg</p>
+      <p>{currentPokemon.weight}</p>
       {/* Passo 4d */}
-      <p>Tipo: Fire</p>
+      <p> {currentPokemon.types && <p>{currentPokemon.types[0].type.name}</p>}</p>
       {/* Passo 4d */}
-      {true && (
-        <img src={""} alt={"Nome do Pokémon"} />
+      {currentPokemon.sprites &&( 
+        <img src={currentPokemon.sprites.front_default} alt={currentPokemon.name} />
       )}
-    </figure>
+    </section>
   );
 };
 
