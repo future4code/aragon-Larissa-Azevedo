@@ -21,6 +21,39 @@ export default function ProfilePage() {
         });
     };
 
+    const chooseProfile = (profileId, choice) =>{
+
+        const url = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/lari-azevedo-aragon/choose-person"
+
+        const body = {
+            id: profileId,
+            choice: choice
+        };
+
+        axios.post(url, body)
+        .then(()=>{
+            getProfile();
+        })
+        .catch((error)=>{
+            console.log(error.response)
+        });
+    };
+
+    const resetProfileList = () => {
+        const url = "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/lari-azevedo-aragon/clear";
+
+        axios.put(url)
+        .then(()=> {
+            alert("☆Perfis zerados!☆");
+            getProfile()
+            
+        })
+        .catch((error) =>{
+            console.log(error.response)
+        })
+
+    }
+
     const card = profile &&(
         <figure>
 
@@ -32,8 +65,10 @@ export default function ProfilePage() {
 
             <p>{profile.name}, {profile.age}</p>
             <p>{profile.bio}</p>
-            <button onClick={()=> getProfile()}> thank u, next</button>
-
+           
+            <button onClick={()=> chooseProfile(profile.id, false)}> thank u, next</button>
+            <button onClick={()=> chooseProfile(profile.id, true)}> i want u</button>
+            
         </figure>
     )
 
@@ -43,6 +78,8 @@ export default function ProfilePage() {
         <>
             <h2>☆ Perfis ☆</h2>
                   {card}
+            
+            <button onClick={()=> resetProfileList()}> ★ Zerar Perfis ★ </button>
         </>
     );
 };
