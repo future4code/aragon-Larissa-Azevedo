@@ -41,7 +41,6 @@ export default function MainPage() {
                 goToMatchPage={goToMatchPage}
                 /> 
 
-                <hr />
                 <section>            
                 {renderCurrentPage()}   
                 </section>             

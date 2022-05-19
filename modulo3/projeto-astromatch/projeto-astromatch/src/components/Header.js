@@ -1,11 +1,23 @@
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
 export default function Header(props){
     return(
         <header>
-            <h1>★ AstroMatch ★</h1>
+             <Typography component="div">
+                 <Box 
+                 sx={{ letterSpacing: 10, m: 1,
+                    fontWeight:'700', 
+                    color:'#880e4f', 
+                    fontFamily:'BlinkMacSystemFont',
+                    textTransform:'uppercase'              
+                }}><h1>★ AstroMatch ★</h1></Box>
+             </Typography>
 
             {props.page === "profile" ? 
-            <button onClick={props.goToMatchPage}>Ver Matches</button> :
-            <button onClick={props.goToProfilePage}>Voltar para Perfis</button>
+            <Button variant="contained" color="secondary" onClick={props.goToMatchPage}>Ver Matches</Button> :
+            <Button color="secondary" onClick={props.goToProfilePage}>Voltar para Perfis</Button>
             }
         </header>
     );
