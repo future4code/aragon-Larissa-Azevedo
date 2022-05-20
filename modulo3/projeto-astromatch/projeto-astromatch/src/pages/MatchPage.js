@@ -54,7 +54,7 @@ export default function MatchPage() {
             backgroundColor: "#f5f5f5",
             boxShadow: 1,
             "&:hover": {
-              backgroundColor: "#9c27b0",
+              backgroundColor: "#c2185b",
               opacity: [0.9, 0.8, 0.7],
             },
           }}
@@ -63,10 +63,12 @@ export default function MatchPage() {
             <img
               src={match.photo}
               alt={`Exibição da foto do match ${match.name}`}
-              height={"40px"}
+              height={"60px"}
             />
 
-            <span className="nome">{match.name}</span>
+            <Typography sx={{ fontWeight:"200"}}>
+              <span>{match.name}</span>
+            </Typography>
           </figure>
         </Box>
       );
@@ -79,10 +81,7 @@ export default function MatchPage() {
           <h2> ☆ Matches ☆</h2>
         </Box>
       </Typography>
-        <Grid container
-        direction="column"
-        justifyContent="center"
-        alignItems="center">
+        <Grid container direction="column">
           {matches &&
             matches.map((match) => {
               return <ul>{match}</ul>;

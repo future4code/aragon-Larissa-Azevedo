@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import { light } from "@mui/material/styles/createPalette";
+
 
 
 export default function ProfilePage() {
@@ -37,7 +39,10 @@ export default function ProfilePage() {
 
     axios
       .post(url, body)
-      .then(() => {
+      .then((response) => {
+        if(body.choice && response.data.isMatch){
+          alert("Astromatch! ★ Estava escrito nas estrelas ★")
+        }
         getProfile();
       })
       .catch((error) => {
@@ -52,7 +57,7 @@ export default function ProfilePage() {
     axios
       .put(url)
       .then(() => {
-        alert("☆Perfis zerados!☆");
+        alert("☆Opções Recarregadas!☆");
         getProfile();
       })
       .catch((error) => {
@@ -60,7 +65,7 @@ export default function ProfilePage() {
       });
   };
 
-  const card = profile && (
+  const card = profile ? (
     <figure>
       <Box
         sx={{
@@ -71,12 +76,13 @@ export default function ProfilePage() {
           position: "sticky",
           fontSize: "1rem",
           fontWeight: "700",
+          fontFamily:"sans-serif",
           left: "36%",
           zIndex: "tooltip",
           backgroundColor: "#f5f5f5",
-          boxShadow: 1,
+          boxShadow: 2,
           "&:hover": {
-            backgroundColor: "secondary.dark",
+            backgroundColor: "#ede7f6",
             opacity: [0.9, 0.8, 0.7],
           },
         }}
@@ -87,12 +93,17 @@ export default function ProfilePage() {
           height={"280px"}
         ></img>
 
-        <p>
-          {profile.name}, {profile.age}
-        </p>
-        <p>{profile.bio}</p>
+          <Typography sx={{fontSize:20, fontWeight:700, color:'text.secondary'}}>
+            {profile.name}, {profile.age}
+          </Typography>
+        
+          <Typography sx={{fontSize:18, color: 'info.main'}}>
+            <p>{profile.bio}</p>
+          </Typography>
       </Box>
+      
       <Button
+        sx={{margin: 5, p:3}}
         variant="outlined"
         color="error"
         onClick={() => chooseProfile(profile.id, false)}
@@ -100,7 +111,9 @@ export default function ProfilePage() {
         {" "}
         thank u, next
       </Button>
+
       <Button
+        sx={{margin:5, p:3}}
         variant="contained"
         color="secondary"
         onClick={() => chooseProfile(profile.id, true)}
@@ -108,8 +121,19 @@ export default function ProfilePage() {
         {" "}
         i want u
       </Button>
-    </figure>
-  );
+    </figure> ) : (
+      <>
+        <Typography sx={{margin: 5, p:3, color: 'error.main'}} >
+          <h2>Opa! Suas opções acabaram... Recarregue os perfis ou volte mais tarde :)</h2>
+        </Typography>
+      
+        <Button variant="outlined" color="secondary" onClick={() => resetProfileList()}>
+            {" "}
+            ★ Recarregar ★{" "}
+        </Button>
+      </>
+    )
+  
 
   return (
     <>
@@ -120,11 +144,7 @@ export default function ProfilePage() {
       </Typography>
 
       {card}
-
-      <Button color="secondary" onClick={() => resetProfileList()}>
-        {" "}
-        ★ Zerar Perfis ★{" "}
-      </Button>
+      
     </>
   );
 }

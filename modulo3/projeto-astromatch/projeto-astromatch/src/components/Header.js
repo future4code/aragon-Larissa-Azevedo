@@ -16,8 +16,8 @@ export default function Header(props){
              </Typography>
 
             {props.page === "profile" ? 
-            <Button variant="contained" color="secondary" onClick={props.goToMatchPage}>Ver Matches</Button> :
-            <Button color="secondary" onClick={props.goToProfilePage}>Voltar para Perfis</Button>
+            <Button sx={{p:2, m:2, height:5}}variant="contained" color="secondary" onClick={props.goToMatchPage}>Ver Matches</Button> :
+            <Button sx={{p:2, m:2, height:5}}color="secondary" onClick={props.goToProfilePage}>Voltar para Perfis</Button>
             }
         </header>
     );
