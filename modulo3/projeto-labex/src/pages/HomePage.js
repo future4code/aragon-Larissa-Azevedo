@@ -1,7 +1,10 @@
+import Header from "../components/Header";
 
 export default function HomePage(){
     return(
         <>
+        <Header
+        currentPage="home-page" />
         <main>
             <section>
                 <h2>Inscreva-se em um nova viagem!</h2>
@@ -13,5 +16,5 @@ export default function HomePage(){
         </main>       
         
         </>
-    )
+    );
 }
