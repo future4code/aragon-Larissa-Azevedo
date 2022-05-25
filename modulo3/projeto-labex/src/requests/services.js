@@ -8,8 +8,8 @@ export const requestLogin = (email, password, navigate) => {
     }
 
     axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/lari-azevedo-aragon/login", body)
-    .then((res) => {
-        localStorage.setItem("token", res.data.token);
+    .then((response) => {
+        localStorage.setItem("token", response.data.token);
         alert("Acesso Autorizado!")
         goToAdminPage(navigate);
     })
@@ -17,4 +17,22 @@ export const requestLogin = (email, password, navigate) => {
         alert("Acesso não autorizado.");
         console.log(error.response.data)
     });
+};
+
+
+export const deleteTrip = (tripId, getTripsData) => {
+    const header = {
+        headers: {
+            auth: localStorage.getItem("token")
+        }
+    };
+
+    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/lari-azevedo-aragon/trips/${tripId}`, header)
+    .then(() => {
+        alert("Viagem removida com sucesso!");
+        getTripsData();
+    })
+    .catch((error) =>{
+        alert(error.response.data)
+    })
 }

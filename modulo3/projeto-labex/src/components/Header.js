@@ -20,7 +20,6 @@ export default function Header(props){
                 return;
 ;        };
     };
-
     const login = (event) => {
         event.preventDefault();
 
@@ -32,7 +31,6 @@ export default function Header(props){
 
         goToHomePage(navigate);
     }
-
 
     const renderHeader = 
         localStorage.getItem("token") ?
@@ -60,18 +58,7 @@ export default function Header(props){
                 <button type={"submit"}>Login</button>
             </form>
         )
-        // switch(props.currentPage){
-        //     case "home-page":
-        //         return(
-        //             <button onClick={() => goToAdminPage(navigate)}>Login</button>
-        //         );
-        //     case "admin-page":
-        //         return(
-        //             <button onClick={() => goToHomePage(navigate)}>Logout</button>
-        //         );
-        //     default:
-        //         return;
-        // };
+
     return(
         <>
         <main>
