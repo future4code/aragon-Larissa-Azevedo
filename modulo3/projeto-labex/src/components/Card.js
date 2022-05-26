@@ -8,8 +8,8 @@ export default function Card(props) {
             <p>Viagem: {name}</p>
             <p>Experiência: {description}</p>
             <p>Planeta: {planet}</p>
-            <p>Duração: {durationInDays} dias</p>
-            <p>Data: {date}</p>
+            <p>Duração: {durationInDays} dias terrestres</p>
+            <p>Decolagem no dia {date}</p>
 
             {token && (
                 <>

@@ -7,7 +7,7 @@ export const requestLogin = (email, password, navigate) => {
         password: password
     }
 
-    axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/lari-azevedo-aragon/login", body)
+    axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/larissa-aragon/login", body)
     .then((response) => {
         localStorage.setItem("token", response.data.token);
         alert("Acesso Autorizado!")
@@ -27,7 +27,7 @@ export const deleteTrip = (tripId, getTripsData) => {
         }
     };
 
-    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/lari-azevedo-aragon/trips/${tripId}`, header)
+    axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/larissa-aragon/trips/${tripId}`, header)
     .then(() => {
         alert("Viagem removida com sucesso!");
         getTripsData();
@@ -35,4 +35,24 @@ export const deleteTrip = (tripId, getTripsData) => {
     .catch((error) =>{
         alert(error.response.data)
     })
+}
+
+export const createTrip = (body, clear, getTripsData) => {
+    const header = {
+        headers:{
+            auth: localStorage.getItem("token")
+        }
+    };
+
+    axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/larissa-aragon/trips`, body, header)
+    .then(() => {
+        alert("Viagem criada com sucesso!");
+        clear();
+        getTripsData();
+    })
+    .catch((error) => {
+        alert(error.message)
+    });  
+
+
 }

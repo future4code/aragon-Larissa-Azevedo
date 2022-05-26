@@ -11,7 +11,7 @@ const useRequestData = (path, initialState) => {
             }
         };
 
-        axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/lari-azevedo-aragon/${path}`, header)
+        axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/larissa-aragon/${path}`, header)
         .then((response) => {
             setData(response.data)
         })
