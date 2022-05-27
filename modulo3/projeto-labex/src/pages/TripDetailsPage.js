@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import useRequestData from "../hooks/useRequestData";
+import { decideCandidate } from "../requests/services";
 import { goToHomePage, goToAdminPage } from "../routes/coordinator";
 
 export default function TripDetailsPage(){
@@ -9,13 +10,19 @@ export default function TripDetailsPage(){
 
     const params = useParams();
 
-    const [detailsData] = useRequestData(`trip/${params.tripId}`, {})
+    const [detailsData, getTripsDetail] = useRequestData(`trip/${params.tripId}`, {})
 
     useEffect(() => {
         if(!localStorage.getItem("token")) {
             goToHomePage(navigate);
         };
     }, []);
+
+
+    const decide = (candidateId, decision) => {
+
+        decideCandidate(params.tripId, candidateId, decision, getTripsDetail)
+    }
 
     const candidatesList = detailsData.trip && detailsData.trip.candidates.map((candidate) => {
         return(
@@ -26,12 +33,17 @@ export default function TripDetailsPage(){
                 <span>País: {candidate.country} - </span>
                 <span>Texto de Candidatura: {candidate.applicationText}</span>
 
-                <button>Aprovar Candidatura</button>
-                <button>Reprovar Candidatura</button>
+                <button onClick={() => decide(candidate.id, true)}>Aprovar Candidatura</button>
+                <button onClick={() => decide(candidate.id, false)}>Reprovar Candidatura</button>
             </section>
         )
 
     });
+
+    const approvedList = detailsData.trip &&  detailsData.trip.approved.map((candidate)=>{
+        return <li key ={candidate.id}>{candidate.name}</li>
+    })
+
 
     return(
         <>
@@ -42,8 +54,8 @@ export default function TripDetailsPage(){
         <h2>Lista de Candidatos</h2>
             {candidatesList}
         <hr />
-        <h2>Lista de Aprovados</h2>        
-        
+        <h2>Lista de Aprovados</h2>
+            {approvedList}  
         </>
     )
     

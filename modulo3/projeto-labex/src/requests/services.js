@@ -53,6 +53,37 @@ export const createTrip = (body, clear, getTripsData) => {
     .catch((error) => {
         alert(error.message)
     });  
+}
 
+export const sendApplication = (body, tripId, clear ) =>{
+    axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/larissa-aragon/trips/${tripId}/apply`, body)
+    .then(()=>{
+        alert("Candidatura enviada com sucesso!");
+        clear();
+    })
+    .catch((error) => alert(error.response.message));
+}
 
+export const decideCandidate = (tripId, candidateId, decision, getTripDetail) => {
+    const header = {
+        headers: {
+            auth: localStorage.getItem("token")
+        }
+    };
+
+    const body = {
+        approve: decision
+    };
+
+    axios.put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/larissa-aragon/trips/${tripId}/candidates/${candidateId}/decide`,
+    body, header
+    )
+    .then(() => {
+        decision ?
+        alert("Candidatura aprovada! Boa viagem!") :
+        alert("Planeta Terra chamando! Candidatura reprovada.")
+    })
+    .catch((error) => {
+        alert(error.message)
+    });
 }

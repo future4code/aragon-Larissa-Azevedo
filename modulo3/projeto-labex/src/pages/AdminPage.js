@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import Header from "../components/Header";
-import { planets } from "../components/Planets";
+import { planets } from "../constants/planets";
 import useForm from "../hooks/useForm";
 import useRequestData from "../hooks/useRequestData";
 import { createTrip, deleteTrip } from "../requests/services";
