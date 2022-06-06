@@ -1,11 +1,9 @@
 import Router from "./routes/Router";
 
-function App() {
+export default function App() {
   return (
     <section>
       <Router />
     </section>
   );
 }
-
-export default App;

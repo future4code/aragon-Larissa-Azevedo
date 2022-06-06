@@ -1,11 +1,21 @@
-// import { useNavigate } from "react-router-dom";
-export default function FeedPage(){
-    // const navigate = useNavigate();
+import Header from "../components/Header";
+import { useProtectedPage } from "../hooks/useProtectedPage";
 
-    return (
-        <header>
-            <h1>FeedPage</h1>
-        </header>
-    )
+export default function FeedPage() {
+  useProtectedPage();
 
-};
+  return (
+    <main>
+      <Header isProtected={true} />
+      <hr />
+      <section>
+        <h2> Crie um novo Post :)</h2>
+      </section>
+      <hr />
+      <section>
+        <h2> Lista de Posts</h2>
+      </section>
+
+    </main>
+  );
+}

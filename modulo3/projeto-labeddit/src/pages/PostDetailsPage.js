@@ -1,6 +1,8 @@
-// import { useNavigate } from "react-router-dom";
+import { useProtectedPage } from "../hooks/useProtectedPage"
+
 export default function PostDetailsPage(){
-    // const navigate = useNavigate();
+
+    useProtectedPage();
 
     return (
         <header>
