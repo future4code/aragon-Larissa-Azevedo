@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 import { goToFeedPage } from "../routes/coordinator";
 
-export const useUnrotectedPage = () => {
+export const useUnprotectedPage = () => {
     const navigate = useNavigate();
 
     useEffect(()=> {

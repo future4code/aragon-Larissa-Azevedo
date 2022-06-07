@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import useForm from "../hooks/useForm";
-import { useUnrotectedPage } from "../hooks/useUnprotectedPage";
+import { useUnprotectedPage } from "../hooks/useUnprotectedPage";
 import { goToSignUpPage } from "../routes/coordinator";
 import { requestLogin } from "../services/requests";
 
 export default function LoginPage() {
-  useUnrotectedPage();
+  useUnprotectedPage();
 
   const navigate = useNavigate();
 
