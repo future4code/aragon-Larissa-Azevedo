@@ -39,7 +39,7 @@ export default function SignUpPage() {
             title={"Seu nome deve ter no mínimo 3 caracteres"}
             required
           />
-          <br />
+          <br /> <br />
 
           <label htmlFor={"email"}> E-mail: </label>
           <input
@@ -50,7 +50,7 @@ export default function SignUpPage() {
             onChange={onChange}
             required
           />
-          <br />
+          <br /> <br />
 
           <label htmlFor={"password"}> Senha: </label>
           <input
@@ -63,7 +63,7 @@ export default function SignUpPage() {
             title={"O nome deve ter no mínimo 8 e no máximo 30 caracteres"}
             required
           />
-          <br />
+          <br /> <br />
 
           <button onClick={() => goToLoginPage(navigate)}>Voltar</button>
         </form>

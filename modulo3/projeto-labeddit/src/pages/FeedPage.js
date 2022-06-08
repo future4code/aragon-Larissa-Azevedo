@@ -27,18 +27,21 @@ export default function FeedPage() {
     requestCreatePost(form, clear, getPosts);
   };
 
-  const showPosts =
-    posts.length &&
-    posts.map((post) => {
-      return <PostCard key={post.id} post={post} />;
+  const showPosts = posts.length && posts.map((post) => {
+      return ( 
+        <PostCard 
+          key={post.id} 
+          post={post} 
+          isFeed={true} /> );
     });
 
   return (
     <main>
-      <Header isProtected={true} />
+      <Header 
+        isProtected={true} />
       <hr />
       <section>
-        <h2> Crie um novo Post :)</h2>
+        <h2> = Crie um novo Post =</h2>
         <form onSubmit={createPost}>
           <label htmlFor={"title"}> Título: </label>
           <input
@@ -50,8 +53,8 @@ export default function FeedPage() {
             title={"Título deve ter no mínimo 5 caracteres"}
             required
           />
-          <br />
-          <label htmlFor={"body"}>Texto do Post:</label>
+          <br /> <br />
+          <label htmlFor={"body"}>Texto do Post: </label>
           <input
             id={"body"}
             name={"body"}
@@ -63,7 +66,7 @@ export default function FeedPage() {
             required
           />
 
-          <br />
+          <br /> <br />
           <button type={"submit"}>Postar</button>
         </form>
       </section>

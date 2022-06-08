@@ -65,3 +65,25 @@ export const requestSignUp = (form, clear, navigate) => {
       clear();
     });
 };
+
+export const requestCreateComment = (form, clear, getPostComments, postId) =>{
+  const header = {
+    headers: {
+      authorization:localStorage.getItem("token")
+    }
+  };
+
+  const body = {
+    body: form.body
+  };
+
+  axios.post(`https://labeddit.herokuapp.com/posts/${postId}/comments`, body, header)
+  .then((response)=>{
+    alert(response.data);
+    getPostComments(postId);
+    clear();
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
+}
