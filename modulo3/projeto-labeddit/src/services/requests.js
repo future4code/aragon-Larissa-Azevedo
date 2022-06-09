@@ -66,24 +66,153 @@ export const requestSignUp = (form, clear, navigate) => {
     });
 };
 
-export const requestCreateComment = (form, clear, getPostComments, postId) =>{
+export const requestCreateComment = (form, clear, getPostComments, postId) => {
+  const header = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
+  const body = {
+    body: form.body,
+  };
+
+  axios
+    .post(
+      `https://labeddit.herokuapp.com/posts/${postId}/comments`, body, header)
+    .then((response) => {
+      alert(response.data);
+      getPostComments(postId);
+      clear();
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
+
+export const requestCreateCommentVote = (commentId, direction, getPostComments, postId) => {
+  const header = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
+  const body = {
+    direction: direction,
+  };
+
+  axios
+    .put(
+      `https://labeddit.herokuapp.com/comments/${commentId}/vote`, body, header)
+    .then(() => {
+      alert("Voto registrado :)");
+      getPostComments(postId);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
+
+
+export const requestChangeCommentVote = (commentId, direction, getPostComments, postId ) => {
+  const header = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
+  const body = {
+    direction: direction,
+  };
+
+  axios
+    .put(
+      `https://labeddit.herokuapp.com/comments/${commentId}/vote`, body, header)
+    .then(() => {
+      alert("Você alterou seu voto :)");
+      getPostComments(postId);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
+
+export const requestDeletePostVote = (postId, getPosts) => {
+  const header = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
+  axios
+    .delete(`https://labeddit.herokuapp.com/posts/${postId}/votes`, header)
+    .then(() => {
+      alert("Você removeu seu voto :)");
+      getPosts();     
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
+
+export const requestDeleteCommentVote = (commentId, postId, getPostComments) => {
+  const header = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
+  axios
+    .delete(`https://labeddit.herokuapp.com/posts/${commentId}/votes`, header)
+    .then(() => {
+      alert("Você removeu seu voto :)");
+      getPostComments(postId);     
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
+
+export const requestCreatePostVote = (postId, direction, getPosts) => {
+  const header = {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  };
+
+  const body = {
+    direction: direction,
+  };
+
+  axios
+    .post(`https://labeddit.herokuapp.com/posts/${postId}/votes`, header, body)
+    .then(() => {
+      alert("Você votou :)");
+      getPosts();
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+};
+
+export const requestChangePostVote = (postId, direction, getPosts) => {
   const header = {
     headers: {
       authorization:localStorage.getItem("token")
     }
-  };
+  }
 
   const body = {
-    body: form.body
+    direction: direction
   };
 
-  axios.post(`https://labeddit.herokuapp.com/posts/${postId}/comments`, body, header)
-  .then((response)=>{
-    alert(response.data);
-    getPostComments(postId);
-    clear();
+  axios.put(`https://labeddit.herokuapp.com/posts/${postId}/votes`, header, body)
+  .then(()=>{
+    alert("Você alterou seu voto!")
+    getPosts();
   })
   .catch((error) => {
-    console.log(error.message);
+    console.log(error.message)
   });
-}
+};
+
