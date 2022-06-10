@@ -102,8 +102,8 @@ export const requestCreateCommentVote = (commentId, direction, getPostComments, 
   };
 
   axios
-    .put(
-      `https://labeddit.herokuapp.com/comments/${commentId}/vote`, body, header)
+    .post(
+      `https://labeddit.herokuapp.com/comments/${commentId}/votes`, body, header)
     .then(() => {
       alert("Voto registrado :)");
       getPostComments(postId);
@@ -127,7 +127,7 @@ export const requestChangeCommentVote = (commentId, direction, getPostComments, 
 
   axios
     .put(
-      `https://labeddit.herokuapp.com/comments/${commentId}/vote`, body, header)
+      `https://labeddit.herokuapp.com/comments/${commentId}/votes`, body, header)
     .then(() => {
       alert("Você alterou seu voto :)");
       getPostComments(postId);
@@ -163,7 +163,7 @@ export const requestDeleteCommentVote = (commentId, postId, getPostComments) => 
   };
 
   axios
-    .delete(`https://labeddit.herokuapp.com/posts/${commentId}/votes`, header)
+    .delete(`https://labeddit.herokuapp.com/comments/${commentId}/votes`, header)
     .then(() => {
       alert("Você removeu seu voto :)");
       getPostComments(postId);     
@@ -185,7 +185,7 @@ export const requestCreatePostVote = (postId, direction, getPosts) => {
   };
 
   axios
-    .post(`https://labeddit.herokuapp.com/posts/${postId}/votes`, header, body)
+    .post(`https://labeddit.herokuapp.com/posts/${postId}/votes`, body, header)
     .then(() => {
       alert("Você votou :)");
       getPosts();
@@ -196,23 +196,23 @@ export const requestCreatePostVote = (postId, direction, getPosts) => {
 };
 
 export const requestChangePostVote = (postId, direction, getPosts) => {
+
   const header = {
     headers: {
-      authorization:localStorage.getItem("token")
+        authorization: localStorage.getItem("token")
     }
-  }
-
+};
   const body = {
-    direction: direction
+      direction: direction
   };
 
-  axios.put(`https://labeddit.herokuapp.com/posts/${postId}/votes`, header, body)
-  .then(()=>{
-    alert("Você alterou seu voto!")
-    getPosts();
-  })
-  .catch((error) => {
-    console.log(error.message)
-  });
-};
-
+  axios
+      .put(`https://labeddit.herokuapp.com/posts/${postId}/votes`, body, header)
+      .then(() => {
+          alert("Voto modificado com sucesso!");
+          getPosts();
+      })
+      .catch((err) => {
+          console.log(err.message);
+      });
+}

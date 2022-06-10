@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../global/GlobalStateContext";
 import { goToPostDetailsPage } from "../routes/coordinator";
-import { requestChangePostVote, requestCreatePostVote, requestDeleteCommentVote, requestDeletePostVote } from "../services/requests";
+import { requestChangePostVote, requestCreatePostVote, requestDeletePostVote } from "../services/requests";
 
 export default function PostCard(props) {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function PostCard(props) {
 
   const {getPosts} = getters
 
-  const { id, userId, title, body, createdAt, likes, comments, userVote } = props.post;
+  const { id, userId, title, body, createdAt, voteSum, commentCount, userVote } = props.post;
 
   const date = createdAt && format(new Date(createdAt), "dd/MM/yyyy");
 
@@ -65,16 +65,16 @@ export default function PostCard(props) {
       {userVote && isDownVoted ?
       <button onClick={() => removeVote("down")}>Remover voto "Não Gostei"</button> :
       <button onClick={() => chooseVote("down")}>
-        {isUpVoted ? `Alterar para "Não Gostei"` : `Votar em "Gostei"`}
+          {isUpVoted ? `Alterar voto para "Não Gostei"` : `Votar em "Não Gostei"`}  
       </button>
       }
-      <br /> <br />
-      {userVote && isUpVoted ? 
-      <button onClick={()=> removeVote("up")}> Remove voto "Gostei"</button> :
+      <br /> <br />   
+      {userVote && isUpVoted ?
+      <button onClick={() => removeVote("up")}>Remover voto "Gostei"</button> :
       <button onClick={() => chooseVote("up")}>
-        {isDownVoted ? `Alterar para "Gostei"` : `Votar em "Gostei"`}
-      </button>      
-    };
+          {isDownVoted ? `Alterar voto para "Gostei"` : `Votar em "Gostei"`}
+      </button>
+      }
     </section>
   );
 
@@ -89,11 +89,10 @@ export default function PostCard(props) {
         alt="Imagem aleatória do post"
       />
       <p>Descrição: {body}</p>
-      <p>Votos: {likes ? likes : 0}</p>
+      <p>Votos: {voteSum ? voteSum : 0}</p>
                 {showVoteButtons}
       <br /> <br />
-      <button>Não Gostei</button>
-      <p>Comentários: {comments ? comments : 0}</p>
+      <p>Comentários: {commentCount ? commentCount : 0}</p>
       {props.isFeed && <button onClick={goToComments}>Ver comentários</button>}
       <hr />
     </article>

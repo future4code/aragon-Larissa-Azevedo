@@ -63,7 +63,7 @@ export default function CommentCard(props) {
       {userVote && isUpVoted ?
       <button onClick={() => removeVote("up")}>Remover voto "Gostei</button> :
       <button onClick={() => chooseVote("up")}>
-        {isDownVoted ? `Mudar voto para "Não Gostei"` : `Votar em "Gostei"`}
+        {isDownVoted ? `Alterar voto para "Gostei"` : `Votar em "Gostei"`}
       </button>
       }      
     </section>

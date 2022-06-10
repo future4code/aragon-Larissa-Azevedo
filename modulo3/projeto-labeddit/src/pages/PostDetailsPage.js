@@ -20,7 +20,7 @@ export default function PostDetailsPage() {
 
   const { states, getters } = useContext(GlobalStateContext);
 
-  const { post, postComments } = states;
+  const { post, postComments, isLoading } = states;
 
   const { getPostComments } = getters;
 
@@ -87,7 +87,7 @@ export default function PostDetailsPage() {
       <hr />
       <section>
         <h2>Lista de Comentários</h2>
-        {showComments}
+        {isLoading ? <p>Organizando Comentários...</p> : showComments}
       </section>
     </main>
   );

@@ -1,15 +1,22 @@
 import axios from "axios";
 import { useState } from "react";
+import { pageCount } from "../constants/pagination";
 import GlobalStateContext from "./GlobalStateContext";
 
 const GlobalState = (props) => {
   const [posts, setPosts] = useState([]);
 
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState({});
 
   const [postComments, setPostComments] = useState([]);
 
-  const getPosts = () => {
+  const [page, setPage] = useState(1);
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const getPosts = (actualPage) => {
+    setIsLoading(true);
+
     const header = {
       headers: {
         authorization: localStorage.getItem("token"),
@@ -17,9 +24,10 @@ const GlobalState = (props) => {
     };
 
     axios
-      .get("https://labeddit.herokuapp.com/posts?page=1&size=10", header)
+      .get(`https://labeddit.herokuapp.com/posts?page=${actualPage}&size=${pageCount}`, header)
       .then((response) => {
         setPosts(response.data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error.message);
@@ -27,6 +35,8 @@ const GlobalState = (props) => {
   };
 
   const getPostComments = (postId) => {
+    setIsLoading(true);
+
     const header = {
       headers: {
         authorization: localStorage.getItem("token"),
@@ -43,8 +53,8 @@ const GlobalState = (props) => {
       });
   };
 
-  const states = { posts, post, postComments };
-  const setters = { setPosts, setPost, setPostComments };
+  const states = { posts, post, postComments, page, isLoading };
+  const setters = { setPosts, setPost, setPostComments, setPage, setIsLoading };
   const getters = { getPosts, getPostComments };
 
   return (

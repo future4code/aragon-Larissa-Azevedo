@@ -63,10 +63,12 @@ export default function SignUpPage() {
             title={"O nome deve ter no mínimo 8 e no máximo 30 caracteres"}
             required
           />
-          <br /> <br />
-
+            <br /> <br />
+            <button type={"submit"}>Cadastrar!</button>
+            <br /> <br />
+          </form>
           <button onClick={() => goToLoginPage(navigate)}>Voltar</button>
-        </form>
+        
       </section>
     </main>
   );
