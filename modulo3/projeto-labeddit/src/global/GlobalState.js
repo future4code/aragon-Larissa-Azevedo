@@ -47,6 +47,7 @@ const GlobalState = (props) => {
       .get(`https://labeddit.herokuapp.com/posts/${postId}/comments`, header)
       .then((response) => {
         setPostComments(response.data);
+        setIsLoading(false)
       })
       .catch((error) => {
         console.log(error.message);

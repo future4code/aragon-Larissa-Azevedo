@@ -56,7 +56,7 @@ export default function SignUpPage() {
               <AccountCircleOutlinedIcon />
             </Avatar>
 
-            <Typography component="h1" variant="h5" sx={{fontWeight:"bold"}}>
+            <Typography component="h1" variant="h5" letterSpacing={4} sx={{fontWeight:"bold", fontFamily:"monospace", color: "secondary.main"}}>
               Cadastrar Novo Usuário
             </Typography>
 

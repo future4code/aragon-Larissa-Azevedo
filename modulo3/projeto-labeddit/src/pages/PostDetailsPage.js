@@ -8,6 +8,11 @@ import { goToFeedPage } from "../routes/coordinator";
 import { requestCreateComment } from "../services/requests";
 import CommentCard from "../components/CommentCard";
 import PostCard from "../components/PostCard";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { blue, orange } from "@mui/material/colors";
+import { Box, Container } from "@mui/system";
+import { Button, CssBaseline, Grid, TextField, Typography} from "@mui/material";
+import loading from "../loading.gif"
 
 export default function PostDetailsPage() {
   useProtectedPage();
@@ -40,53 +45,121 @@ export default function PostDetailsPage() {
   };
 
   const showComments = postComments.length ? postComments.map((comment) => {
-      return(
-        <CommentCard
-          key={comment.id}
-          comment={comment}
-          />
+      return (
+      <CommentCard 
+      key={comment.id} 
+      comment={comment}
+      />
       )
-    }) : <p>Seja a primeira a pessoa a comentar!</p>
-  
+}) : (
+    <Typography component="h3" variant="h7"
+    sx={{
+      letterSpacing: 4,
+      m:3,
+      fontFamily: "monospace",
+      color: "warning.main" }}> 
+      Seja a primeira a pessoa a comentar!</Typography>
+  );
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: orange[700],
+      },
+      secondary: {
+        main: blue[900],
+      },
+    },
+  });
 
   return (
     <main>
-      <Header
-        isProtected={true} />
-      <hr />
-      <button onClick={() => navigate(-1)}>Voltar</button>
+      <Header isProtected={true} />
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box
+            sx={{
+              margin: 6,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              component="h1"
+              variant="h5"
+              sx={{
+                letterSpacing: 10,
+                fontFamily: "monospace",
+                color: "primary.main",
+                fontWeight: "bold",
+              }}
+            >
+              Detalhes do Post
+            </Typography>
+
+            <PostCard 
+            key={post.id} 
+            post={post} 
+            isFeed={false} />
+
+            <Box
+              component="form"
+              noValidate
+              onSubmit={createComment}
+              sx={{ mt: 3 }}
+            >
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id={"body"}
+                    type={"text"}
+                    name={"body"}
+                    value={form.body}
+                    onChange={onChange}
+                    pattern={"^.{5,}$"}
+                    title={"Mínimo de 5 caracteres"}
+                    label={"Digite seu comentário"}
+                  />
+                </Grid>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 3, fontFamily:"monospace" }}
+                >
+                  Comentar
+                </Button>
+              </Grid>
+              <Button
+                variant="outlined"
+                sx={{ mt: 2, mb: 2, fontFamily:"monospace"}}
+                onClick={() => navigate(-1)}
+              >
+                Voltar
+              </Button>
+            </Box>
+          </Box>
+        </Container>
+      </ThemeProvider>
 
       <section>
-        <h2>Detalhes do Post</h2>
-        <PostCard 
-          key={post.id}
-          post={post} 
-          isFeed={false} />
-      </section>
-
-      <section>
-        <h2>Digite seu Comentário</h2>
-        <form onSubmit={createComment}>
-          <label htmlFor={"body"}>Comentário: </label>
-          <input
-            id={"body"}
-            type={"text"}
-            name={"body"}
-            value={form.body}
-            onChange={onChange}
-            pattern={"^.{5,}$"}
-            title={"Mínimo de 5 caracteres"}
-            required
-          />
-          <br /> <br />
-          <button type={"submit"}>Comentar</button>
-        </form>
-      </section>
-
-      <hr />
-      <section>
-        <h2>Lista de Comentários</h2>
-        {isLoading ? <p>Organizando Comentários...</p> : showComments}
+        <Typography
+          component="h1"
+          variant="h5"
+          sx={{
+            letterSpacing: 10,
+            fontFamily: "monospace",
+            color: "primary.main",
+            fontWeight: "bold",
+          }}
+        >
+          Comentários
+        </Typography>
+        {isLoading ?  <img src={loading} alt={"carregando"}/> : showComments}
       </section>
     </main>
   );

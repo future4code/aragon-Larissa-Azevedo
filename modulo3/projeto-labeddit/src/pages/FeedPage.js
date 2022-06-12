@@ -13,6 +13,9 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { blue, orange } from "@mui/material/colors";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import loading from "../loading.gif"
 
 
 export default function FeedPage() {
@@ -79,15 +82,18 @@ export default function FeedPage() {
                 alignItems: "center",
               }}
             >
-              <Typography component="h1" variant="h5" color="secondary">
-                Crie um novo Post
+              <Typography component="h1" variant="h5" color="secondary" sx={{
+            letterSpacing: 10,
+            fontFamily: "monospace",
+            color: "primary.main",
+            fontWeight:"bold"}}>
+                Crie seu Post!
               </Typography>
               <Box
                 component="form"
                 onSubmit={createPost}
                 noValidate
-                sx={{ mt: 1 }}
-                
+                sx={{ mt: 1 }}                
               >
                 <TextField
                   margin="normal"
@@ -119,7 +125,7 @@ export default function FeedPage() {
                   type="submit"
                   fullWidth
                   variant="contained"
-                  sx={{ mt: 3, mb: 2 }}
+                  sx={{ mt: 3, mb: 2, fontFamily: "monospace" }}
                 >
                   Postar
                 </Button>
@@ -127,22 +133,27 @@ export default function FeedPage() {
             </Box>
           </Container>
         </ThemeProvider>
-      </section>
-     
+      </section>     
       <section>
-        <h2> Lista de Posts</h2>
+        <Typography component="h1" variant="h5" color="secondary" sx={{ 
+            m:6,
+            letterSpacing: 6,
+            fontFamily: "monospace",
+            color: "primary.main",
+            fontWeight:"bold"}}> Lista de Posts </Typography>
+
         <nav>
-          <h3>Navegue entre as páginas</h3>
           {page !== 1 && (
-            <button onClick={() => changePage(-1)}>Voltar Página</button>
+            <Button onClick={() => changePage(-1)}> <ArrowBackIcon/> </Button>
           )}
-          <span>Página {page} </span>
+           <Typography sx={{ fontFamily: "monospace" }}> Página {page} </Typography> 
           {posts.length && (
-            <button onClick={() => changePage(1)}>Próxima Página</button>
+            <Button onClick={() => changePage(1)}> <ArrowForwardIcon/> </Button>
           )}
         </nav>
-        <hr />
-        {isLoading ? <p>Arrumando os Posts...</p> : showPosts}
+      
+        {isLoading ? <img src={loading} alt={"carregando"}/> : showPosts}
+
       </section>
     </main>
   );
