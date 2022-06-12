@@ -64,7 +64,6 @@ export default function PostDetailsPage() {
           isFeed={false} />
       </section>
 
-      <hr />
       <section>
         <h2>Digite seu Comentário</h2>
         <form onSubmit={createComment}>

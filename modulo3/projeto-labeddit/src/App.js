@@ -5,10 +5,11 @@ import Router from "./routes/Router";
 
 const GlobalStyle = createGlobalStyle`
 body{
+  font-family: Roboto, Mono-space ;
   margin: 0;
   padding: 0;
   text-align: center;
-  color: #A67360;
+
 }
 `
 

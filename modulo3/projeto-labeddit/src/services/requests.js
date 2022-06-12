@@ -34,7 +34,7 @@ export const requestCreatePost = (form, clear, getPosts) => {
   };
 
   axios
-    .post("https://labeddit.herokuapp.com/users/posts", body, header)
+    .post("https://labeddit.herokuapp.com/posts", body, header)
     .then((response) => {
       alert(response.data);
       getPosts();

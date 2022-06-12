@@ -5,6 +5,15 @@ import GlobalStateContext from "../global/GlobalStateContext";
 import useForm from "../hooks/useForm";
 import { useProtectedPage } from "../hooks/useProtectedPage";
 import { requestCreatePost } from "../services/requests";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { blue, orange } from "@mui/material/colors";
+
 
 export default function FeedPage() {
   useProtectedPage();
@@ -34,65 +43,105 @@ export default function FeedPage() {
 
     setPage(nextPage);
     getPosts(nextPage);
-  }
+  };
 
-  const showPosts = posts.length && posts.map((post) => {
-      return ( 
-        <PostCard 
-          key={post.id} 
-          post={post} 
-          isFeed={true} /> );
+  const showPosts =
+    posts.length &&
+    posts.map((post) => {
+      return <PostCard key={post.id} post={post} isFeed={true} />;
     });
+  
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: orange[700],
+        },
+        secondary: {
+          main: blue[900],
+        },
+      },
+    });
+  
 
   return (
     <main>
-      <Header 
-        isProtected={true} />
-      <hr />
+      <Header isProtected={true} />
+      
       <section>
-        <h2> = Crie um novo Post =</h2>
-        <form onSubmit={createPost}>
-          <label htmlFor={"title"}> Título: </label>
-          <input
-            id={"title"}
-            name={"title"}
-            value={form.title}
-            onChange={onChange}
-            pattern={"^.{5,}$"}
-            title={"Título deve ter no mínimo 5 caracteres"}
-            required
-          />
-          <br /> <br />
-          <label htmlFor={"body"}>Texto do Post: </label>
-          <input
-            id={"body"}
-            name={"body"}
-            type={"text"}
-            value={form.body}
-            onChange={onChange}
-            pattern={"^.{10,}$"}
-            title={"Post deve ter no mínimo 5 caracteres"}
-            required
-          />
-
-          <br /> <br />
-          <button type={"submit"}>Postar</button>
-        </form>
+        <ThemeProvider theme={theme}>
+          <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <Box
+              sx={{
+                marginTop: 6,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Typography component="h1" variant="h5" color="secondary">
+                Crie um novo Post
+              </Typography>
+              <Box
+                component="form"
+                onSubmit={createPost}
+                noValidate
+                sx={{ mt: 1 }}
+                
+              >
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id={"title"}
+                  name={"title"}
+                  label={"Título:"}
+                  value={form.title}
+                  onChange={onChange}
+                  pattern={"^.{5,}$"}
+                  title={"Título deve ter no mínimo 5 caracteres"}
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id={"body"}
+                  name={"body"}
+                  label={"Descrição:"}
+                  type={"text"}
+                  value={form.body}
+                  onChange={onChange}
+                  pattern={"^.{10,}$"}
+                  title={"Post deve ter no mínimo 5 caracteres"}
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Postar
+                </Button>
+              </Box>
+            </Box>
+          </Container>
+        </ThemeProvider>
       </section>
-      <hr />
+     
       <section>
         <h2> Lista de Posts</h2>
         <nav>
           <h3>Navegue entre as páginas</h3>
-          {page !== 1 && 
+          {page !== 1 && (
             <button onClick={() => changePage(-1)}>Voltar Página</button>
-          }
+          )}
           <span>Página {page} </span>
-          {posts.length &&
+          {posts.length && (
             <button onClick={() => changePage(1)}>Próxima Página</button>
-          }
+          )}
         </nav>
-        <hr/>
+        <hr />
         {isLoading ? <p>Arrumando os Posts...</p> : showPosts}
       </section>
     </main>
