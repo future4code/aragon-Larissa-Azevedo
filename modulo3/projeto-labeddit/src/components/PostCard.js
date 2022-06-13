@@ -56,7 +56,7 @@ export default function PostCard(props) {
         setIsUpVoted(true);
         setIsDownVoted(false);
       } else {
-        requestChangePostVote(id, 1, getPosts);
+        requestCreatePostVote(id, 1, getPosts);
         setIsUpVoted(true);
       }
     } else {
@@ -98,7 +98,7 @@ export default function PostCard(props) {
           sx={{ fontFamily: "monospace" }}
           onClick={() => removeVote("up")}
         >
-          Desfazer Like{" "}
+          Desfazer Like
         </Button>
       ) : (
         <Button sx={{ mr: 2 }} onClick={() => chooseVote("up")}>
