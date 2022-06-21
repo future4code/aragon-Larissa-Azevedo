@@ -18,4 +18,4 @@ const cadastraCliente = (novoCliente) => {
 };
 
 console.log(cadastraCliente({ id: 5, nome: "Larissa" }));
-console.log(cadastraCliente({ id: 1, nome: "Larissa" }));
+console.log(cadastraCliente({ id: 1, nome: "Ciclana" }));
