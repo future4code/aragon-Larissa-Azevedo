@@ -12,4 +12,4 @@ let geraTabuada = (multiplicador) => {
   }
 };
 
-geraTabuada(0);
+geraTabuada(5);
