@@ -1,0 +1,40 @@
+.principal{
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .telaCadastro{
+    color: rgb(255, 145, 0);
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .titulo{
+    color: rgb(255, 145, 0);
+  }
+
+  .input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 8px;
+  }
+
+  .botao{
+    color: rgb(88, 86, 83);
+    margin: 10px;
+    padding: 3px;
+  }
+
+  .botao:hover  { 
+    background-color:rgb(255, 145, 0);
+    text-transform: uppercase;
+    color: rgb(88, 86, 83);
+  
+  }
