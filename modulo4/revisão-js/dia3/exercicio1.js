@@ -15,15 +15,15 @@ const login = (email, password) => {
       let checkEmail = contas.findIndex((value) => value.email === email);
       let checkPassword = contas.findIndex( (value) => value.password === password);
       if (checkEmail === checkPassword) {
-        return console.log(`Login realizado, ${email}!`);
+        console.log(`Login realizado, ${email}!`);
       } else {
-        return console.log("Senha incorreta");
+        console.log("Senha incorreta");
       }
     } else {
-      return console.log("Senha deve possuir no mínimo 6 caracteres");
+       console.log("Senha deve possuir no mínimo 6 caracteres");
     }
   } else {
-    return console.log("Email incorreto");
+     console.log("Email incorreto");
   }
 };
 
