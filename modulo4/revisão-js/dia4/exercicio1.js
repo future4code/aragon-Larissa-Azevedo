@@ -16,10 +16,12 @@ const segundaLista= [
 	}
 ]
 
-function geraItensUnicos(primeiraLista, segundaLista, index) {
-    return 
 
+function geraItensUnicos(primeiraLista, segundaLista) {
+    const listaUnificada = primeiraLista.concat(segundaLista);
+    for (let i=0; i < listaUnificada.length; i++){
+    return listaUnificada}
 
-    
-}
+}      
 
+    console.log(geraItensUnicos(primeiraLista, segundaLista))
