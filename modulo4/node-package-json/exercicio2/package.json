@@ -1,0 +1,13 @@
+{
+  "name": "exercicio2",
+  "version": "1.0.0",
+  "main": "exercicio2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./exercicio2.js"
+  },
+  "keywords": [],
+  "author": "Larissa Azevedo",
+  "license": "ISC",
+  "description": ""
+}
