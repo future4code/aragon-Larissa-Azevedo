@@ -5,8 +5,8 @@ function checaRenovacaoRG():boolean {
     const anoNascimento:number = Number(process.argv[3])
     const anoEmissao:number = Number(process.argv[4])
  
-    const idade:number = anoAtual - anoNascimento
-    const tempoCarteira:number = anoAtual - anoEmissao
+    const idade = anoAtual - anoNascimento
+    const tempoCarteira = anoAtual - anoEmissao
  
     const cond1:boolean = idade <= 20 && tempoCarteira >= 5
     const cond2:boolean = idade > 20 && idade <= 50 && tempoCarteira >= 10
