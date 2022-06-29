@@ -6,20 +6,20 @@ type Pessoa = {
     corFavorita:string
 }
 
-enum corFavorita{
+enum coresArcoIris{
     VERMELHO = "Vermelho",
     LARANJA = "Laranja", 
     AMARELO = "Amarelo",
     VERDE = "Verde",
     AZUL = "Azul",
-    AESCURO = "Azul-escuro",
+    AZUL_ESCURO = "Azul-escuro",
     VIOLETA = "Violeta"
 }
 
 const propriedades: Pessoa = {
     nome: "Larissa",
     idade: 28,
-    corFavorita:corFavorita.VIOLETA
+    corFavorita:coresArcoIris.VIOLETA
 }
 
 
