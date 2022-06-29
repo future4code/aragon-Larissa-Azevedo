@@ -29,6 +29,8 @@ const posts:Post[] = [
   ]
 
   //Parte 2
+  //As entradas dessa função são passadas pelos parametros posts e autor informado, a saída será impresso o post
+  //do autor passado no parâmetro.
   function buscarPostsPorAutor(posts:Post[], autorInformado:string):Post[] {
     return posts.filter(
       (post) => {
