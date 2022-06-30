@@ -31,9 +31,9 @@ const outroFilme: Filme = {
 }
 
 
-function imprimeDados(filme:Filme):void {
+function imprimeFichaTecnica(filme:Filme):void {
     console.log(filme)
 }
 
-imprimeDados(umFilme)
-imprimeDados(outroFilme)
+imprimeFichaTecnica(umFilme)
+imprimeFichaTecnica(outroFilme)
