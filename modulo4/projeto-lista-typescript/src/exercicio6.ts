@@ -13,29 +13,15 @@ const listaClientes: Clientes[] = [
   { cliente: "Soter", saldoTotal: 1200, debitos: [] },
 ];
 
-function filtraDebitos(debito: Clientes[]):Clientes[] {
-    const emprestimo = debito.map((item:Clientes)=>{
-        let totalDebito = item.saldoTotal
-
-        for(let debito of item.debitos){
-             totalDebito - debito
-        }
-
-        const saldoParaEmprestimo: Clientes = {
-            cliente: item.cliente,
-            saldoTotal: totalDebito,
-            debitos: []
-        }
-
-        return saldoParaEmprestimo
+function filtraDebitos(debito: Clientes[]): Clientes[] {
+  return debito
+    .map((item) => {
+      item.saldoTotal -= item.debitos.reduce((saldo, somaDebito) => saldo + somaDebito, 0);
+      item.debitos = [];
+      return item;
     })
-
-    const clienteParaEmprestimo: Clientes[] = emprestimo.filter((item: Clientes)=> {
-        return item.saldoTotal && item.debitos
-    })
-
-    return clienteParaEmprestimo
-
+    .filter((clienteParaEmprestimo) => clienteParaEmprestimo.saldoTotal < 0);
 }
 
-console.log(filtraDebitos(listaClientes))
+
+console.log(filtraDebitos(listaClientes));
