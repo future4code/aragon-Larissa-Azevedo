@@ -28,13 +28,13 @@ function ordenaEstoque(estoqueAtual:Produtos[]):Produtos[] {
 	})
 
 	const copiaEstoqueAjustado = [...precoAjustado]
-	
+
 	const ordenacao: Produtos[] = copiaEstoqueAjustado.sort((a:Produtos, b: Produtos)=>{
 		return a.quantidade - b.quantidade
 	})
 
 	return ordenacao
-    
+
 }
 
-console.log(ordenaEstoque(estoqueAtual))
+console.log(ordenaEstoque(estoqueAtual)) 
