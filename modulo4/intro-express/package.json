@@ -7,7 +7,7 @@
     "start": "tsc && node ./build/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Larissa Azevedo",
   "license": "ISC",
   "devDependencies": {
     "@types/cors": "^2.8.12",
