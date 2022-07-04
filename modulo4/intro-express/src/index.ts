@@ -1,7 +1,6 @@
 //_Exercício 1_
 import express, {Request, Response} from "express";
 import cors from "cors";
-import { request } from "http";
 
 const app = express()
 
@@ -11,7 +10,7 @@ app.use(express.json())
 app.get("/", (req: Request, res: Response) => {
     res.send("Servidor funcionando! :)")
 })
-app.listen(3003, () => console.log("Servidor está funcionando! :)"))
+
 
 //_Exercício 2_
 
@@ -59,6 +58,31 @@ app.get("/listaUsuarios/:id", (req:Request, res:Response) => {
 
     res.status(200).send(idUsuario)
 })
+
+//_Exercicio 5 _
+
+app.post("/usuario", (req: Request, res: Response)=>{
+
+    const id:number = Number(req.params.id)
+    const phone:number = req.body
+
+    const novoTelefone = {id, phone}
+    listaUsuarios.push(novoTelefone)
+
+    res.status(201).send(listaUsuarios)
+})
+
+//_Exercicio 6_
+
+app.delete("/usuario/:id", (req: Request, res: Response) => {
+
+    const id = Number(req.params.id)
+    const index = listaUsuarios.findIndex(usuario => usuario.id === id)
+    listaUsuarios.splice(index, 1)
+    res.status(200).send(listaUsuarios)
+})
+
+app.listen(3003, () => console.log("Servidor está funcionando! :)"))
 
 
 
