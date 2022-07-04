@@ -7,6 +7,8 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+app.listen(3003, () => console.log("Servidor está funcionando! :)"))
+
 app.get("/", (req: Request, res: Response) => {
     res.send("Servidor funcionando! :)")
 })
@@ -21,7 +23,7 @@ type Usuarios = {
     email: string;
   };
   
- const listaUsuarios: Usuarios[] = [
+ let listaUsuarios: Usuarios[] = [
     {
       id: 1,
       name: "Leanne Graham",
@@ -61,15 +63,26 @@ app.get("/listaUsuarios/:id", (req:Request, res:Response) => {
 
 //_Exercicio 5 _
 
-app.post("/usuario", (req: Request, res: Response)=>{
+app.put("/usuario/:id", (req: Request, res: Response)=>{
 
     const id:number = Number(req.params.id)
-    const phone:number = req.body
+    const phone:number = req.body.phone
 
-    const novoTelefone = {id, phone}
-    listaUsuarios.push(novoTelefone)
+    const novoTelefone = listaUsuarios.map(usuario => {
+        if(usuario.id === id){
+            return {...usuario, phone:phone}
+        } else {
+            return usuario
+        }        
+    }) 
 
-    res.status(201).send(listaUsuarios)
+    listaUsuarios = novoTelefone
+
+    const atualizaUsuario = listaUsuarios.filter(elemento => {
+        elemento.id === id
+    }) 
+
+    res.status(201).send({mensagem:"Telefone alterado com sucesso :)", usuario:atualizaUsuario[0]})
 })
 
 //_Exercicio 6_
@@ -81,8 +94,3 @@ app.delete("/usuario/:id", (req: Request, res: Response) => {
     listaUsuarios.splice(index, 1)
     res.status(200).send(listaUsuarios)
 })
-
-app.listen(3003, () => console.log("Servidor está funcionando! :)"))
-
-
-
