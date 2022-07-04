@@ -49,7 +49,16 @@ type Usuarios = {
 app.get("/listaUsuarios", (req: Request, res:Response) => {
     res.status(200).send(listaUsuarios)
 })
-  
+
+//_Exercicio 4_
+
+app.get("/listaUsuarios/:id", (req:Request, res:Response) => {
+    const id = Number(req.params.id)
+    
+    const idUsuario = listaUsuarios.filter(usuario => usuario.id === id)
+
+    res.status(200).send(idUsuario)
+})
 
 
 
