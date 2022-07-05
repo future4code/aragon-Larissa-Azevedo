@@ -1,5 +1,4 @@
 import express, { Request, Response } from "express";
-import cors from "cors";
 
 //_Exercício 1_
 const app = express();
@@ -62,39 +61,93 @@ app.get("/afazeres/:userId", (req: Request, res: Response) => {
 
 //_Exercício 4_
 
-app.post("/afazeres",(req:Request, res:Response)=>{
-    const {userId, title} = req.body
+app.post("/afazeres", (req: Request, res: Response) => {
+  const { userId, title } = req.body;
 
-    const ultimoDaLista = listaAfazeres[listaAfazeres.length - 1]
+  const ultimoDaLista = listaAfazeres[listaAfazeres.length - 1];
 
-    const novoAfazer: Afazeres = {
-        id: ultimoDaLista.id + 1,
-        userId: userId,
-        title: title,
-        completed:false
-    }
+  const novoAfazer: Afazeres = {
+    id: ultimoDaLista.id + 1,
+    userId: userId,
+    title: title,
+    completed: false,
+  };
 
-    listaAfazeres.push(novoAfazer)
-    res.send({
-        mensagem: "Afazer adicionado à lista!",
-        afazer:novoAfazer
-        
-    })
-})
+  listaAfazeres.push(novoAfazer);
+  res.send({
+    mensagem: "Afazer adicionado à lista!",
+    afazer: novoAfazer,
+  });
+});
 
 //_Exercício 5_
 
-//_Exercício 6_
-
-app.delete("/afazeres/:id", (req:Request, res:Response) =>{
+app.get("/afazeres/:id", (req: Request, res:Response)=>{
   const id = Number(req.params.id)
 
-  const deletaAfazer = listaAfazeres.findIndex((afazer)=>{
-    return afazer.id === id
+  const status = listaAfazeres.map(concluido =>{
+    if(concluido.completed === true){
+      return{...concluido}
+    }else{
+      return concluido
+    }
   })
-  listaAfazeres.splice(deletaAfazer, 1)
+
+  listaAfazeres = status
+
+  const atualizaLista = listaAfazeres.filter((elemento)=>{
+    elemento.completed===true
+  })
+
+  res.status(201).send({mensagem:"status alterado!", afazeres: atualizaLista[0]})
+
+})
+
+//_Exercício 6_
+
+app.delete("/afazeres/:id", (req: Request, res: Response) => {
+  const id = Number(req.params.id);
+
+  const deletaAfazer = listaAfazeres.findIndex((afazer) => {
+    return afazer.id === id;
+  });
+  listaAfazeres.splice(deletaAfazer, 1);
   res.send({
     mensagem: "Afazer deletado com sucesso!",
-    afazeres: listaAfazeres
-  })
-})
+    afazeres: listaAfazeres,
+  });
+});
+
+//_Exercício 7_
+
+app.get("/afazeres", (req: Request, res: Response) => {
+  const afazerConcluido = req.query.afazerConcluido;
+
+  if (afazerConcluido !== "true" && afazerConcluido !== "false") {
+    return res.send({
+      afazerConcluido: afazerConcluido,
+      listaAfazeres: listaAfazeres,
+    });
+  }
+
+  if (afazerConcluido === "true") {
+    const status = listaAfazeres.filter((afazer) => {
+      return afazer.completed === true;
+    });
+
+    return res.send({
+      afazeres: status,
+      afazerConcluido: afazerConcluido,
+    });
+  } else {
+    const status = listaAfazeres.filter((afazer) => {
+      return afazer.completed === false;
+    });
+    return res.send({
+      afazeres: status,
+      "ainda não concluídos": afazerConcluido,
+    });
+  }
+});
+
+//as requisições só estão retornando "false". true não funciona
