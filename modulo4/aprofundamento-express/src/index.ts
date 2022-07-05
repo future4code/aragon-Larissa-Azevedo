@@ -46,3 +46,17 @@ let listaAfazeres: afazeres[] = [
     completed: true
   },
 ];
+
+//_Exercício 3_
+
+app.get("/afazeres/:userId", (req: Request, res: Response)=>{
+    const userId = Number(req.params.userId)
+    const afazeresUsuario = listaAfazeres.filter((afazer)=>{
+        return afazer.userId === userId
+    })
+
+    res.send({
+        listaAfazeres: afazeresUsuario
+    })
+
+})
