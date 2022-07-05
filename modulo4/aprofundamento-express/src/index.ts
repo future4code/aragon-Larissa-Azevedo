@@ -13,14 +13,14 @@ app.get("/ping", (req: Request, res: Response) => {
 
 //_Exercício 2_
 
-type afazeres = {
+type Afazeres = {
   userId: number;
   id: number;
   title: string;
   completed: boolean;
 };
 
-let listaAfazeres: afazeres[] = [
+let listaAfazeres: Afazeres[] = [
   {
     userId: 1,
     id: 1,
@@ -37,26 +37,47 @@ let listaAfazeres: afazeres[] = [
     userId: 2,
     id: 3,
     title: "fugiat veniam minus",
-    completed: false
+    completed: false,
   },
   {
     userId: 2,
     id: 4,
     title: "et porro tempora",
-    completed: true
+    completed: true,
   },
 ];
 
 //_Exercício 3_
 
-app.get("/afazeres/:userId", (req: Request, res: Response)=>{
-    const userId = Number(req.params.userId)
-    const afazeresUsuario = listaAfazeres.filter((afazer)=>{
-        return afazer.userId === userId
-    })
+app.get("/afazeres/:userId", (req: Request, res: Response) => {
+  const userId = Number(req.params.userId);
+  const afazeresUsuario = listaAfazeres.filter((afazer) => {
+    return afazer.userId === userId;
+  });
 
+  res.send({
+    listaAfazeres: afazeresUsuario,
+  });
+});
+
+//_Exercício 4_
+
+app.post("/afazeres",(req:Request, res:Response)=>{
+    const {userId, title} = req.body
+
+    const ultimoDaLista = listaAfazeres[listaAfazeres.length - 1]
+
+    const novoAfazer: Afazeres = {
+        id: ultimoDaLista.id + 1,
+        userId: userId,
+        title: title,
+        completed:false
+    }
+
+    listaAfazeres.push(novoAfazer)
     res.send({
-        listaAfazeres: afazeresUsuario
+        mensagem: "Afazer adicionado à lista!",
+        afazer:novoAfazer
+        
     })
-
 })
