@@ -81,3 +81,20 @@ app.post("/afazeres",(req:Request, res:Response)=>{
         
     })
 })
+
+//_Exercício 5_
+
+//_Exercício 6_
+
+app.delete("/afazeres/:id", (req:Request, res:Response) =>{
+  const id = Number(req.params.id)
+
+  const deletaAfazer = listaAfazeres.findIndex((afazer)=>{
+    return afazer.id === id
+  })
+  listaAfazeres.splice(deletaAfazer, 1)
+  res.send({
+    mensagem: "Afazer deletado com sucesso!",
+    afazeres: listaAfazeres
+  })
+})
