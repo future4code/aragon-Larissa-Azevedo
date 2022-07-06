@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import { Produto, produtos } from "./data";
+import { request } from "http";
 
 //_Exercício 1_
 
@@ -31,3 +32,29 @@ app.get("/produtos", (req: Request, res:Response)=>{
    } 
 })
 
+//_Exercício 4_
+
+app.post("/produtos", (req: Request, res:Response) => {
+    try {
+        
+    } catch (error) {
+        
+    }
+})
+
+//_Exercício 5_
+
+app.put("/produtos/:id", (req: Request, res: Response)=>{
+    const{id} = req.params;
+    const {price} = req.body;
+    
+
+    const alteraPreco = produtos.map((produto)=>{
+        if(produto.id === id) {
+            produto.price = price
+        }
+        return produto
+    })
+
+    res.status(200).send({mensagem:"Valor alterado!", produtos:alteraPreco})
+})
