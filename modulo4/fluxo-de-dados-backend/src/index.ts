@@ -58,3 +58,17 @@ app.put("/produtos/:id", (req: Request, res: Response)=>{
 
     res.status(200).send({mensagem:"Valor alterado!", produtos:alteraPreco})
 })
+
+//_Exercício 6_
+
+app.delete("/produtos/:id", (req:Request,res:Response)=>{
+    const {id} = req.params
+
+    const deletaProduto = produtos.findIndex((produto)=>{
+        return produto.id === id;
+    })
+
+    produtos.splice(deletaProduto, 1);
+    res.status(200).send({mensagem:"Produto deletado!", produtos: produtos})
+
+})
