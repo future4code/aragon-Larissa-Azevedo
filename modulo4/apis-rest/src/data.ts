@@ -12,7 +12,7 @@ export enum USER_ROLE{
     NORMAL = "Normal"
 }
 
-export const users: User[] = [
+export let users: User[] = [
     {
         id: 1,
         name: "Alice",
