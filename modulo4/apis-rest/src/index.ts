@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { User, USER_ROLE, users } from "./data";
+import { User, users } from "./data";
 
 //_Exercício 1_ = data.ts
 
@@ -48,31 +48,29 @@ app.post("/users", (req: Request, res: Response) => {
 
     if (!name || !email || !age || !role) {
       erro = 422;
-      throw new Error(
-        "Nome, email, idade e 'role' são requisitos obrigatórios"
-      );
+      throw new Error("Erro: Nome, email, idade e 'role' são requisitos obrigatórios");
     }
 
     if (typeof name !== "string" || typeof email !== "string") {
       erro = 422;
-      throw new Error("'Nome' e 'email' devem ser uma string ");
+      throw new Error("Erro: 'Nome' e 'email' devem ser uma string ");
     }
 
     if (typeof age !== "number") {
       erro = 422;
-      throw new Error("'Idade' deve ser um número");
+      throw new Error("Erro: 'Idade' deve ser um número");
     }
 
     if (role !== "Admin" && role !== "Normal") {
       console.log(role);
       erro = 422;
-      throw new Error("'Role' deve ser 'Admin' ou 'Normal'");
+      throw new Error("Erro: 'Role' deve ser 'Admin' ou 'Normal'");
     }
 
     const indexEmail = users.findIndex((user) => user.email === email);
     if (indexEmail > 0) {
       erro = 400;
-      throw new Error("Email já existe!");
+      throw new Error("Erro: Email já existe!");
     }
 
     const newUser: User = {
@@ -96,15 +94,29 @@ app.put("/users/:id", (req: Request, res: Response) => {
   let erro: number = 400;
 
   try {
-    const { id } = req.params;
-    const { email } = req.body;
+    const id = Number(req.params.id);
+    const email = req.body.email;
 
-    
-  } 
-  
-  catch (error) {
+    if (!id) {
+      throw new Error("Erro: Necessário informar um id");
+    }
 
+    if (!email) {
+      throw new Error("Erro: Necessário informar um email");
+    }
 
+    const changeEmail = users.findIndex((user) => user.id === id);
+    if (changeEmail < 0) {
+      erro = 422;
+      throw new Error("Erro: informe um id válido");
+    }
+
+    users[changeEmail].email = email;
+
+    res.status(201).send({mensagem: "Email alterado com sucesso!", user: users[changeEmail]});
+
+  } catch (error) {
+    res.status(400).send({ mensagem: error.message });
   }
 });
 
