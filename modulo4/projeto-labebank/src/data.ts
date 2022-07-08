@@ -2,11 +2,11 @@ import { Client } from "./types";
 
 export const bankClients: Client[] = [
   {
-    id: Date.now(),
+    id: 1,
     name: "Daisy Jones",
     cpf: "654.693.621-66",
     birthday: "26/06/1951",
-    balance: 66.890,
+    balance: 667.890,
     transactions: [
       { value: 6.456,
         dueDate: "12/6/2017",
@@ -15,7 +15,7 @@ export const bankClients: Client[] = [
     ],
   },
   {
-    id: Date.now(),
+    id:2,
     name: "Evelyn Hugo",
     cpf: "789.753.741-77",
     birthday: "07/07/1938",
@@ -34,7 +34,7 @@ export const bankClients: Client[] = [
     ],
   },
   {
-    id: Date.now(),
+    id: 3,
     name: "Nina Riva",
     cpf: "569.147.369-45",
     birthday: "01/12/1970",
@@ -47,7 +47,7 @@ export const bankClients: Client[] = [
   },
 
   {
-    id: Date.now(),
+    id: 4,
     name: "Carrie Soto",
     cpf: "519.361.147-23",
     birthday: "06/09/1968",

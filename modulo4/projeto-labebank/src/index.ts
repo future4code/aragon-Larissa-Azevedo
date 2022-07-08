@@ -65,15 +65,17 @@ app.post("/users",(req:Request, res:Response):void=>{
             throw new Error("Error: Expected only 11 numeric digits, please check your inputs.");          
         } 
 
-        const checkCPF: Client | undefined = bankClients.find(client => client.cpf === cpf)
+        const checkCPF: Client = bankClients.find(client => client.cpf === cpf)
 
         if(checkCPF){
             errorCode = 403
             throw new Error("Error: CPF already exists.");            
         }
 
+        const lastId = bankClients[bankClients.length -1]
+
         const newClient:Client ={
-            id: Date.now(),
+            id: lastId.id + 1,
             name: name,
             cpf:cpf,
             birthday:birthday,
@@ -88,3 +90,29 @@ app.post("/users",(req:Request, res:Response):void=>{
         res.status(errorCode).send({message: error.message})
     }
 })
+
+//endpoint 2 - pegar saldo
+
+app.get("/users/:id", (req: Request, res: Response): void => {
+  let errorCode = 400;
+
+  try {
+    const id: number = Number(req.params.id);
+
+    if (!id) {
+      errorCode = 404;
+      throw new Error("Error: please, add an id");
+    }
+
+    const accountBalance: Client = bankClients.find((client) => client.id === id);
+
+    if (!accountBalance) {
+      errorCode = 404;
+      throw new Error("Error: Client not found");
+    }
+
+    res.status(200).send({ message: `This client have R$${accountBalance.balance}` });
+  } catch (error) {
+    res.status(errorCode).send({ message: error.message });
+  }
+});
