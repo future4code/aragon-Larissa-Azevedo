@@ -1,15 +1,15 @@
-import { User } from "./types";
+import { Client } from "./types";
 
-export const bankCustomers: User[] = [
+export const bankClients: Client[] = [
   {
     id: Date.now(),
     name: "Daisy Jones",
     cpf: "654.693.621-66",
     birthday: "26/06/1951",
-    balance: "R$66.890,000",
+    balance: 66.890,
     transactions: [
       { value: 6.456,
-        dueDate: 12 / 6 / 2017,
+        dueDate: "12/6/2017",
         description: "Wild Flower Iniciative",
       },
     ],
@@ -19,16 +19,16 @@ export const bankCustomers: User[] = [
     name: "Evelyn Hugo",
     cpf: "789.753.741-77",
     birthday: "07/07/1938",
-    balance: "R$777.264.147,00",
+    balance: 777.264,
     transactions: [
       {
-        value: 7.000,
-        dueDate: 23 / 3 / 2017,
+        value: 7.264,
+        dueDate: "23/3/2017",
         description: "to Monique",
       },
       {
         value: 777.257,
-        dueDate: 24 / 3 / 2017,
+        dueDate: "24/3/2017",
         description: "this is my last.",
       },
     ],
@@ -38,10 +38,10 @@ export const bankCustomers: User[] = [
     name: "Nina Riva",
     cpf: "569.147.369-45",
     birthday: "01/12/1970",
-    balance: "R$10.269,78",
+    balance: 10.269,
     transactions:[{
-        value: 69,
-        dueDate: 29/5/2021,
+        value: 269,
+        dueDate: "29/5/2021",
         description:"to jay, as he asked."
     },]
   },
@@ -51,7 +51,7 @@ export const bankCustomers: User[] = [
     name: "Carrie Soto",
     cpf: "519.361.147-23",
     birthday: "06/09/1968",
-    balance: "R$26.423,12",
+    balance: 26.423,
     transactions:[]
   },
 ];

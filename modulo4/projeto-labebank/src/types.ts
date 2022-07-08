@@ -1,15 +1,15 @@
-export type User = {
+export type Client = {
   id: number;
   name: string;
   cpf: string;
   birthday: string;
-  balance: string;
+  balance: number;
   transactions: bills[]
 };
 
 export type bills = {
   value: number;
-  dueDate: number;
+  dueDate: string;
   description: string;
 };
 
