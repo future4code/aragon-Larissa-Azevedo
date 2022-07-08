@@ -116,3 +116,24 @@ app.get("/users/:id", (req: Request, res: Response): void => {
     res.status(errorCode).send({ message: error.message });
   }
 });
+
+//endpoint 3 - adicionar saldo
+
+app.put("/users/:id", (req:Request, res:Response):void=>{
+  let errorCode = 400
+  const {id, value, dueDate, description} = req.body
+
+  if (!id) {
+    errorCode = 404;
+    throw new Error("Error: please, add an id");
+  }
+
+})
+
+//endpoint 4 - pagar conta
+
+app.put("/user/:id/pay", (req:Request, res:Response): void =>{
+  let errorCode = 400
+  const{id, bills} = req.body
+
+})
