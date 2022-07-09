@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { Client, bills, date } from "./types";
+import { Client, Bills, Date } from "./types";
 import { bankClients } from "./data";
 
 
@@ -22,7 +22,7 @@ app.get("/labebank", (req: Request, res: Response) => {
   });
 });
 
-app.get("/teste", (req:Request, res:Response)=>{
+app.get("/clientList", (req:Request, res:Response)=>{
     res.status(200).send(bankClients)
 })
 
@@ -36,13 +36,13 @@ app.post("/users",(req:Request, res:Response):void=>{
         const {name, cpf, birthday} = req.body
 
         const array:string[] = birthday.split("/")
-        const birthdayFormated: date = {
+        const birthdayFormated: Date = {
             day:Number(array[0]),
             month:Number(array[1]),
             year:Number(array[2])
         };
 
-        const currentDate:date ={
+        const currentDate:Date ={
             day: new Date().getDate(),
             month: new Date().getMonth() +1,
             year: new Date().getFullYear()
@@ -156,4 +156,67 @@ app.put("/users/:id", (req: Request, res: Response): void => {
   }})
   
 //endpoint 4 - pagar conta
+
+app.put("/users/:id/pay", (req: Request, res: Response) => {
+  let errorCode = 400
+
+  try {
+    const id = Number(req.params.id)
+    const value = req.body.value
+    const description = req.body.description
+    
+
+    if (!value || !description) {
+      errorCode = 406
+      throw new Error("Error: Missing params. Please, check your inputs.");
+    }
+
+    if (typeof value !== "number" || typeof description !== "string") {
+      errorCode = 406
+      throw new Error("Error: 'value' expected a number and 'description', a string. Please check your inputs ");
+    }
+
+    if (value <= 0) {
+      errorCode = 406
+      throw new Error("Error: Payment value must be greater than zero");
+    }
+
+    if (description.length < 6) {
+      errorCode = 406
+      throw new Error("Error: Your description must be at least 6 characters long. Please, check your input.");
+    }
+
+    const clientAccount = bankClients.find((account) => {
+      return account.id === id
+    })
+
+    if (!clientAccount) {
+      errorCode = 404
+      throw new Error("Error: Account not found. Please check your input.");
+    }
+
+    if (clientAccount.balance < value) {
+      errorCode = 401
+      throw new Error("Error: Your funds are insufficient to complete this transaction.");
+    }
+
+    clientAccount.balance -= value
+
+    const currentDate = new Date().toLocaleString().split(" ")[0]
+
+    const newPayment: Bills = {
+      value: value,
+      dueDate: currentDate,
+      description: description
+    }
+
+    clientAccount.transactions.push(newPayment)
+
+    res.status(200).send({ message: "Successful payment! Now you can check you current balance.", clientAccount: clientAccount })
+
+  } catch (error) {
+    res.status(errorCode).send({ message: error.message })
+
+  }
+})
 

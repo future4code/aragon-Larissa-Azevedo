@@ -4,16 +4,16 @@ export type Client = {
   cpf: string;
   birthday: string;
   balance: number;
-  transactions: bills[]
+  transactions: Bills[]
 };
 
-export type bills = {
+export type Bills = {
   value: number;
   dueDate: string;
   description: string;
 };
 
-export type date = {
+export type Date = {
     day: number,
     month: number,
     year: number
