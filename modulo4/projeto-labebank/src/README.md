@@ -23,7 +23,7 @@ Este sistema permite, de forma simplificada, que o usuário possa gerenciar cont
 
 #### Projeto Labebank foi feito com:
 
-<img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" /> <img align="center" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/30/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png"/>  <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" />
+<img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />  <img align="center" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />   <img align="center" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/30/000000/external-postman-is-the-only-complete-api-development-environment-logo-color-tal-revivo.png"/>  <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg" />
 
 
           
