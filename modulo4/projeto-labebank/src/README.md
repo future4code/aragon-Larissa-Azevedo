@@ -13,7 +13,7 @@ Este sistema permite, de forma simplificada, que o usuário possa gerenciar cont
 
 * listar os usuários, através do método **GET** bankClientsList  :file_folder:
 
-* cadastrar novo usuário, com o método **POST** createClient : woman:
+* cadastrar novo usuário, com o método **POST** createClient :woman:
 
 * visualizar o saldo de determinado cliente, utilizando o método **GET** getBalanceById  :moneybag:
 
