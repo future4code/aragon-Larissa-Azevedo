@@ -125,8 +125,8 @@ app.put("/funcionarios/:id", async (req:Request, res:Response)=>{
   
     await connection.raw(`
     UPDATE Funcionários
-    SET email = ${email}
-    `)
+    SET email = "${email}"
+    WHERE id = ${id}; `)
 
     res.status(200).send({mensagem: "E-mail atualizado com sucesso!"})
 
@@ -135,3 +135,5 @@ app.put("/funcionarios/:id", async (req:Request, res:Response)=>{
   }
 
 })
+
+//_Exercício 4_
