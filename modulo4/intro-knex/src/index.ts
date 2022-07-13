@@ -91,3 +91,47 @@ app.post("/funcionarios", async (req: Request, res: Response) => {
 
   }
 })
+
+//_Exercício 3_
+
+app.put("/funcionarios/:id", async (req:Request, res:Response)=>{
+  let errorCode = 400
+
+  try {
+    const id = Number(req.params.id)
+    const email = req.body.email
+
+    if(!email){
+      errorCode = 400
+      throw new Error("Erro: Campo vazio, por favor digite um email.");     
+    }
+
+    if (typeof email !== "string") {
+      errorCode = 406;
+      throw new Error("Erro: 'Email' deve ser uma string.");
+    }
+
+    if (!email.includes("@")) {
+      throw new Error("Erro: E-mail inválido!");
+    }
+
+    const [ checaEmail ] = await connection.raw(`
+    SELECT * FROM Funcionários
+    WHERE email = "${email}" `)
+
+    if (checaEmail[0]) {
+      throw new Error("Erro: E-mail já cadastrado!");
+    }
+  
+    await connection.raw(`
+    UPDATE Funcionários
+    SET email = ${email}
+    `)
+
+    res.status(200).send({mensagem: "E-mail atualizado com sucesso!"})
+
+  } catch (error) {
+    res.status(errorCode).send({mensagem: error.message})
+  }
+
+})
