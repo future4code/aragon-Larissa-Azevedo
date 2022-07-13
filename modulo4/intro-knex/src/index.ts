@@ -137,3 +137,30 @@ app.put("/funcionarios/:id", async (req:Request, res:Response)=>{
 })
 
 //_Exercício 4_
+
+app.delete("/funcionarios/:id", async(req:Request, res:Response)=>{
+  let errorCode = 400
+  try {
+    const id = Number(req.params.id)
+
+    const [ funcionarios ] = await connection.raw(`
+    SELECT * FROM Funcionários
+    WHERE id = ${id};`)
+
+    const funcionarioEncontrado = funcionarios[0]
+
+    if(!funcionarioEncontrado){
+      errorCode = 404
+      throw new Error("Erro: Funcionário não localizado no Banco de Dados.");      
+    }
+
+    await connection.raw(`
+    DELETE FROM Funcionários
+    WHERE id = ${id} `)
+
+    res.status(200).send({mensagem: "Funcionário deletado com sucesso!"})
+    
+  } catch (error) {
+    res.status(errorCode).send({mensagem: error.message})
+  }
+})
