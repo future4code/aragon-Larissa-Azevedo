@@ -4,7 +4,7 @@ const criarTabelaFuncionários = async () => {
     try {
         await connection.raw(`
             CREATE TABLE IF NOT EXISTS Funcionários (
-            id INT PRIMARY KEY,
+            id BIGINT PRIMARY KEY,
             nome VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE
             );
