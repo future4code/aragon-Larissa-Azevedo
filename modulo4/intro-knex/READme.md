@@ -3,9 +3,9 @@
 
 Trata-se de exercícios de desenvolvimento de código, com combinação dos conceitos de SQL, banco de dados e integração com o Backend aprendidos até o momento no curso Labenu.
 
-Tendo por base tabela "Funcionários" criada no exercício anterior 'intro-sql', foram criados quatro endpoints, aplicando os conceitos recém aprendidos de Knex.
+Tendo por base tabela "Funcionários" criada no exercício anterior, ['intro-sql'](https://github.com/future4code/aragon-Larissa-Azevedo/pull/51/files), foram criados quatro endpoints, aplicando os conceitos recém aprendidos de Knex.
 
-Com os testes feitos no Postman e a respectiva documentação aqui, neste exercício é possível:
+Com os testes feitos no Postmane  a respectiva [documentação](https://documenter.getpostman.com/view/20783829/UzQuN4r5), neste exercício é possível:
 
 * Buscar usuários cadastrados com o método **GET** ListaFuncionarios;
 
@@ -14,3 +14,14 @@ Com os testes feitos no Postman e a respectiva documentação aqui, neste exerc�
 * Alterar email já cadastrado com o método **PUT** AlteraEmail;
 
 * Deletar um funcionário cadastrado com o método **DEL** DeletaFuncionário.
+
+#### Tecnologias utilizadas:
+* TypeScript;
+* Express;
+* Knex;
+* mySQL;
+* Postman.
+
+##### Feito com VSCode e Beekeeper-Studio.
+
+
