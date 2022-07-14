@@ -6,6 +6,7 @@ import { getTasksList } from "./endpoints/getTasksList";
 import { getUserResponsibleByTask } from "./endpoints/getUserResponsibleByTask";
 import { editUserNickname } from "./endpoints/editUserNickname";
 import { deleteTask } from "./endpoints/deleteTask";
+import { editTaskStatusById } from "./endpoints/editTaskStatusById";
 
 const app = express();
 
@@ -24,4 +25,5 @@ app.get("/users", getUsersList)
 app.get("/tasks", getTasksList)
 app.get("/tasks/:taskId/users", getUserResponsibleByTask)
 app.put("/users/:userId", editUserNickname)
+app.put("/tasks/:taskId", editTaskStatusById)
 app.delete("/tasks/:taskId", deleteTask)
