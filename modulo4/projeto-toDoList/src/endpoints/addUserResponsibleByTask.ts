@@ -6,7 +6,7 @@ export const addUserResponsibleByTask = async (req:Request, res:Response) =>{
     let errorCode = 400
 
     try {
-        const taskId = req.params.taskId
+        const taskId = Number(req.params.taskId)
         const users = req.body.users
 
         const [checkIfTaskExists] = await connection.raw(`
@@ -28,22 +28,25 @@ export const addUserResponsibleByTask = async (req:Request, res:Response) =>{
             throw new Error("Error: User not found database.");
         }
 
-        const [checkUserResponsible] = await connection.raw(`
+       const [taskIsTaken] = await connection.raw(`
         SELECT * FROM Responsibles
-        WHERE userId = ${users};
-        `)
+        WHERE taskId = ${taskId}       
+       `)
 
-        if(!checkUserResponsible[0]){
-            throw new Error("Error: User already responsible.");
-        }
+       if(taskIsTaken){
+           errorCode = 406
+           throw new Error("This task is already taken by another User.");
+       }
 
+       if(!taskIsTaken[0]){
         await connection.raw(`
         INSERT INTO Responsibles (userId, taskId)
         VALUES
         (${users}, ${taskId});
         `)
-
-        return res.status(200).send({message:"User is successfully responsible for this task!"})
+       }
+    
+    return res.status(200).send({message:"User is successfully responsible for this task!"})
         
     } catch (error) {
         res.status(errorCode).send({ message: error.message })

@@ -5,7 +5,7 @@ export const deleteTask = async (req:Request, res:Response) => {
     let errorCode = 400
 
     try {
-        const taskId = Number(req.params.taskId)
+        const taskId = Number(req.params.taskId)        
 
         const [tasks] = await connection.raw(`
         SELECT * FROM Tasks
@@ -15,17 +15,12 @@ export const deleteTask = async (req:Request, res:Response) => {
             errorCode = 404
             throw new Error("Error: Task inexistent in our database.");
         }
-// ++ Deleção de tarefas necessita de remoção de usuários destacados para esta tarefa.
         
         await connection.raw(`
-        DELETE FROM Tasks
-        WHERE id = ${taskId}`)
+        DELETE FROM Responsibles
+        WHERE taskId = ${taskId} AND userId `)
 
         res.status(200).send({message:"Task successfully deleted!"})
-
-
-
-
         
     } catch (error) {
         res.status(errorCode).send({mensagem: error.message})
