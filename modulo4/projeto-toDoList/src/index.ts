@@ -7,6 +7,7 @@ import { getUserResponsibleByTask } from "./endpoints/getUserResponsibleByTask";
 import { editUserNickname } from "./endpoints/editUserNickname";
 import { deleteTask } from "./endpoints/deleteTask";
 import { editTaskStatusById } from "./endpoints/editTaskStatusById";
+import { addUserResponsibleByTask } from "./endpoints/addUserResponsibleByTask";
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.get("/ping", ping)
 app.get("/users", getUsersList)
 app.get("/tasks", getTasksList)
 app.get("/tasks/:taskId/users", getUserResponsibleByTask)
+app.post("/tasks/:taskId/users", addUserResponsibleByTask)
 app.put("/users/:userId", editUserNickname)
 app.put("/tasks/:taskId", editTaskStatusById)
 app.delete("/tasks/:taskId", deleteTask)
