@@ -3,6 +3,7 @@ import cors from "cors";
 import { ping } from "./endpoints/ping";
 import { getUsers } from "./endpoints/getUsers";
 import { getProducts } from "./endpoints/getProducts";
+import { deleteProduct } from "./endpoints/deleteProduct";
 
 const app = express();
 
@@ -18,3 +19,4 @@ app.get("/ping", ping)
 // Get users
 app.get("/users", getUsers)
 app.get("/products", getProducts)
+app.delete("/products/:productId", deleteProduct)
