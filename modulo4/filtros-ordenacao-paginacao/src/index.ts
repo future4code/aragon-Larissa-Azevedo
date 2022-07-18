@@ -5,6 +5,7 @@ import { getUsers } from "./endpoints/getUsers";
 import { getProducts } from "./endpoints/getProducts";
 import { deleteProduct } from "./endpoints/deleteProduct";
 import { editPrice } from "./endpoints/editPrice";
+import { createNewProduct } from "./endpoints/createNewProduct";
 
 const app = express();
 
@@ -20,5 +21,6 @@ app.get("/ping", ping)
 // Get users
 app.get("/users", getUsers)
 app.get("/products", getProducts)
+app.post("/products", createNewProduct)
 app.put("/products/:productId", editPrice)
 app.delete("/products/:productId", deleteProduct)
