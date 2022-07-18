@@ -11,7 +11,7 @@ export const deleteProduct = async (req:Request, res:Response) => {
 
         const [products] = await connection.raw(`
         SELECT * FROM ${TABLE_PRODUCTS}
-        WHERE id = ${productId} `)
+        WHERE id = "${productId}"; `)
 
         if(!products[0]){
             errorCode = 404
@@ -20,7 +20,7 @@ export const deleteProduct = async (req:Request, res:Response) => {
 
         await connection.raw(`
         DELETE FROM ${TABLE_PRODUCTS}
-        WHERE id = ${productId}`)
+        WHERE id = "${productId}";`)
 
         res.status(200).send({message:"Produto deletado com sucesso!"})
 
