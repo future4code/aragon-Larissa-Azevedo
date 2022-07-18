@@ -4,6 +4,7 @@ import { ping } from "./endpoints/ping";
 import { getUsers } from "./endpoints/getUsers";
 import { getProducts } from "./endpoints/getProducts";
 import { deleteProduct } from "./endpoints/deleteProduct";
+import { editPrice } from "./endpoints/editPrice";
 
 const app = express();
 
@@ -19,4 +20,5 @@ app.get("/ping", ping)
 // Get users
 app.get("/users", getUsers)
 app.get("/products", getProducts)
+app.put("/products/:productId", editPrice)
 app.delete("/products/:productId", deleteProduct)
