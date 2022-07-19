@@ -1,3 +1,6 @@
 ### Ping
 GET http://localhost:3003/ping
 
+### Create Perfume
+POST http://localhost:3003/perfumes
+

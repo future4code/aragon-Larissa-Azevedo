@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { ping } from "./endpoints/ping";
+import { createNewPerfume } from "./endpoints/createNewPerfume";
 
 const app = express();
 
@@ -14,3 +15,5 @@ app.listen(process.env.PORT || 3003, () => {
 app.get("/ping", ping)
 
 // Implemente seus endpoints abaixo
+
+app.post("/perfumes", createNewPerfume)
