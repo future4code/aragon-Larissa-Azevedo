@@ -11,6 +11,9 @@ export const getPerfumes = async (req: Request, res: Response)=>{
         const query = req.query.q
         const sort = req.query.sort || "price"
         const order = req.query.order || "desc"
+        const limit = Number(req.query.limit) || 10
+        const page = Number(req.query.page) || 1
+        const offset = limit * (page - 1)
 
         if(query) {
             const result = await connection(TABLE_PERFUMES)
@@ -18,6 +21,8 @@ export const getPerfumes = async (req: Request, res: Response)=>{
             .where("name", "LIKE", `%${query}%`)
             .orWhere("brand", "LIKE", `%${query}%`)
             .orderBy(`${sort}`, `${order}`)
+            .limit(limit)
+            .offset(offset)
 
             return res.status(200).send({perfumes: result})
         }
@@ -25,6 +30,8 @@ export const getPerfumes = async (req: Request, res: Response)=>{
         const result = await connection(TABLE_PERFUMES)
         .select()
         .orderBy(`${sort}`, `${order}`)
+        .limit(limit)
+        .offset(offset)
 
         return res.status(200).send({perfumes: result})
         
