@@ -4,6 +4,7 @@ import { ping } from "./endpoints/ping";
 import { createNewPerfume } from "./endpoints/createNewPerfume";
 import { getPerfumes } from "./endpoints/getPerfumes";
 import { editPrice } from "./endpoints/editPrice";
+import { deletePerfume } from "./endpoints/deletePerfume";
 
 const app = express();
 
@@ -21,3 +22,4 @@ app.get("/ping", ping)
 app.post("/perfumes", createNewPerfume)
 app.get("/perfumes", getPerfumes)
 app.patch("/perfumes/:id", editPrice)
+app.delete("/perfumes/:id", deletePerfume)
