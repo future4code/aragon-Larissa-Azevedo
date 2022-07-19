@@ -3,6 +3,7 @@ import cors from "cors";
 import { ping } from "./endpoints/ping";
 import { createNewPerfume } from "./endpoints/createNewPerfume";
 import { getPerfumes } from "./endpoints/getPerfumes";
+import { editPrice } from "./endpoints/editPrice";
 
 const app = express();
 
@@ -19,3 +20,4 @@ app.get("/ping", ping)
 
 app.post("/perfumes", createNewPerfume)
 app.get("/perfumes", getPerfumes)
+app.patch("/perfumes/:id", editPrice)

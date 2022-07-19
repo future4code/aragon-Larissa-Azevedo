@@ -12,3 +12,11 @@ GET http://localhost:3003/perfumes
 
 ### Get all perfumes order by brand
 GET http://localhost:3003/perfumes?q=armani
+
+### Edit perfume price
+PATCH http://localhost:3003/perfumes/1658251338268
+Content-Type: application/json
+
+{
+    "price": 350.00
+}
