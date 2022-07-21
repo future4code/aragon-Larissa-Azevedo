@@ -44,8 +44,14 @@ export const createUser = async (req: Request, res: Response) => {
       throw new Error("Erro: 'e-mail' já cadastrado!");
     }
 
+    const setNewId = await connection(TABLE_USERS)
+      .select()
+
+    const lastUser = setNewId [setNewId.length -1]
+    const lastUserId = Number(lastUser.id)
+
     const newUser: User = {
-      id: Date.now().toString(),
+      id: (lastUserId + 1).toString(),
       email: email,
       password: password,
     };

@@ -18,6 +18,7 @@ export const getUserPurchase = async (req:Request, res: Response) =>{
             errorCode = 404
             throw new Error("Erro: Usuário não encontrado");            
         }
+        
 
         const [userPurchase] = await connection.raw(`
         SELECT
