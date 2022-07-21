@@ -34,3 +34,15 @@ GET http://localhost:3003/products
 
 ### também é possível buscar pelo nome, ordenado por price em ordem (de)crescente 
 GET http://localhost:3003/products?q=monitor&sort=price&order=desc
+
+### Endpoint de registro de compras
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+
+    "user_id": "1658415935811",
+    "product_id": "1658418444329",
+    "quantity": 2
+    
+}

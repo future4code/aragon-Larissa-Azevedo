@@ -3,7 +3,7 @@ import connection from "../database/connection";
 import { TABLE_PRODUCTS } from "../database/tableNames";
 
 
-//Endpoint 2 - Busca por todos os Produtos
+//Endpoint 4 - Busca por todos os Produtos
 
 export const getProducts = async (req:Request, res:Response) => {
     let errorCode = 400
