@@ -27,3 +27,10 @@ Content-Type: application/json
     "price":750
 
 }
+
+
+### Busca por todos os produtos
+GET http://localhost:3003/products
+
+### também é possível buscar pelo nome, ordenado por price em ordem (de)crescente 
+GET http://localhost:3003/products?q=monitor&sort=price&order=desc
