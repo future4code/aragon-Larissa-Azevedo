@@ -46,3 +46,9 @@ Content-Type: application/json
     "quantity": 2
     
 }
+
+###Endpoint de busca de compras de usuário
+GET http://localhost:3003/users/101/purchases
+Content-Type: application/json
+
+
