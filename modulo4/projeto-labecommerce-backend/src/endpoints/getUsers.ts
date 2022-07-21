@@ -11,12 +11,13 @@ export const getUsers = async (req: Request, res: Response) => {
     try {
         const query = req.query.q
         const sort = req.query.sort || "id"
+        const order = req.query.order || "asc"
 
         if (query) {
             const result = await connection(TABLE_USERS)
                 .select()
                 .where("email", "LIKE", `%${query}%`)
-                .orderBy(`${sort}`)
+                .orderBy(`${sort}`, `${order}`)
 
 
             return res.status(200).send({ usuários: result })
@@ -24,7 +25,7 @@ export const getUsers = async (req: Request, res: Response) => {
 
         const result = await connection(TABLE_USERS)
             .select()
-            .orderBy(`${sort}`)
+            .orderBy(`${sort}`, `${order}`)
 
         return res.status(200).send({ usuários: result })
 
