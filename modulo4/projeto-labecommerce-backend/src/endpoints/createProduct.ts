@@ -31,8 +31,15 @@ export const createProduct = async (req: Request, res: Response) => {
       throw new Error("Erro: 'price' deve ter um valor maior que zero.");
     }
 
+    const setNewId = await connection(TABLE_PRODUCTS)
+    .select()
+
+    const lastItem = setNewId [setNewId.length -1]
+    const lastItemId = Number(lastItem.id)
+    
+
     const newProduct: Product = {
-      id: Date.now().toString(),
+      id: (lastItemId + 1).toString(),
       name: name,
       price: price,
     };

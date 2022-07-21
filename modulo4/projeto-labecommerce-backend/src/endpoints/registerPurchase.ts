@@ -50,13 +50,19 @@ export const registerPurchase = async (req: Request, res: Response) => {
       throw new Error("Erro: 'product_id' não encontrado!");
     }
 
-    const total_price = checksProduct[0].price * quantity
+    const total_price = checksProduct[0].price * quantity;
+
+    const setNewId = await connection(TABLE_PRODUCTS)
+    .select();
+
+    const lastItem = setNewId[setNewId.length - 1];
+    const lastItemId = Number(lastItem.id);
 
     const newPurchase: Purchase = {
-      id: Date.now().toString(),
+      id: (lastItemId + 1).toString(),
       user_id: user_id,
       product_id: product_id,
-      quantity: quantity,    
+      quantity: quantity,
       total_price: total_price,
     };
 
@@ -68,9 +74,10 @@ export const registerPurchase = async (req: Request, res: Response) => {
       total_price: newPurchase.total_price,
     });
 
-    res.status(201).send({ compra: newPurchase, message: "Compra registrada com sucesso!" });
+    res
+      .status(201)
+      .send({ compra: newPurchase, message: "Compra registrada com sucesso!" });
   } catch (error) {
     res.status(errorCode).send({ mensagem: error.message });
   }
 };
-

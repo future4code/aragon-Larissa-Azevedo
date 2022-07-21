@@ -38,7 +38,7 @@ export const createUser = async (req: Request, res: Response) => {
 
     const checksEmail = await connection(TABLE_USERS)
       .select()
-      .where("email", "LIKE", `${email}`);
+      .where("email", "=", `${email}`);
 
     if (checksEmail[0]) {
       throw new Error("Erro: 'e-mail' já cadastrado!");
