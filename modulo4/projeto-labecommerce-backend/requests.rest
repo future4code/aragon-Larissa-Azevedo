@@ -1,2 +1,13 @@
 ### Endpoint de teste
 GET http://localhost:3003/ping
+
+### Endpoint de criação de usuário
+
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "email": "testes@email.com",
+    "password":"senha123"
+}
+
