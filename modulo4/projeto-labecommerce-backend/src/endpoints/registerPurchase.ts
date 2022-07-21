@@ -1,10 +1,6 @@
 import { Request, Response } from "express";
 import connection from "../database/connection";
-import {
-  TABLE_PRODUCTS,
-  TABLE_PURCHASES,
-  TABLE_USERS,
-} from "../database/tableNames";
+import { TABLE_PRODUCTS, TABLE_PURCHASES, TABLE_USERS } from "../database/tableNames";
 import { Purchase } from "../models/Purchase";
 
 // Endpoint 5 - Registro de compra de produto
@@ -15,10 +11,9 @@ export const registerPurchase = async (req: Request, res: Response) => {
   try {
     const user_id = req.body.user_id;
     const product_id = req.body.product_id;
-    const quantity = Number(req.body.quantity);
-    // total price???
+    const quantity = req.body.quantity;
 
-    if (!user_id || !product_id || !quantity) {
+    if (!user_id || !product_id) {
       errorCode = 422;
       throw new Error(
         "Erro: Há campos em branco, por favor confira seus parâmetros!"
@@ -41,7 +36,7 @@ export const registerPurchase = async (req: Request, res: Response) => {
 
     const checksUser = await connection(TABLE_USERS)
       .select()
-      .where("id", "LIKE", `${user_id}`);
+      .where("id", "=", `${user_id}`);
 
     if (!checksUser[0]) {
       throw new Error("Erro: 'user_id' não encontrado!");
@@ -49,19 +44,21 @@ export const registerPurchase = async (req: Request, res: Response) => {
 
     const checksProduct = await connection(TABLE_PRODUCTS)
       .select()
-      .where("id", "LIKE", `${product_id}`);
+      .where("id", "=", `${product_id}`);
 
     if (!checksProduct[0]) {
       throw new Error("Erro: 'product_id' não encontrado!");
     }
 
+    const total_price = checksProduct[0].price * quantity
+
     const newPurchase: Purchase = {
       id: Date.now().toString(),
       user_id: user_id,
       product_id: product_id,
-      quantity: quantity,
-      total_price: quantity,
-    }; //total_price incompleto
+      quantity: quantity,    
+      total_price: total_price,
+    };
 
     await connection(TABLE_PURCHASES).insert({
       id: newPurchase.id,
@@ -76,3 +73,4 @@ export const registerPurchase = async (req: Request, res: Response) => {
     res.status(errorCode).send({ mensagem: error.message });
   }
 };
+

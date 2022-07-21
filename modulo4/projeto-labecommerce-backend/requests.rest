@@ -48,7 +48,7 @@ Content-Type: application/json
 }
 
 ###Endpoint de busca de compras de usuário
-GET http://localhost:3003/users/101/purchases
+GET http://localhost:3003/users/1658415935811/purchases
 Content-Type: application/json
 
 
