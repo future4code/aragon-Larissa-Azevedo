@@ -23,13 +23,13 @@ Content-Type: application/json
 
 {
 
-    "name": "Monitor Ultra",
-    "price":750
+    "name": "Cadeira",
+    "price":820
 
 }
 
 
-### Busca por todos os produtos
+### Busca por todos os produtos, ordenado por preço asc [padrão]
 GET http://localhost:3003/products
 
 ### também é possível buscar pelo nome, ordenado por price em ordem (de)crescente 
@@ -41,14 +41,14 @@ Content-Type: application/json
 
 {
 
-    "user_id": "1658415935811",
-    "product_id": "1658418444329",
+    "user_id": "104",
+    "product_id": "205",
     "quantity": 2
     
 }
 
 ###Endpoint de busca de compras de usuário
-GET http://localhost:3003/users/1658415935811/purchases
+GET http://localhost:3003/users/104/purchases
 Content-Type: application/json
 
 

@@ -52,7 +52,7 @@ export const registerPurchase = async (req: Request, res: Response) => {
 
     const total_price = checksProduct[0].price * quantity;
 
-    const setNewId = await connection(TABLE_PRODUCTS)
+    const setNewId = await connection(TABLE_PURCHASES)
     .select();
 
     const lastItem = setNewId[setNewId.length - 1];
