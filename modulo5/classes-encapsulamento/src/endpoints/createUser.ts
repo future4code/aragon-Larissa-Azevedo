@@ -13,19 +13,19 @@ export const createUser = async (req: Request, res: Response) => {
             throw new Error("Body inválido.")
         }
 
-        const newUser: User = {
-            id: Date.now().toString(),
+        const user = new User (
+            Date.now().toString(),
             email,
             password
-        }
+        )
 
         await connection(TABLE_USERS).insert({
-            id: newUser.id,
-            email: newUser.email,
-            password: newUser.password
+            id: user.getId(),
+            email: user.getEmail(),
+            password: user.getPassword()
         })
         
-        res.status(201).send({ message: "Usuário criado", user: newUser })
+        res.status(201).send({ message: "Usuário criado", user: user })
     } catch (error) {
         res.status(errorCode).send({ message: error.message })
     }
