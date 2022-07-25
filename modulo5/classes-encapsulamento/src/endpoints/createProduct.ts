@@ -13,19 +13,19 @@ export const createProduct = async (req: Request, res: Response) => {
             throw new Error("Body inválido.")
         }
 
-        const newProduct: Product = {
-            id: Date.now().toString(),
+        const product = new Product(
+            Date.now().toString(),
             name,
             price
-        }
+        )
 
         await connection(TABLE_PRODUCTS).insert({
-            id: newProduct.id,
-            name: newProduct.name,
-            price: newProduct.price
+            id: product.getId(),
+            name: product.getName(),
+            price: product.getPrice()
         })
         
-        res.status(201).send({ message: "Produto criado", product: newProduct })
+        res.status(201).send({ message: "Produto criado", product: product })
     } catch (error) {
         res.status(errorCode).send({ message: error.message })
     }
