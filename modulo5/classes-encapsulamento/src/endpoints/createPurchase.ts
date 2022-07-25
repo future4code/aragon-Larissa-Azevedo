@@ -33,29 +33,29 @@ export const createPurchase = async (req: Request, res: Response) => {
             throw new Error("Produto não encontrado.")
         }
         
-        const product: Product = {
-            id: findProduct[0].id,
-            name: findProduct[0].name,
-            price: findProduct[0].price
-        }
+        const product = new Product(
+           findProduct[0].id,
+           findProduct[0].name,
+           findProduct[0].price
+        )
 
-        const newPurchase: Purchase = {
-            id: Date.now().toString(),
+        const purchase = new Purchase (
+            Date.now().toString(),
             userId,
             productId,
             quantity,
-            totalPrice: product.price * quantity
-        }
+            product.getPrice() * quantity
+        )
 
         await connection(TABLE_PURCHASES).insert({
-            id: newPurchase.id,
-            user_id: newPurchase.userId,
-            product_id: newPurchase.productId,
-            quantity: newPurchase.quantity,
-            total_price: newPurchase.totalPrice
+            id: purchase.getId(),
+            user_id: purchase.getUserId(),
+            product_id: purchase.getProductId(),
+            quantity: purchase.getQuantity(),
+            total_price: purchase.getTotalPrice()
         })
 
-        res.status(201).send({ message: "Compra registrada", purchase: newPurchase })
+        res.status(201).send({ message: "Compra registrada", purchase: purchase })
     } catch (error) {
         res.status(errorCode).send({ message: error.message })
     }
