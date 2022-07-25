@@ -33,7 +33,7 @@ export const getUserPurchase = async (req:Request, res: Response) =>{
         JOIN ${TABLE_PRODUCTS}
         ON ${TABLE_PURCHASES}.product_id = ${TABLE_PRODUCTS}.id
         WHERE ${TABLE_PURCHASES}.user_id = ${user_id}
-        `)
+        `);
 
         return res.status(200).send({histórico: userPurchase})
         
