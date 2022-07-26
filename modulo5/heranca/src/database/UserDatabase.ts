@@ -1,4 +1,3 @@
-import { userInfo } from "os";
 import { User } from "../models/User";
 import { BaseDatabase } from "./BaseDatabase";
 
