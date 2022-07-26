@@ -1,0 +1,33 @@
+### Ping
+GET http://localhost:3003/ping
+
+### Create Perfume
+POST http://localhost:3003/perfumes
+Content-Type: application/json
+
+{
+    "name":"Testing25",
+    "brand":"New",
+    "price": 256.77,
+    "ml": 50
+}
+
+### Get all perfumes order by name and sort id descending
+GET http://localhost:3003/perfumes?q=armani&sort=id&order=desc
+
+### Get all perfumes order by price descending
+GET http://localhost:3003/perfumes
+
+### Get all perfumes order by brand
+GET http://localhost:3003/perfumes?q=armani
+
+### Edit perfume price
+PATCH http://localhost:3003/perfumes/1658251338268
+Content-Type: application/json
+
+{
+    "price": 350.00
+}
+
+### Delete perfume
+DELETE http://localhost:3003/perfumes/1658251338268
