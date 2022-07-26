@@ -8,29 +8,28 @@ export class ProductDatabase extends BaseDatabase {
 
   public async getProducts() {
     const result = await BaseDatabase
-    .connection (ProductDatabase.TABLE_PRODUCTS)
-    .select();
+      .connection(ProductDatabase.TABLE_PRODUCTS)
+      .select();
 
     return result;
   }
 
   public async createProduct(product: Product) {
-    const result = await BaseDatabase.connection(
-      ProductDatabase.TABLE_PRODUCTS
-    ).insert({
-      id: product.getId(),
-      name: product.getName(),
-      price: product.getPrice(),
-    });
+    await BaseDatabase.connection(ProductDatabase.TABLE_PRODUCTS)
+      .insert({
+        id: product.getId(),
+        name: product.getName(),
+        price: product.getPrice(),
+      });
   }
 
-  public async getProductById(id: string){
-      const result = await BaseDatabase
+  public async getProductById(id: string) {
+    const result = await BaseDatabase
       .connection(ProductDatabase.TABLE_PRODUCTS)
       .select()
-      .where({id: id})
+      .where({ id: id })
 
-      return result
+    return result
   }
 
 }

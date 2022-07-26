@@ -30,12 +30,12 @@ export class PurchaseDatabase extends BaseDatabase {
   public async createPurchase(purchase: Purchase) {
     const result = await BaseDatabase.connection(PurchaseDatabase.TABLE_PURCHASES)
       .insert({
-      id: purchase.getId(),
-      user_id: purchase.getUserId(),
-      product_id: purchase.getProductId(),
-      quantity: purchase.getQuantity(),
-      total_price: purchase.getTotalPrice()
-    })
+        id: purchase.getId(),
+        user_id: purchase.getUserId(),
+        product_id: purchase.getProductId(),
+        quantity: purchase.getQuantity(),
+        total_price: purchase.getTotalPrice()
+      })
     return result
   }
 

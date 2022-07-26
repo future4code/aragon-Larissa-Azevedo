@@ -1,5 +1,5 @@
-import { Request, Response } from "express"
-import { PurchaseDatabase } from "../database/PurchaseDatabase"
+import { Request, Response } from "express";
+import { PurchaseDatabase } from "../database/PurchaseDatabase";
 
 export const getUserPurchases = async (req: Request, res: Response) => {
     let errorCode = 400

@@ -16,7 +16,7 @@ export const createProduct = async (req: Request, res: Response) => {
             Date.now().toString(),
             name,
             price
-        )
+        );
 
         const productDatabase = new ProductDatabase();
         await productDatabase.createProduct(product);

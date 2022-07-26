@@ -1,5 +1,5 @@
-import { Request, Response } from "express"
-import { UserDatabase } from "../database/UserDatabase"
+import { Request, Response } from "express";
+import { UserDatabase } from "../database/UserDatabase";
 
 export const getUsers = async (req: Request, res: Response) => {
     let errorCode = 400

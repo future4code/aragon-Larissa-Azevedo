@@ -1,9 +1,9 @@
-import { Request, Response } from "express"
-import { ProductDatabase } from "../database/ProductDatabase"
-import { PurchaseDatabase } from "../database/PurchaseDatabase"
-import { UserDatabase } from "../database/UserDatabase"
-import { Product } from "../models/Product"
-import { Purchase } from "../models/Purchase"
+import { Request, Response } from "express";
+import { ProductDatabase } from "../database/ProductDatabase";
+import { PurchaseDatabase } from "../database/PurchaseDatabase";
+import { UserDatabase } from "../database/UserDatabase";
+import { Product } from "../models/Product";
+import { Purchase } from "../models/Purchase";
 
 export const createPurchase = async (req: Request, res: Response) => {
     let errorCode = 400
