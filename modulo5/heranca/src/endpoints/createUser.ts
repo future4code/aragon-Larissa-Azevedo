@@ -1,6 +1,4 @@
 import { Request, Response } from "express";
-import connection from "../database/connection";
-import { TABLE_USERS } from "../database/tableNames";
 import { UserDatabase } from "../database/UserDatabase";
 import { User } from "../models/User";
 
@@ -14,7 +12,11 @@ export const createUser = async (req: Request, res: Response) => {
       throw new Error("Body inválido.");
     }
 
-    const user = new User(Date.now().toString(), email, password);
+    const user = new User(
+        Date.now().toString(), 
+        email, 
+        password
+        );
 
     const userDatabase = new UserDatabase();
     await userDatabase.createUser(user);
