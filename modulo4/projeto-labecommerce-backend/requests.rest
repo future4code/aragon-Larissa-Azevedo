@@ -1,0 +1,54 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Endpoint de criação de usuário
+
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "email": "testes@email.com",
+    "password":"senha123"
+}
+
+### Busca por todos os usuários
+GET http://localhost:3003/users
+
+### também é possível buscar pelo email, ordenado por id
+GET http://localhost:3003/users?q=gmail&sort=id&order=asc
+
+### Endpoint de cadastro de produto
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+
+    "name": "Cadeira",
+    "price":820
+
+}
+
+
+### Busca por todos os produtos, ordenado por preço asc [padrão]
+GET http://localhost:3003/products
+
+### também é possível buscar pelo nome, ordenado por price em ordem (de)crescente 
+GET http://localhost:3003/products?q=monitor&sort=price&order=desc
+
+### Endpoint de registro de compras
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+
+    "user_id": "104",
+    "product_id": "205",
+    "quantity": 2
+    
+}
+
+###Endpoint de busca de compras de usuário
+GET http://localhost:3003/users/104/purchases
+Content-Type: application/json
+
+
