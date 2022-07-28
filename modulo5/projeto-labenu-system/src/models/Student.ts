@@ -3,7 +3,17 @@ export interface IStudentDB  {
     name:string,
     email: string, 
     birthdate: Date,
-    classroomId: null | string,
+    classroom_id: string | null,
+}
+
+export interface IHobbiesDB {
+    id: string,
+    title: string
+}
+
+export interface IStudentsHobbiesDB {
+    student_id: string,
+    hobby_id: string
 }
 
 export class Student {
@@ -12,7 +22,7 @@ export class Student {
         private name: string,
         private email: string,
         private birthdate: Date,
-        private classroomId: null | string,
+        private classroomId: string | null,
         private hobbies: string[]
     ){
         this.id = id
@@ -63,11 +73,11 @@ export class Student {
         this.birthdate = newBirthdate
     }
 
-    public setClassroomId(newClassroomId:null | string){
+    public setClassroomId(newClassroomId: string | null){
         this.classroomId = newClassroomId
     }
 
     public setHobbies(newHobbies: string[]){
-        this.hobbies = newHobbies
+        this.hobbies = [...newHobbies]
     }
 }

@@ -1,7 +1,7 @@
 export interface IClassroomDB {
     id: string,
     name: string,
-    module: number
+    module: string
 }
 
 export class Classroom {
@@ -42,7 +42,7 @@ export class Classroom {
     }
 
     public setStudents(newStudents: string[]){
-        this.students = newStudents
+        this.students = [...newStudents]
     }
 
     public setModules(newModule: number){
