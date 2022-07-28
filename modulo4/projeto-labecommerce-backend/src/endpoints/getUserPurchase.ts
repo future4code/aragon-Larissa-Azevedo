@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import connection from "../database/connection";
-import { TABLE_USERS } from "../database/tableNames";
+import { TABLE_PRODUCTS, TABLE_PURCHASES, TABLE_USERS } from "../database/tableNames";
 
 // Endpoint 6 - Busca das compras de um usuário
 
@@ -22,12 +22,18 @@ export const getUserPurchase = async (req:Request, res: Response) =>{
 
         const [userPurchase] = await connection.raw(`
         SELECT
-        name, price
-        FROM Labe_Products
-        JOIN Labe_Purchases
-        ON Labe_Purchases.product_id = Labe_Products.id
-        WHERE Labe_Purchases.user_id = ${user_id}
-        `)
+        ${TABLE_USERS}.email,
+        ${TABLE_PRODUCTS}.name,
+        ${TABLE_PRODUCTS}.price,
+        ${TABLE_PURCHASES}.quantity,
+        ${TABLE_PURCHASES}.total_price
+        FROM ${TABLE_PURCHASES}
+        JOIN ${TABLE_USERS}
+        ON ${TABLE_PURCHASES}.user_id = ${TABLE_USERS}.id
+        JOIN ${TABLE_PRODUCTS}
+        ON ${TABLE_PURCHASES}.product_id = ${TABLE_PRODUCTS}.id
+        WHERE ${TABLE_PURCHASES}.user_id = ${user_id}
+        `);
 
         return res.status(200).send({histórico: userPurchase})
         
