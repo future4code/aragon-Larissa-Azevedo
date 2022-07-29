@@ -11,7 +11,7 @@ Content-Type: application/json
 
 {
     "name": "teste-turma",
-    "module": 1
+    "module": "2"
 }
 
 ### Endpoint 2 - buscar turmas ativas 
@@ -19,11 +19,11 @@ GET http://localhost:3003/classrooms/active
 
 
 ### Endpoint 3 - mudar turma de módulo
-PUT  http://localhost:3003/classrooms/101/module
+PUT  http://localhost:3003/classrooms/103/module
 Content-Type: application/json
 
 {
-    "module": "5"
+    "module": "4"
 }
 
 ### Endpoint teste - get all students
@@ -35,24 +35,27 @@ POST http://localhost:3003/students
 Content-Type: application/json
 
 {
-    "name": "Aluno-teste4",
-    "email": "a3luno@teste.com4",
+    "name": "Larissa",
+    "email": "larissa@mail.com",
     "birthdate":"1993-11-22",
     "classroom_id":"101"
 }
 
-### Endpoint 5 - buscar estudante por nome // erro!
+### Endpoint 5 - buscar estudante por nome
 GET http://localhost:3003/students/searchByName
 Content-Type: application/json
 
 { 
- "name":""
+ "name":"Ada"
 }
 
-### Endpoint 6 - editar estudante de turma // erro!
-PUT  http://localhost:3003/students/1659105974662/classroom
+### Endpoint 6 - editar estudante de turma
+PUT  http://localhost:3003/students/204/classroom
 Content-Type: application/json
 
 {
-    "classroom_id": "102"
+    "classroom_id": "103"
 }
+
+### Endpoint 7 - estudantes por turma
+GET http://localhost:3003/students/103

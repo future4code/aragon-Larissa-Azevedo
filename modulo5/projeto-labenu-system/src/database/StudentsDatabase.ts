@@ -28,15 +28,23 @@ export class StudentsDatabase extends BaseDatabase {
   public async getStudentByName(name:string){
    const result = await BaseDatabase.connection(StudentsDatabase.TABLE_STUDENTS)
     .select()
-    .where("name","=", `%${name}%`)
+    .where("name","LIKE", `%${name}%`)
     return result    
 
   }
 
-  public async updateStudentClassroom(id:string, newClassroom:string){
-    await BaseDatabase.connection(ClassroomDatabase.TABLE_CLASSROOMS)
-    .update({classroom: newClassroom})
-    .where({id:id}) //erro no request - coluna desconhecida
+  public async updateStudentClassroom(classroomId:string | null, id:string){
+    await BaseDatabase.connection(StudentsDatabase.TABLE_STUDENTS)
+    .update({classroom_id: classroomId})
+    .where({id:id}) //erro no request
+  }
+
+  public async getStudentByClassroom(classroom_id:string){
+    const result = await BaseDatabase.connection(StudentsDatabase.TABLE_STUDENTS)
+    .select('id','name','email')
+    .where("classroom_id", "=", `${classroom_id}`)
+    return result
+   
   }
 
 

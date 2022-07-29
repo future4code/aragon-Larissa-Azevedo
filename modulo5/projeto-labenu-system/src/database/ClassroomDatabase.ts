@@ -27,16 +27,16 @@ export class ClassroomDatabase extends BaseDatabase{
         .select('name', 'module')
         .where("module", "!=", "0")
 
-        return result //erro no Controller
+        return result
     }
 
-    public async getClassroomById(id:string){
-        const result = await BaseDatabase.connection(ClassroomDatabase.TABLE_CLASSROOMS)
-        .select()
-        .where({id:id})
+    // public async getClassroomById(id:string){
+    //     const result = await BaseDatabase.connection(ClassroomDatabase.TABLE_CLASSROOMS)
+    //     .select()
+    //     .where({id:id})
 
-        return result[0]
-    }
+    //     return result[0]
+    // }
 
     public async updateClassModule(id: string, newModule:string){
         await BaseDatabase.connection(ClassroomDatabase.TABLE_CLASSROOMS)
@@ -44,7 +44,4 @@ export class ClassroomDatabase extends BaseDatabase{
         .where({id:id})
     }
     
-    public async getClassroomStudents(id:string){
-        
-    }
 }

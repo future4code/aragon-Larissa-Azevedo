@@ -59,13 +59,9 @@ export class StudentsController {
         try {
             const name = req.body.name
 
-            // if(!name){
-            //     throw new Error("Erro: Por favor, digite um nome.");
-            // }
-
-            // if(typeof name != "string"){
-            //     throw new Error("Erro: 'name' deve ser uma 'string."); 
-            // }
+            if(typeof name != "string"){
+                throw new Error("Erro: 'name' deve ser uma 'string."); 
+            }
 
             if(name){
             const studentsDatabase = new StudentsDatabase()
@@ -73,7 +69,6 @@ export class StudentsController {
 
             return res.status(200).send({"Pessoa estudante encontrada!": result})
         }
-        //não retorna lista de estudantes com nome
 
         const studentsDatabase = new StudentsDatabase()
         const result = await studentsDatabase.getAllStudents()
@@ -96,12 +91,33 @@ export class StudentsController {
             }
 
             const studentsDatabase = new StudentsDatabase()
-            await studentsDatabase.updateStudentClassroom(id, classroom_id)
+            await studentsDatabase.updateStudentClassroom(classroom_id, id)
             res.status(200).send({message: "Turma do Estudante alterada com sucesso!"})
 
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
         }
+    }
+
+    public async getStudentByClassroom (req:Request, res:Response){
+        let errorCode = 400
+
+        try {
+            const classroom_id = req.params.classroom_id
+
+            if(!classroom_id){
+                throw new Error("Erro: Há campos em branco, por favor confira seus parâmetros.");            
+            }
+
+            const studentsDatabase = new StudentsDatabase()
+            const result = await studentsDatabase.getStudentByClassroom(classroom_id)
+
+            res.status(200).send({"Estudantes da turma": result})
+            
+        } catch (error) {
+            res.status(errorCode).send({ message: error.message })
+        }
+
     }
 
 

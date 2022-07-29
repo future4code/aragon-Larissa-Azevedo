@@ -4,92 +4,122 @@ import { IHobbiesDB, IStudentDB, IStudentsHobbiesDB } from "../../models/Student
 export const classrooms: IClassroomDB[] = [
     {
         id: "101",
-        name: "Aragon",
+        name: "Vaughan",
         module: "5"
     },
     {
         id: "102",
-        name: "Silveira",
-        module: "6"
+        name: "Hamilton",
+        module: "0"
     },
     {
         id: "103",
-        name: "Molina",
-        module: "0"
+        name: "Johnson",
+        module: "2"
+    },
+    {
+        id:"104",
+        name: "Lovelace",
+        module: "3"
     }
 ]
 
 export const students: IStudentDB[] = [
     {
         id: "201",
-        name: "Fulano",
-        email: "fulano@gmail.com",
-        birthdate: new Date("1990/10/20"),
+        name: "Dorothy",
+        email: "dorothy@nasa.com",
+        birthdate: new Date("1910/09/10"),
         classroom_id: "101"
     },
     {
         id: "202",
-        name: "Ciclana",
-        email: "ciclana@gmail.com",
-        birthdate: new Date("1999/02/17"),
-        classroom_id: "101"
+        name: "Margaret",
+        email: "margaret@mit.com",
+        birthdate: new Date("1936/08/17"),
+        classroom_id: "102"
     },
     {
         id: "203",
-        name: "Beltrano",
-        email: "beltrano@gmail.com",
-        birthdate: new Date("2000/01/15"),
-        classroom_id: "101"
+        name: "Katherine",
+        email: "katherine@nasa.com",
+        birthdate: new Date("1918/08/26"),
+        classroom_id: "103"
     },
     {
         id: "204",
-        name: "John Doe",
-        email: "johndoe@gmail.com",
-        birthdate: new Date("2002/05/27"),
-        classroom_id: "102"
+        name: "Ada",
+        email: "ada@countess.com",
+        birthdate: new Date("1815/12/10"),
+        classroom_id: "104"
     },
     {
         id: "205",
-        name: "Jane Doe",
-        email: "janedoe@gmail.com",
+        name: "Zoey Clarke",
+        email: "zoey@sprqpoint.com",
         birthdate: new Date("1985/03/01"),
-        classroom_id: "102"
+        classroom_id: "101"
     },
     {
         id: "206",
         name: "Alice",
-        email: "alice@gmail.com",
+        email: "alice@wonderland.com",
         birthdate: new Date("1995/09/12"),
-        classroom_id: "102"
+        classroom_id: null
     },
     {
         id: "207",
-        name: "Bob",
-        email: "bob@gmail.com",
+        name: "Daisy",
+        email: "daisy@thesix.com",
         birthdate: new Date("2001/12/25"),
-        classroom_id: "103"
+        classroom_id: "102"
     },
     {
         id: "208",
-        name: "João",
-        email: "joao@gmail.com",
-        birthdate: new Date("1992/02/11"),
+        name: "Lizzie Bennet",
+        email: "lizzie@pemberley.com",
+        birthdate: new Date("1982/11/11"),
         classroom_id: "103"
     },
     {
         id: "209",
-        name: "Maria",
-        email: "maria@gmail.com",
-        birthdate: new Date("1994/06/15"),
-        classroom_id: "103"
+        name: "Amy Dunne",
+        email: "perfectamy@gone.com",
+        birthdate: new Date("1984/06/15"),
+        classroom_id: "104"
     },
     {
         id: "210",
-        name: "Astrodev",
-        email: "astrodev@gmail.com",
-        birthdate: new Date("1980/01/01"),
-        classroom_id: null
-    }
+        name: "Jane",
+        email: "eyre@rochester.com",
+        birthdate: new Date("1980/11/01"),
+        classroom_id: "101"
+    },
+
+    {
+        id: "211",
+        name: "Eloise",
+        email: "fifth@bridgerton.com",
+        birthdate: new Date("1980/11/01"),
+        classroom_id: "102"
+    },
+
+    {
+        id: "212",
+        name: "Lucy",
+        email: "pevensie@narnia.com",
+        birthdate: new Date("1953/11/23"),
+        classroom_id: "103"
+    },
+
+    {
+        id: "213",
+        name: "Mina",
+        email: "murray@draculasucks.com",
+        birthdate: new Date("1980/11/01"),
+        classroom_id: "104"
+    },
+
 ]
 
 export const hobbies: IHobbiesDB[] = [

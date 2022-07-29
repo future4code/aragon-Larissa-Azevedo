@@ -29,10 +29,10 @@ export class ClassroomController {
                 throw new Error("Erro: Há campos em branco, por favor confira seus parâmetros");
             }
 
-            if (module !== 0 && module !== 1 && module !== 2 && module !== 3 &&
-                module !== 4 && module !== 5 && module !== 6) {
+            if (module !== "0" && module !== "1" && module !== "2" && module !== "3" &&
+                module !== "4" && module !== "5" && module !== "6") {
                 errorCode = 422;
-                throw new Error("Erro: 'module' deve ser um 'number' entre 0 e 6");
+                throw new Error("Erro: 'module' deve ser um número em string entre 0 e 6");
             }
 
             const classroom: IClassroomDB = {
