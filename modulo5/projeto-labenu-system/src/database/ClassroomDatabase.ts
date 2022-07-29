@@ -9,7 +9,6 @@ export class ClassroomDatabase extends BaseDatabase{
     public async getAllClassrooms(){
         const result = await BaseDatabase.connection(ClassroomDatabase.TABLE_CLASSROOMS)
         .select()
-//falta relacionar estudante
         return result
     }
 

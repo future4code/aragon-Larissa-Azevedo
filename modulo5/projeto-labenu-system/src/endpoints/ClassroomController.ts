@@ -52,46 +52,43 @@ export class ClassroomController {
         }
     }
 
-    public async getActiveClass(req: Request, res:Response){       
+    public async getActiveClass(req: Request, res: Response) {
         let errorCode = 400
 
         try {
             const classroomDatabase = new ClassroomDatabase()
             const result = await classroomDatabase.getActiveClass()
-            
-            res.status(200).send({message: "turmas ativas", result})
-            
+
+            res.status(200).send({ message: "turmas ativas", result })
+
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
-        }  
-
+        }
     }
 
-    public async updateModule(req:Request, res: Response){
+    public async updateModule(req: Request, res: Response) {
         let errorCode = 400
 
-       try {
-        const id = req.params.id
-        const module = req.body.module
+        try {
+            const id = req.params.id
+            const module = req.body.module
 
-        if(!id || !module){
-            throw new Error("Erro: Há campos em branco, por favor confira seus parâmetros.");            
+            if (!id || !module) {
+                throw new Error("Erro: Há campos em branco, por favor confira seus parâmetros.");
+            }
+
+            if (typeof module != "string") {
+                throw new Error("Erro: 'module' deve receber um tipo 'string'. Por favor, confira seus parâmetros.");
+            }
+
+            const classroomDatabase = new ClassroomDatabase()
+            await classroomDatabase.updateClassModule(id, module)
+
+            res.status(200).send({ message: "Módulo da turma alterado com sucesso!" })
+        } catch (error) {
+            res.status(errorCode).send({ message: error.message })
         }
-
-        if(typeof module != "string"){
-            throw new Error("Erro: 'module' deve receber um tipo 'string'. Por favor, confira seus parâmetros.");
-            
-        }
-
-        const classroomDatabase = new ClassroomDatabase()
-        await classroomDatabase.updateClassModule(id, module)
-
-        res.status(200).send({message: "Módulo da turma alterado com sucesso!"})
-       } catch (error) {
-        res.status(errorCode).send({ message: error.message })
-       }
     }
-
 }
 
 
