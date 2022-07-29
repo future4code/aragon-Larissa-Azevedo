@@ -1,7 +1,7 @@
 ### Endpoint de teste
 GET http://localhost:3003/ping
 
-### Endpoint teste 2
+### Endpoint teste 2 - get all classes
 
 GET http://localhost:3003/classrooms
 
@@ -12,4 +12,47 @@ Content-Type: application/json
 {
     "name": "teste-turma",
     "module": 1
+}
+
+### Endpoint 2 - buscar turmas ativas 
+GET http://localhost:3003/classrooms/active
+
+
+### Endpoint 3 - mudar turma de módulo
+PUT  http://localhost:3003/classrooms/101/module
+Content-Type: application/json
+
+{
+    "module": "5"
+}
+
+### Endpoint teste - get all students
+GET http://localhost:3003/students
+
+### Endpoint 4 - criar estudante
+
+POST http://localhost:3003/students
+Content-Type: application/json
+
+{
+    "name": "Aluno-teste4",
+    "email": "a3luno@teste.com4",
+    "birthdate":"1993-11-22",
+    "classroom_id":"101"
+}
+
+### Endpoint 5 - buscar estudante por nome // erro!
+GET http://localhost:3003/students/searchByName
+Content-Type: application/json
+
+{ 
+ "name":""
+}
+
+### Endpoint 6 - editar estudante de turma // erro!
+PUT  http://localhost:3003/students/1659105974662/classroom
+Content-Type: application/json
+
+{
+    "classroom_id": "102"
 }
