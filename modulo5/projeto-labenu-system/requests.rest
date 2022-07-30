@@ -3,10 +3,10 @@ GET http://localhost:3003/ping
 
 ### Endpoint teste 2 - get all classes
 
-GET http://localhost:3003/classrooms
+GET https://labenusystem-larissa-aragon.herokuapp.com/classrooms
 
 ### Endpoint 1
-POST http://localhost:3003/classrooms
+POST https://labenusystem-larissa-aragon.herokuapp.com/classrooms/
 Content-Type: application/json
 
 {
@@ -15,11 +15,11 @@ Content-Type: application/json
 }
 
 ### Endpoint 2 - buscar turmas ativas 
-GET http://localhost:3003/classrooms/active
+GET https://labenusystem-larissa-aragon.herokuapp.com/classrooms/active
 
 
 ### Endpoint 3 - mudar turma de módulo
-PUT  http://localhost:3003/classrooms/103/module
+PUT  https://labenusystem-larissa-aragon.herokuapp.com/classrooms/103/module
 Content-Type: application/json
 
 {
@@ -31,7 +31,7 @@ GET http://localhost:3003/students
 
 ### Endpoint 4 - criar estudante
 
-POST http://localhost:3003/students
+POST https://labenusystem-larissa-aragon.herokuapp.com/students
 Content-Type: application/json
 
 {
@@ -42,7 +42,7 @@ Content-Type: application/json
 }
 
 ### Endpoint 5 - buscar estudante por nome
-GET http://localhost:3003/students/searchByName
+GET https://labenusystem-larissa-aragon.herokuapp.com/students/searchByName
 Content-Type: application/json
 
 { 
@@ -50,7 +50,7 @@ Content-Type: application/json
 }
 
 ### Endpoint 6 - editar estudante de turma
-PUT  http://localhost:3003/students/1659129206269/classroom
+PUT  https://labenusystem-larissa-aragon.herokuapp.com/students/202/classroom
 Content-Type: application/json
 
 {
@@ -58,4 +58,4 @@ Content-Type: application/json
 }
 
 ### Endpoint 7 - estudantes por turma
-GET http://localhost:3003/students/104
+GET https://labenusystem-larissa-aragon.herokuapp.com/students/104
