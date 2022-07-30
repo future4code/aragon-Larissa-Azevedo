@@ -38,7 +38,7 @@ Content-Type: application/json
     "name": "Larissa",
     "email": "larissa@mail.com",
     "birthdate":"1993-11-22",
-    "classroom_id":"101"
+    "classroom_id":"102"
 }
 
 ### Endpoint 5 - buscar estudante por nome
@@ -50,7 +50,7 @@ Content-Type: application/json
 }
 
 ### Endpoint 6 - editar estudante de turma
-PUT  http://localhost:3003/students/204/classroom
+PUT  http://localhost:3003/students/1659129206269/classroom
 Content-Type: application/json
 
 {
@@ -58,4 +58,4 @@ Content-Type: application/json
 }
 
 ### Endpoint 7 - estudantes por turma
-GET http://localhost:3003/students/103
+GET http://localhost:3003/students/104

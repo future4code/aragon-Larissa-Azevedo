@@ -46,4 +46,13 @@ export class StudentsDatabase extends BaseDatabase {
       .where("classroom_id", "=", `${classroom_id}`);
     return result;
   }
+
+  public async getStudentById(id:string){
+    const result = await BaseDatabase.connection(StudentsDatabase.TABLE_STUDENTS)
+    .select()
+    .where({id:id})
+
+    return result[0]
+}
+
 }

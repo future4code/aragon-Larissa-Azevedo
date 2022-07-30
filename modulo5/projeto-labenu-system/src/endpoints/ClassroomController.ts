@@ -59,7 +59,7 @@ export class ClassroomController {
             const classroomDatabase = new ClassroomDatabase()
             const result = await classroomDatabase.getActiveClass()
 
-            res.status(200).send({ message: "turmas ativas", result })
+            res.status(200).send({ message: "Turmas ativas:", result })
 
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
@@ -73,8 +73,21 @@ export class ClassroomController {
             const id = req.params.id
             const module = req.body.module
 
+            const classroom = new ClassroomDatabase()
+            const findClassroom = await classroom.getClassroomById(id)
+
             if (!id || !module) {
                 throw new Error("Erro: Há campos em branco, por favor confira seus parâmetros.");
+            }
+
+            if(!findClassroom){
+                errorCode = 404
+                throw new Error("Erro: turma não encontrada.");                
+            }
+
+            if(module === findClassroom.module){
+                errorCode = 400
+                throw new Error(`Erro: A turma ${findClassroom.name} já está no módulo ${findClassroom.module}!`);
             }
 
             if (typeof module != "string") {
@@ -84,7 +97,7 @@ export class ClassroomController {
             const classroomDatabase = new ClassroomDatabase()
             await classroomDatabase.updateClassModule(id, module)
 
-            res.status(200).send({ message: "Módulo da turma alterado com sucesso!" })
+            res.status(200).send({ message: `Módulo da turma ${findClassroom.id} alterado com sucesso!` })
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
         }

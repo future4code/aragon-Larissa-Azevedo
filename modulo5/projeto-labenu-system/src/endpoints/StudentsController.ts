@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { ClassroomDatabase } from "../database/ClassroomDatabase";
 import { StudentsDatabase } from "../database/StudentsDatabase";
 import { IStudentDB } from "../models/Student";
 
@@ -39,6 +40,7 @@ export class StudentsController {
             // const [day, month, year]:string = birthdate.split("/")
             // const formatedBirthdate = new Date(`${year}-${month}-${day}`)
 
+            
             const student: IStudentDB = {
                 id: Date.now().toString(),
                 name: name,
@@ -50,7 +52,7 @@ export class StudentsController {
             const studentsDatabase = new StudentsDatabase()
             await studentsDatabase.createStudent(student)
 
-            res.status(201).send({ message: "Estudante cadastrado!", estudante: student })
+            res.status(201).send({ message: "Pessoa estudante cadastrada!", estudante: student })
 
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
@@ -86,13 +88,36 @@ export class StudentsController {
             const id = req.params.id
             const classroom_id = req.body.classroom_id
 
+            const classroom = new ClassroomDatabase()
+            const findClassroom = await classroom.getClassroomById(classroom_id)
+
+            const student = new StudentsDatabase()
+            const findStudent = await student.getStudentById(id)
+
             if (!id || !classroom_id) {
                 throw new Error("Erro: Há campos em branco, por favor confira seus parâmetros.");
             }
 
+            if(!findClassroom){
+                errorCode = 404
+                throw new Error("Erro: esta turma não existe.");                
+            }
+
+            if(!findStudent){
+                errorCode = 404
+                throw new Error("Erro: Pessoa estudante não encontrada.");
+            }
+
+            if(classroom_id === findStudent.classroom_id){
+                errorCode = 400
+                throw new Error(`Erro: Pessoa estudante já está na turma ${findClassroom.name}!`);
+                
+            }
+          
             const studentsDatabase = new StudentsDatabase()
             await studentsDatabase.updateStudentClassroom(classroom_id, id)
-            res.status(200).send({ message: "Turma do Estudante alterada com sucesso!" })
+            res.status(200).send({ 
+                message: `Turma da Pessoa Estudante ${findStudent.name} alterada com sucesso para turma ${findClassroom.name}!` })
 
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
@@ -105,14 +130,22 @@ export class StudentsController {
         try {
             const classroom_id = req.params.classroom_id
 
+            const classroom = new ClassroomDatabase()
+            const findClassroom = await classroom.getClassroomById(classroom_id)
+
             if (!classroom_id) {
                 throw new Error("Erro: Há campos em branco, por favor confira seus parâmetros.");
+            }
+
+            if(!findClassroom){
+                errorCode = 404
+                throw new Error("Erro: turma não encontrada.");                
             }
 
             const studentsDatabase = new StudentsDatabase()
             const result = await studentsDatabase.getStudentByClassroom(classroom_id)
 
-            res.status(200).send({ "Estudantes da turma": result })
+            res.status(200).send({ message: `Pessoas estudantes da turma ${findClassroom.name}:`, result })
 
         } catch (error) {
             res.status(errorCode).send({ message: error.message })

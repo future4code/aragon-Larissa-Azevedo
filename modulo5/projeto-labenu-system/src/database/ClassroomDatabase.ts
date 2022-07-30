@@ -29,13 +29,13 @@ export class ClassroomDatabase extends BaseDatabase{
         return result
     }
 
-    // public async getClassroomById(id:string){
-    //     const result = await BaseDatabase.connection(ClassroomDatabase.TABLE_CLASSROOMS)
-    //     .select()
-    //     .where({id:id})
+    public async getClassroomById(id:string){
+        const result = await BaseDatabase.connection(ClassroomDatabase.TABLE_CLASSROOMS)
+        .select()
+        .where({id:id})
 
-    //     return result[0]
-    // }
+        return result[0]
+    }
 
     public async updateClassModule(id: string, newModule:string){
         await BaseDatabase.connection(ClassroomDatabase.TABLE_CLASSROOMS)
