@@ -94,4 +94,39 @@ public login = async(req:Request, res:Response) => {
     }
 }
 
+//_Exercício 3_
+
+public getAllUsers = async(req:Request, res:Response) => {
+    let errorCode = 400
+    try {
+        const token = req.headers.authorization
+
+        const authenticator = new Authenticator()
+        const payload = authenticator.getTokenPayload(token)
+
+        if(!payload){
+            errorCode = 401
+            throw new Error("Erro: confira seu token!");
+        }
+
+        const userDatabase = new UserDatabase()
+        const usersDB = await userDatabase.getAllUsers()
+
+        const users = usersDB.map((user)=>{
+            return new User(
+                user.id,
+                user.nickname,
+                user.email,
+                user.password
+            )
+        })
+
+        res.status(200).send({users})
+        
+    } catch (error) {
+        res.status(errorCode).send({ message: error.message})
+    }
+
+}
+
 }

@@ -19,3 +19,13 @@ Content-Type: application/json
     "email":"larissa@dev.com",
     "password":"senha-forte-sqn"
 }
+
+###Exercício 3
+GET http://localhost:3003/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMmYzYjY5LTc3ZWUtNDI5OC1iMWMxLWQ3Y2IxY2VhNTM4MiIsImlhdCI6MTY1OTM3NzEwMSwiZXhwIjoxNjU5NDYzNTAxfQ.hpnxYjdeyD0IaWTpKGv_GGcOapLcBETIkpwyBWCUB0w
+Content-Type: application/json
+
+{
+    "email":"larissa@dev.com",
+    "password":"senha-forte-sqn"
+}
