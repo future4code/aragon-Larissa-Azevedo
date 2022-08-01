@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ###Exercício 3
 GET http://localhost:3003/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMmYzYjY5LTc3ZWUtNDI5OC1iMWMxLWQ3Y2IxY2VhNTM4MiIsImlhdCI6MTY1OTM3NzEwMSwiZXhwIjoxNjU5NDYzNTAxfQ.hpnxYjdeyD0IaWTpKGv_GGcOapLcBETIkpwyBWCUB0w
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI3YzYzNWQwLTAwZDEtNGRhYi04MWY0LWY2OTFmZjNkYzk0OCIsImlhdCI6MTY1OTM4MTE4NywiZXhwIjoxNjU5NDY3NTg3fQ.ko98n4BQELKuzCzAgyQM6Ml3ayGcSZc5-RbuK_M_k1c
 Content-Type: application/json
 
 {
@@ -30,6 +30,22 @@ Content-Type: application/json
     "password":"senha-forte-sqn"
 }
 
-### Exercício 5
+###Exercício 4
+PUT  http://localhost:3003/users/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMWQ3ODA5LTk4NWEtNDhjYS1hZTNlLWQ4YWIxZjZkMmFiNyIsImlhdCI6MTY1OTM4MzUwMywiZXhwIjoxNjU5NDY5OTAzfQ.O5NGf0-wqOs3px150qc-RVpDEFSwfhfkFhXsJyYVVcg
+Content-Type: application/json
 
-DELETE  http://localhost:3003/users/000
+{
+    "nickname":"larissa",
+    "email":"larissa@devmail.com",
+    "password":"mega-segura-sqn"
+}
+
+### Exercício 5
+DELETE  http://localhost:3003/users/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxMWQ3ODA5LTk4NWEtNDhjYS1hZTNlLWQ4YWIxZjZkMmFiNyIsImlhdCI6MTY1OTM4MzUwMywiZXhwIjoxNjU5NDY5OTAzfQ.O5NGf0-wqOs3px150qc-RVpDEFSwfhfkFhXsJyYVVcg
+Content-Type: application/json
+
+{
+    "userId":"011d7809-985a-48ca-ae3e-d8ab1f6d2ab7" 
+}
