@@ -129,4 +129,37 @@ public getAllUsers = async(req:Request, res:Response) => {
 
 }
 
+//_Exercício 4_
+
+//_Exercício 5_
+
+public deleteUser = async (req:Request, res:Response) => {
+    let errorCode = 400
+
+    try {
+        const userId = req.params.userId
+
+        if(!userId){
+            errorCode = 401
+            throw new Error("Erro: Há campos em branco, por favor confira seus parâmetros.");                
+        }
+
+        const findUserByIdDatabase = new UserDatabase()
+        const userDB = await findUserByIdDatabase.findById(userId)
+
+        if(!userDB){
+            errorCode = 404
+            throw new Error("Erro: Usuário não encontrado");            
+        }
+
+        const userDatabase = new UserDatabase()
+        await userDatabase.deleteUser(userId)
+        
+        res.status(200).send({message:"Usuário deletado com sucesso!"})
+    } catch (error) {
+        res.status(errorCode).send({ message: error.message})
+    }
+
+}
+
 }

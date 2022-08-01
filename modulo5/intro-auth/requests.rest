@@ -29,3 +29,7 @@ Content-Type: application/json
     "email":"larissa@dev.com",
     "password":"senha-forte-sqn"
 }
+
+### Exercício 5
+
+DELETE  http://localhost:3003/users/000
