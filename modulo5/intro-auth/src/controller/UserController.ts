@@ -145,9 +145,9 @@ public deleteUser = async (req:Request, res:Response) => {
         }
 
         const findUserByIdDatabase = new UserDatabase()
-        const userDB = await findUserByIdDatabase.findById(userId)
+        const userById = await findUserByIdDatabase.findById(userId)
 
-        if(!userDB){
+        if(!userById){
             errorCode = 404
             throw new Error("Erro: Usuário não encontrado");            
         }
