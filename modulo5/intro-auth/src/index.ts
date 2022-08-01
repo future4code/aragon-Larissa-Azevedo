@@ -19,3 +19,4 @@ const userController = new UserController()
 
 app.get("/ping", pingController.ping)
 app.post("/users", userController.signup)
+app.post("/users/login", userController.login)

@@ -15,4 +15,12 @@ export class UserDatabase extends BaseDatabase {
         await BaseDatabase.connection(UserDatabase.TABLE_USERS).insert(userDB)
     }
 
+    public findByEmail = async (email:string) => {
+        const result:IUserDB[] = await BaseDatabase.connection(UserDatabase.TABLE_USERS)
+        .select()
+        .where({email})
+
+        return result [0]
+    }
+
 }
