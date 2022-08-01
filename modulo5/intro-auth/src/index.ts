@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import dotenv from "dotenv"
 import { PingController } from './controller/PingController'
+import { UserController } from './controller/UserController'
 
 dotenv.config()
 
@@ -14,5 +15,7 @@ app.listen(process.env.PORT || 3003, () => {
 })
 
 const pingController = new PingController()
+const userController = new UserController()
 
 app.get("/ping", pingController.ping)
+app.post("/users", userController.signup)
