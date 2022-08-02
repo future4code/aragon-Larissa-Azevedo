@@ -1,10 +1,12 @@
-import jwt from 'jsonwebtoken'
-import dotenv from "dotenv"
+import jwt from 'jsonwebtoken';
+import dotenv from "dotenv";
+import { USER_ROLES } from '../models/User';
 
 dotenv.config()
 
 export interface ITokenPayload {
     id: string
+    role: USER_ROLES
 }
 
 export class Authenticator {

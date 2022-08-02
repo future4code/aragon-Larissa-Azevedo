@@ -9,7 +9,8 @@ export class UserDatabase extends BaseDatabase {
             id: user.getId(),
             nickname: user.getNickname(),
             email: user.getEmail(),
-            password: user.getPassword()
+            password: user.getPassword(),
+            role: user.getRole()
         }
 
         await BaseDatabase
@@ -66,7 +67,8 @@ export class UserDatabase extends BaseDatabase {
             id: user.getId(),
             nickname: user.getNickname(),
             email: user.getEmail(),
-            password: user.getPassword()
+            password: user.getPassword(),
+            role: user.getRole()
         }
 
         await BaseDatabase

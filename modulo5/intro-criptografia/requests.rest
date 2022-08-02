@@ -7,9 +7,9 @@ POST http://localhost:3003/signup
 Content-Type: application/json
 
 {
-    "nickname": "yuzodev",
-    "email": "yuzo@email.com",
-    "password": "yuzo123"
+    "nickname": "larissa",
+    "email": "lari@dev.com",
+    "password": "mega-segura"    
 }
 
 ### Login
@@ -17,17 +17,18 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-    "email": "yuzo@email.com",
-    "password": "yuzo123"
+    "email": "lari@dev.com",
+    "password": "mega-segura"
 }
+
 
 ### Get all users (protected)
 GET http://localhost:3003/users?search=
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2Y2NlNzAyLTNiMmItNGIyOS05MjEzLTc4NTY5OWY0NTlmOSIsImlhdCI6MTY1OTM5OTcwNSwiZXhwIjoxNjU5NDg2MTA1fQ.NUqPBetoNhS3PmaNagqMbOJTe7dKqAwOLU3r8VD4SXY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM0NzEwZDhlLWIxZjYtNGQyNS05OTM1LTg1ZGE3MWQwNTI4OCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk0Njg1OTksImV4cCI6MTY1OTU1NDk5OX0.ZYXI_rXfiLZEkbmbIWySSp8KeIxS5rVsxEdMSHRAjtY
 
 ### Edit user (protected)
-PUT http://localhost:3003/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2Y2NlNzAyLTNiMmItNGIyOS05MjEzLTc4NTY5OWY0NTlmOSIsImlhdCI6MTY1OTM5OTcwNSwiZXhwIjoxNjU5NDg2MTA1fQ.NUqPBetoNhS3PmaNagqMbOJTe7dKqAwOLU3r8VD4SXY
+PUT http://localhost:3003/users/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM0NzEwZDhlLWIxZjYtNGQyNS05OTM1LTg1ZGE3MWQwNTI4OCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk0NjkwNTYsImV4cCI6MTY1OTU1NTQ1Nn0.7DdLkOwE_D5P6HhXUl5YVEYaOv-ydMycf4EHJL3rzew
 Content-Type: application/json
 
 {
@@ -35,5 +36,5 @@ Content-Type: application/json
 }
 
 ### Delete user (protected)
-DELETE http://localhost:3003/users/96cce702-3b2b-4b29-9213-785699f459f9
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2Y2NlNzAyLTNiMmItNGIyOS05MjEzLTc4NTY5OWY0NTlmOSIsImlhdCI6MTY1OTM5OTcwNSwiZXhwIjoxNjU5NDg2MTA1fQ.NUqPBetoNhS3PmaNagqMbOJTe7dKqAwOLU3r8VD4SXY
+DELETE http://localhost:3003/users/6968c075-fb25-40c0-b356-e8bf197216c4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTQ2ODA2MCwiZXhwIjoxNjU5NTU0NDYwfQ.vezrrgaIl-39T2e6amXHE5AvGCtgFBdwj8tYEdNKgQw

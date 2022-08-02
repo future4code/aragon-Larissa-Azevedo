@@ -32,7 +32,8 @@ class Migrations extends BaseDatabase {
             id VARCHAR(255) PRIMARY KEY,
             nickname VARCHAR(255) NOT NULL,
             email VARCHAR(255) NOT NULL UNIQUE,
-            password VARCHAR(255) NOT NULL
+            password VARCHAR(255) NOT NULL,
+            role ENUM("NORMAL","ADMIN") DEFAULT "NORMAL" NOT NULL
         );
         `)
     }
