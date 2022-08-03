@@ -11,6 +11,20 @@ Content-Type: application/json
     "password": "abc123"
 }
 
-### Get all recipes
-GET http://localhost:3003/recipes
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ZjkzZGQ1LWU2NTgtNGIwZS05ZWZmLWIyNjYwMjBkZTZiOCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk1MzQ5NzQsImV4cCI6MTY1OTYyMTM3NH0.E3nB9HTT3Pl3sMsc8U49ISPxx2uKGFv6oQ6R7f88iws
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@gmail.com",
+    "password": "bananinha"
+}
+
+
+### Get all recipes by name
+GET http://localhost:3003/recipes/?name=bife
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTU1NjIxOSwiZXhwIjoxNjU5NjQyNjE5fQ.6z50S2CPR1UCGKiljnLgh37TIsyMO0j0LkOJXfYJM8o
+
+### Get all recipes 
+GET http://localhost:3003/recipes/
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTU1NjIxOSwiZXhwIjoxNjU5NjQyNjE5fQ.6z50S2CPR1UCGKiljnLgh37TIsyMO0j0LkOJXfYJM8o

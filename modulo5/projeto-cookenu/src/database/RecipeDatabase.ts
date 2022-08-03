@@ -1,3 +1,4 @@
+import { request } from "express";
 import { IRecipeDB, Recipe } from "../models/Recipe";
 import { BaseDatabase } from "./BaseDatabase";
 
@@ -51,9 +52,10 @@ export class RecipeDatabase extends BaseDatabase {
     }
 
     public getRecipeByName = async (name: string) => {
+
         const result = await BaseDatabase.connection(RecipeDatabase.TABLE_RECIPES)
         .select()
-        .where("name", "LIKE", `%${name}%`);
+        .where("title", "LIKE", `%${name}%`)
 
         return result;
     }
