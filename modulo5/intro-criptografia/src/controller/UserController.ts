@@ -209,6 +209,7 @@ export class UserController {
         let errorCode = 400
         try {
             const token = req.headers.authorization
+            const id = req.params.id
             const nickname = req.body.nickname
             const email = req.body.email
             const password = req.body.password
@@ -250,15 +251,17 @@ export class UserController {
             }
 
             const userDatabase = new UserDatabase()
-            const isUserExists = await userDatabase.checkIfExistsById(payload.id)
+            const ifUserExists = await userDatabase.checkIfExistsById(payload.id)
 
-            if (!isUserExists) {
+            if (!ifUserExists) {
                 errorCode = 401
                 throw new Error("Token inválido")
             }
 
-            if (payload.role !== USER_ROLES.ADMIN) {
-                throw new Error("Não é possível alterar outras contas.")
+            if (payload.role === USER_ROLES.NORMAL) {
+                if(payload.id !== id){
+                    throw new Error("Apenas Admins podem alterar outras contas.")
+                }
             }
 
 
