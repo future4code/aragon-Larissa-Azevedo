@@ -48,6 +48,7 @@ class Migrations extends BaseDatabase {
             updated_at DATE NOT NULL,
             creator_id VARCHAR(255) NOT NULL,
             FOREIGN KEY (creator_id) REFERENCES ${UserDatabase.TABLE_USERS}(id)
+            ON DELETE CASCADE
         );
         `)
     }

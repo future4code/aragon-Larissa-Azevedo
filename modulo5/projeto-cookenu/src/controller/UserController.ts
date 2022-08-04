@@ -145,4 +145,45 @@ export class UserController {
             res.status(errorCode).send({ message: error.message })
         }
     }
+
+    public deleteUser = async(req:Request, res: Response)=>{
+        let errorCode = 400
+
+        try {
+            const token = req.headers.authorization
+            const userId = req.params.userId
+
+            const authenticator = new Authenticator()
+            const payload = authenticator.getTokenPayload(token)
+
+            if (!payload) {
+                errorCode = 401
+                throw new Error("Erro: Confira seu token.")
+            }
+
+            const userDatabase = new UserDatabase()
+            const userDB = await userDatabase.deleteUser(userId)
+            
+            if(!userDB){
+                errorCode = 404
+                throw new Error("Erro: Usuário não encontrado.");
+            }
+
+            if(payload.id === userId){
+                errorCode = 403
+                throw new Error("Não é possível deletar a própria conta")
+             }
+
+            if(payload.role === USER_ROLES.ADMIN){
+                await userDatabase.deleteUser(userId)
+                res.status(200).send({message: "Usuário deletado com sucesso!"})
+            } else {
+                errorCode = 403
+                throw new Error("Erro: apenas Admins podem deletar outros usuários.");      
+        } 
+    } catch (error) {
+            res.status(errorCode).send({ message: error.message })
+
+        }
+    }
 }

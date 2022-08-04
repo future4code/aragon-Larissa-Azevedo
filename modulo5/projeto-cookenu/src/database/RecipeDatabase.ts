@@ -74,6 +74,9 @@ export class RecipeDatabase extends BaseDatabase {
         return result
         }
         
-        
+    }
+
+    public deleteUser = async() => {
+
     }
 }

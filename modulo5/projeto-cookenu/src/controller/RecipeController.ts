@@ -77,7 +77,7 @@ export class RecipeController {
         let errorCode = 400
         try {
             const token = req.headers.authorization
-            const recipeId = req.params.recipeId
+            const recipeId = req.body.recipeId
             const title = req.body.title
             const description = req.body.description
             const updatedAt = new Date (Date.now())

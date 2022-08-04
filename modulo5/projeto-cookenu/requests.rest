@@ -16,8 +16,8 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "ciclana@gmail.com",
-    "password": "asdfg123"
+    "email": "astrodev@gmail.com",
+    "password": "bananinha"
 }
 
 ### create recipe
@@ -52,5 +52,9 @@ Content-Type: application/json
 }
 
 ### deletar receita
-DELETE http://localhost:3003/recipes/101
+DELETE http://localhost:3003/recipes/103
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2MjI5MzQsImV4cCI6MTY1OTcwOTMzNH0.mtvdab1jp9xHENQ4UFfbBUuffmwsMqZJGPtF9o57vZ4
+
+###deletar usuário
+DELETE http://localhost:3003/users/7079b8e4-95cd-48aa-82a9-77454e94b789
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTY0MDg3MSwiZXhwIjoxNjU5NzI3MjcxfQ.PyTaKYfj77fRYxchiBN10gNBryeVuR3ExNzVLwrqz5g
