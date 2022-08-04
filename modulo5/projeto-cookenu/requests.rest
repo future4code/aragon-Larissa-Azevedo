@@ -16,15 +16,41 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "astrodev@gmail.com",
-    "password": "bananinha"
+    "email": "ciclana@gmail.com",
+    "password": "asdfg123"
 }
 
+### create recipe
+POST http://localhost:3003/recipes/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMzAxN2JiLTJjMDgtNGNkYy1iYjYzLTdmYmQ3Y2ViZTAxZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2MTYwMDAsImV4cCI6MTY1OTcwMjQwMH0.AlgBx6ZUH0eL4D08wQAWC6BA6Ljf8L3WxmcdtiuYeFo
+Content-Type: application/json
+
+{
+    "title":"Mousse de Maracujá",
+    "description":"para testar o filtro"
+}
 
 ### Get all recipes by name
-GET http://localhost:3003/recipes/?name=bife
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTU1NjIxOSwiZXhwIjoxNjU5NjQyNjE5fQ.6z50S2CPR1UCGKiljnLgh37TIsyMO0j0LkOJXfYJM8o
+GET http://localhost:3003/recipes/?name=mousse
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2MjIxMDEsImV4cCI6MTY1OTcwODUwMX0.eO2z0l-0oGIJl2l4yeKPpBQWhV-Lr8W7IgY98PqMhfY
 
 ### Get all recipes 
 GET http://localhost:3003/recipes/
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJiOWI3ZWU4LWFlNGItNGJkMS05YmQ2LWU3ZTIxNTk0Mzk5YiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1OTU1NjIxOSwiZXhwIjoxNjU5NjQyNjE5fQ.6z50S2CPR1UCGKiljnLgh37TIsyMO0j0LkOJXfYJM8o
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2MjI5MzQsImV4cCI6MTY1OTcwOTMzNH0.mtvdab1jp9xHENQ4UFfbBUuffmwsMqZJGPtF9o57vZ4
+
+
+### Edit Recipe
+
+PUT http://localhost:3003/recipes/edit?creatorId=f03017bb-2c08-4cdc-bb63-7fbd7cebe01f
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2MzY2MzMsImV4cCI6MTY1OTcyMzAzM30.ouyxzF8qp9p0HTJHYyIn-7oQTrfsip8yBOWuJD6cg3M
+Content-Type: application/json
+
+{
+    "recipeId":"103",
+    "title":"Kibe Vegan",
+    "description":"Kibe de trigo com alho-poró"
+}
+
+### deletar receita
+DELETE http://localhost:3003/recipes/101
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNzliOGU0LTk1Y2QtNDhhYS04MmE5LTc3NDU0ZTk0Yjc4OSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2MjI5MzQsImV4cCI6MTY1OTcwOTMzNH0.mtvdab1jp9xHENQ4UFfbBUuffmwsMqZJGPtF9o57vZ4

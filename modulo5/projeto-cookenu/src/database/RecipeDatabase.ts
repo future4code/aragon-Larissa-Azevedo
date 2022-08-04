@@ -5,14 +5,6 @@ import { BaseDatabase } from "./BaseDatabase";
 export class RecipeDatabase extends BaseDatabase {
     public static TABLE_RECIPES = "Cookenu_Recipes"
 
-    public getAllRecipes = async () => {
-        const recipesDB: IRecipeDB[] = await BaseDatabase
-            .connection(RecipeDatabase.TABLE_RECIPES)
-            .select()
-        
-        return recipesDB
-    }
-
     public createRecipe = async (recipe: Recipe) => {
         const recipeDB:IRecipeDB = {
             id: recipe.getId(),
@@ -51,12 +43,37 @@ export class RecipeDatabase extends BaseDatabase {
         .where({id: recipeDB.id})
     }
 
-    public getRecipeByName = async (name: string) => {
-
+    public deleteRecipe = async (recipeId: string) => {
         const result = await BaseDatabase.connection(RecipeDatabase.TABLE_RECIPES)
+        .delete()
+        .where({id: recipeId})
+
+        return result
+    }
+
+
+    public getAllRecipes = async (name: string, sort: string, order: string, limit: number, offset:number) => {
+
+        if(name){
+        const result:IRecipeDB[] = await BaseDatabase.connection(RecipeDatabase.TABLE_RECIPES)
         .select()
         .where("title", "LIKE", `%${name}%`)
+        .orderBy(sort, order)
+        .limit(limit)
+        .offset(offset)
 
         return result;
+
+        } else {
+            const result: IRecipeDB[] = await BaseDatabase.connection(RecipeDatabase.TABLE_RECIPES)
+            .select()
+            .orderBy(sort, order)
+            .limit(limit)
+            .offset(offset)
+        
+        return result
+        }
+        
+        
     }
 }

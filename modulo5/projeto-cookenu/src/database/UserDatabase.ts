@@ -32,6 +32,6 @@ export class UserDatabase extends BaseDatabase {
         .select()
         .where({id})
 
-        return result
+        return result[0]
     }
 }
