@@ -16,9 +16,13 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "astrodev@gmail.com",
-    "password": "bananinha"
+    "email": "fulano@gmail.com",
+    "password": "qwerty00"
 }
+
+### get all users
+GET http://localhost:3003/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYwMzAxN2JiLTJjMDgtNGNkYy1iYjYzLTdmYmQ3Y2ViZTAxZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk2NDM0MDIsImV4cCI6MTY1OTcyOTgwMn0.FL3XCAC8cqqqqpFDF34OmV9IhJHYWIXpioYHHZ4OpOU
 
 ### create recipe
 POST http://localhost:3003/recipes/create

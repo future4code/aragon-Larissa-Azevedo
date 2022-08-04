@@ -43,4 +43,12 @@ export class UserDatabase extends BaseDatabase {
 
         return result
     }
+
+    public getAllUsers = async () => {
+     const usersDB: IUserDB[] = await BaseDatabase.connection(UserDatabase.TABLE_USERS)
+     .select()
+
+     return usersDB
+        
+    }
 }

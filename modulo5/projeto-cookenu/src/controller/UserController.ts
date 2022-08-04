@@ -186,4 +186,53 @@ export class UserController {
 
         }
     }
+
+    public getAllUsers = async(req:Request, res:Response) => {
+        let errorCode = 400
+
+        try {
+            const token = req.headers.authorization
+
+            if (!token) {
+                errorCode = 401
+                throw new Error("Erro: confira seu token!")
+            }
+
+            const authenticator = new Authenticator()
+            const payload = authenticator.getTokenPayload(token)
+
+            if (!payload) {
+                errorCode = 401
+                throw new Error("Token inválido")
+            }
+
+            const userDatabase = new UserDatabase()
+            const usersDB = await userDatabase.getAllUsers()
+
+            // const userId = userDatabase.getUserById()
+
+            if(payload.role === USER_ROLES.NORMAL){
+                errorCode = 403
+                    throw new Error("Erro: apenas Admins podem acessar a lista de todos os usuários.");                    
+                
+            }
+            
+
+            const users = usersDB.map((userDB)=>{
+                return new User(
+                userDB.id,
+                userDB.nickname,
+                userDB.email,
+                userDB.password,
+                userDB.role
+             )
+            })
+
+            res.status(200).send({message: "Lista de usuários:", users})
+            
+        } catch (error) {
+            res.status(errorCode).send({ message: error.message })
+        }
+    }
+    
 }

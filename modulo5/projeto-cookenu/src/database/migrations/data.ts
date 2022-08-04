@@ -49,5 +49,24 @@ export const recipes: IRecipeDB[] = [
         created_at: new Date("2022/08/03"),
         updated_at: new Date("2022/08/03"),
         creator_id: "f03017bb-2c08-4cdc-bb63-7fbd7cebe01f"
+    },
+
+    {
+        id: "104",
+        title: "Brigadeiro",
+        description: "Bem docinho :)",
+        created_at: new Date("2022/08/03"),
+        updated_at: new Date("2022/08/03"),
+        creator_id: "bb9b7ee8-ae4b-4bd1-9bd6-e7e21594399b"
+    },
+
+    {
+        id: "105",
+        title: "Mousse de Maracujá",
+        description: "Bem docinho :)",
+        created_at: new Date("2022/08/04"),
+        updated_at: new Date("2022/08/04"),
+        creator_id: "bb9b7ee8-ae4b-4bd1-9bd6-e7e21594399b"
     }
+
 ]

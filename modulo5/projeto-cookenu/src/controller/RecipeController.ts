@@ -196,7 +196,7 @@ export class RecipeController {
             const name = req.query.name as string
             const sort = req.query.sort as string || "updated_at"
             const order = req.query.order as string || "asc"
-            const limit = Number(req.query.limit) || 5
+            const limit = Number(req.query.limit) || 10
             const page = Number(req.query.page) || 1
             const offset = limit * (page - 1)
 
