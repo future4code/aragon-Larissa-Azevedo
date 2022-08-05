@@ -7,7 +7,7 @@
 
 Dando continuidade aos aprendizados do módulo de **Back-end**, o projeto _Cookenu_ busca simular uma rede social de cadastro de usuários e receitas.
 
-O deploy foi feito no Heroku (<https://>) e testado no Postman.
+O deploy foi feito no Heroku (<https://cookenu-larissa-aragon.herokuapp.com/>) e testado no Postman.
 
 A documentação pode ser acessada neste link do [Postman](https:// ) :link:
 
@@ -23,7 +23,7 @@ Quanto às **receitas**:
 * buscar todas as receitas cadastradas com **GET** allRecipes;
   * Caso a pessoa usuária queira busca por nome, é só digitar na 'query' que será a retornada a lista da busca, se não houver busca por nome específico o sistema retornará lista com todas as receitas cadastradas;
 
-* cadastrar nova turma, com o método **POST** createRecipe;
+* cadastrar nova receita, com o método **POST** createRecipe;
 
 * editar a receita com **PUT** editRecipe
   * O usuário "ADMIN" pode alterar qualquer receita cadastrada e o usuário "NORMAL" pode editar apenas receitas cadastradas com seu id;
@@ -38,6 +38,7 @@ Quanto às pessoas **usuárias**:
 * buscar todas as pessoas usuárias cadastradas com **GET** allUsers, sendo que apenas pessoa usuária do tipo "ADMIN" pode acessar este enpoint;
 
 * fazer seu login para cadastrar receitas com **POST** login;
+  * Ao fazer logim será gerado um token, guarde-o para acessar os endpoints protegidos. Será necessário informar o token no campo "Authorization" dos 'headers' em alguns endpoints, conforme documentaç
 
 * deletar cadastro de pessoa usuária com o método **DELETE** deleteUser;
   * apenas pessoa usuária do tipo "ADMIN" pode acessar este endpoint;
