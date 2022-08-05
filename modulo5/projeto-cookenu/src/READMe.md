@@ -37,13 +37,14 @@ Quanto às pessoas **usuárias** :cook: :man_cook: :woman_cook:
 * buscar todas as pessoas usuárias cadastradas com **GET** allUsers, sendo que apenas pessoa usuária do tipo "ADMIN" pode acessar este enpoint;
 
 * fazer seu login para cadastrar receitas com **POST** login;
-  * Ao fazer login será gerado um token, guarde-o para acessar os endpoints protegidos. Será necessário informar o token no campo "Authorization" dos 'headers' em alguns endpoints, conforme documentação
+  * Ao fazer login será gerado um token, guarde-o para acessar os endpoints protegidos. Será necessário informar o token no campo "Authorization" dos 'headers' em alguns endpoints, conforme documentação.
 
 * deletar cadastro de pessoa usuária com o método **DELETE** deleteUser;
   * apenas pessoa usuária do tipo "ADMIN" pode acessar este endpoint;
   
-* Importante: o usuário cadastrado "astrodev" possui o role 'admin', feito o login com esse usuário será possível testar os endpoints com funcionalidade restrita aos admins.
+**Importante**: o usuário cadastrado "astrodev" possui o role 'admin', feito o login com esse usuário será possível testar os endpoints com funcionalidade restrita aos admins.
 
+<br>
 
 #### Tecnologias utilizadas
 
@@ -53,5 +54,5 @@ Quanto às pessoas **usuárias** :cook: :man_cook: :woman_cook:
 <img align="left"  src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
 <img align="left"  src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/> e knex.js
 
-<br>
+<br><br>
 ##### Feito com VSCode, Beekeeper-Studio e Postman
