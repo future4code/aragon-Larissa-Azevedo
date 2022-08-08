@@ -32,4 +32,35 @@ export class UserController {
         }
     }
 
+    public getAllUsers = async(req:Request, res: Response) => {
+        try {
+            const userBusiness = new UserBusiness()
+            const response = await userBusiness.getAllUsers({
+                token:req.headers.authorization,
+                search: req.query.search
+            })
+
+
+            res.status(200).send(response)
+            
+        } catch (error) {
+            res.status(400).send({ message: error.message })
+        }
+    }
+
+    public deleteUser = async(req:Request, res:Response) => {
+    try {
+        const userBusiness = new UserBusiness()
+        const response = await userBusiness.deleteUser({
+            token: req.headers.authorization,
+            id: req.params.id
+        })
+
+        res.status(200).send(response)
+        
+    } catch (error) {
+        res.status(400).send({ message: error.message })
+    }
+    }
+
 }

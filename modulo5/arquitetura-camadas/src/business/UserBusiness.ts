@@ -136,8 +136,87 @@ export class UserBusiness {
         return response
     }
 
+    public getAllUsers = async (input:any) => {
+        const token = input.token
+        const search = input.search || ""
+
+        if (!token) {
+            throw new Error("Erro: confira seu token!")
+        }
+
+        const authenticator = new Authenticator()
+        const payload = authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Token inválido")
+        }
+
+        if(typeof search !== "string"){
+            throw new Error("Erro: Parâmetro 'search' deve ser uma string");
+            
+        }
+
+        const userDatabase = new UserDatabase()
+        const usersDB = await userDatabase.getAllUsers()
+
+        if(payload.role === USER_ROLES.NORMAL){
+                throw new Error("Erro: apenas Admins podem acessar a lista de todos os usuários.");                
+        }
+
+        const users = usersDB.map((userDB)=>{
+            return new User(
+            userDB.id,
+            userDB.name,
+            userDB.email,
+            userDB.password,
+            userDB.role
+         )
+        })
+        
+        const response = {users: users}
+        return response       
 
     }
 
+    public deleteUser  = async (input: any) => {
 
+        const token = input.token
+        const id = input.id
 
+        if (!token) {
+            throw new Error("Erro: confira seu token!")
+        }
+
+        const authenticator = new Authenticator()
+        const payload = authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Token inválido")
+        }
+
+        const userDatabase = new UserDatabase()
+        const userDB = await userDatabase.deleteUser(id)
+
+        if(!userDB){
+            throw new Error("Erro: Usuário não encontrado.");
+        }
+
+        if(payload.id === id){
+            throw new Error("Não é possível deletar a própria conta")
+         }
+
+        if(payload.role === USER_ROLES.ADMIN){
+            await userDatabase.deleteUser(id)
+
+        const response ={message: "Usuário deletado com sucesso!"}
+
+        return response
+
+        } else {
+        throw new Error("Erro: apenas Admins podem deletar outros usuários.");   
+
+    }
+
+    }
+
+}
