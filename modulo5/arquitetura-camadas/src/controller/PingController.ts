@@ -6,7 +6,7 @@ export class PingController {
         let errorCode = 400
         try {
             const pingBusiness = new PingBusiness()
-            const response = pingBusiness.ping()
+            const response = await pingBusiness.ping()
             
             res.status(200).send(response)
         } catch (error) {

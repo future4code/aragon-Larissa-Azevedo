@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ### 3) Get users
 GET http://localhost:3003/users
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ZjkzZGQ1LWU2NTgtNGIwZS05ZWZmLWIyNjYwMjBkZTZiOCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk1MzQ5NzQsImV4cCI6MTY1OTYyMTM3NH0.E3nB9HTT3Pl3sMsc8U49ISPxx2uKGFv6oQ6R7f88iws
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwOGU1NmU0LWE5YmUtNDkyNS04MDMwLWRjNzFmMDZlNjZkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk5ODYzMjMsImV4cCI6MTY2MDA3MjcyM30._5Jw2U9heS-aU1qNdwglTuexLXTqax58yEdj4aob-G0
 
 ### 3) Delete user
 GET http://localhost:3003/users/f03017bb-2c08-4cdc-bb63-7fbd7cebe01f

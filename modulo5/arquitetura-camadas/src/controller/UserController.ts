@@ -17,4 +17,19 @@ export class UserController {
         }
     }
 
+    public login = async (req:Request, res:Response) => {
+        try {
+            const userBusiness = new UserBusiness()
+            const response = await userBusiness.login({
+                email: req.body.email,
+                password: req.body.password
+            })
+
+            res.status(200).send(response)
+            
+        } catch (error) {
+            res.status(400).send({ message: error.message })
+        }
+    }
+
 }
