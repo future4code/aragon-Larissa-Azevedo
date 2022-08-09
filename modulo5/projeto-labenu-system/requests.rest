@@ -1,0 +1,61 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Endpoint teste 2 - get all classes
+
+GET https://labenusystem-larissa-aragon.herokuapp.com/classrooms
+
+### Endpoint 1
+POST https://labenusystem-larissa-aragon.herokuapp.com/classrooms/
+Content-Type: application/json
+
+{
+    "name": "teste-turma",
+    "module": "2"
+}
+
+### Endpoint 2 - buscar turmas ativas 
+GET https://labenusystem-larissa-aragon.herokuapp.com/classrooms/active
+
+
+### Endpoint 3 - mudar turma de módulo
+PUT  https://labenusystem-larissa-aragon.herokuapp.com/classrooms/103/module
+Content-Type: application/json
+
+{
+    "module": "4"
+}
+
+### Endpoint teste - get all students
+GET https://labenusystem-larissa-aragon.herokuapp.com/students
+
+### Endpoint 4 - criar estudante
+
+POST https://labenusystem-larissa-aragon.herokuapp.com/students
+Content-Type: application/json
+
+{
+    "name": "Larissa",
+    "email": "larissa@mail.com",
+    "birthdate":"1993-11-22",
+    "classroom_id":"102"
+}
+
+### Endpoint 5 - buscar estudante por nome
+GET https://labenusystem-larissa-aragon.herokuapp.com/students/searchByName
+Content-Type: application/json
+
+{ 
+ "name":"Ada"
+}
+
+### Endpoint 6 - editar estudante de turma
+PUT  https://labenusystem-larissa-aragon.herokuapp.com/students/202/classroom
+Content-Type: application/json
+
+{
+    "classroom_id": "103"
+}
+
+### Endpoint 7 - estudantes por turma
+GET https://labenusystem-larissa-aragon.herokuapp.com/students/104
