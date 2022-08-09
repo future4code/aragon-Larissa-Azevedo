@@ -1,5 +1,5 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { IDeleteUserInputDTO, IGetUsersInputDTO, IGetUsersOutputDTO, IGetUsersUser, ILoginInputDTO, ISignupInputDTO, User, USER_ROLES } from "../models/User"
+import { IDeleteUserInputDTO, IEditUserInputDTO, IGetUsersDBDTO, IGetUsersInputDTO, IGetUsersOutputDTO, IGetUsersUser, ILoginInputDTO, ISignupInputDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -143,14 +143,16 @@ export class UserBusiness {
             throw new Error("Token inválido ou faltando")
         }
 
-        const userDatabase = new UserDatabase()
-        const usersDB = await userDatabase.getUsers({
+        const getInputUsersDB: IGetUsersDBDTO = {
             search,
             order,
             sort,
             limit,
             offset
-        })
+        }
+
+        const userDatabase = new UserDatabase()
+        const usersDB = await userDatabase.getUsers(getInputUsersDB)
 
         const users = usersDB.map(userDB => {
             const user = new User(
@@ -211,4 +213,87 @@ export class UserBusiness {
 
         return response
     }
-}
+
+    public editUser = async(input:IEditUserInputDTO) => {
+        const {
+            token,
+            idToEdit,
+            email,
+            name,
+            password            
+        } = input
+
+        if (!token) {
+            throw new Error("Token faltando")
+        }
+
+        if (!email && !name && !password) {
+            throw new Error("Parâmetros faltando")
+        }
+
+        const authenticator = new Authenticator()
+        const payload = authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Token inválido")
+        }
+
+        if (email && typeof email !== "string") {
+            throw new Error("Parâmetro 'email' inválido")
+        }
+
+        if (email && !email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
+            throw new Error("Parâmetro 'email' inválido")
+        }
+
+        if (name && typeof name !== "string") {
+            throw new Error("Parâmetro 'name' inválido")
+        }
+
+        if (name && name.length < 3) {
+            throw new Error("Parâmetro 'name' deve possuir ao menos 3 caracteres")
+        }
+
+        if (password && typeof password !== "string") {
+            throw new Error("Parâmetro 'password' inválido")
+        }
+
+        if (password && password.length < 6) {
+            throw new Error("Parâmetro 'password' deve possuir ao menos 6 caracteres")
+        }
+
+        if (payload.role === USER_ROLES.NORMAL) {
+            if (payload.id !== idToEdit) {
+                throw new Error("Usuários normais só podem editar a própria conta")
+            }
+        }
+
+        const userDatabase = new UserDatabase()
+        const userDB = await userDatabase.findById(idToEdit)
+
+        if (!userDB) {
+            throw new Error("Conta a ser editada não existe")
+        }
+
+        const user = new User(
+            userDB.id,
+            userDB.name,
+            userDB.email,
+            userDB.password,
+            userDB.role
+        )
+
+        name && user.setName(name)
+        email && user.setEmail(email)
+        password && user.setPassword(password)
+
+        await userDatabase.editUser(user)
+
+        const response = {
+            message: "Edição realizada com sucesso!"
+        }
+
+        return response
+        }
+
+    }

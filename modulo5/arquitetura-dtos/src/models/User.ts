@@ -98,3 +98,18 @@ export interface IDeleteUserInputDTO {
     idToDelete: string
 }
 
+export interface IGetUsersDBDTO {
+    search: string,
+    order: string,
+    sort: string,
+    limit: number,
+    offset:number
+}
+
+export interface IEditUserInputDTO{
+    token:string,
+    idToEdit:string
+    name:string,
+    email:string,
+    password:string
+}
