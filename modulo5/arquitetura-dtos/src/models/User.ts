@@ -93,3 +93,8 @@ export interface IGetUsersOutputDTO {
     users: IGetUsersUser[]
 }
 
+export interface IDeleteUserInputDTO {
+    token:string,
+    idToDelete: string
+}
+

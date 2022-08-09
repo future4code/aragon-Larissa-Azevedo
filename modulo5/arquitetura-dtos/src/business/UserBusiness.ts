@@ -1,5 +1,5 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { IGetUsersInputDTO, IGetUsersOutputDTO, IGetUsersUser, ILoginInputDTO, ISignupInputDTO, User, USER_ROLES } from "../models/User"
+import { IDeleteUserInputDTO, IGetUsersInputDTO, IGetUsersOutputDTO, IGetUsersUser, ILoginInputDTO, ISignupInputDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -177,7 +177,7 @@ export class UserBusiness {
         return response
     }
 
-    public deleteUser = async (input: any) => {
+    public deleteUser = async (input: IDeleteUserInputDTO) => {
         const token = input.token
         const idToDelete = input.idToDelete
 
