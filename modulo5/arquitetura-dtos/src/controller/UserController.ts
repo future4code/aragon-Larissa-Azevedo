@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { ILoginInputDTO, ISignupInputDTO } from "../models/User";
+import { IGetUsersInputDTO, IGetUsersOutputDTO, ILoginInputDTO, ISignupInputDTO } from "../models/User";
 
 export class UserController {
     public signup = async (req: Request, res: Response) => {
@@ -38,15 +38,18 @@ export class UserController {
 
     public getUsers = async (req: Request, res: Response) => {
         try {
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.getUsers({
+            const input: IGetUsersInputDTO = {
                 token: req.headers.authorization,
-                search: req.query.search,
-                order: req.query.order,
-                sort: req.query.sort,
-                limit: req.query.limit,
-                page: req.query.page
-            })
+                search: req.query.search as string,
+                order: req.query.order as string,
+                sort: req.query.sort as string,
+                limit: req.query.limit as string,
+                page: req.query.page as string
+
+            }
+
+            const userBusiness = new UserBusiness()
+            const response = await userBusiness.getUsers(input)
 
             res.status(200).send(response)
         } catch (error) {

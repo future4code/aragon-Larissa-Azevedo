@@ -74,4 +74,22 @@ export interface ILoginInputDTO {
     password: string
 }
 
+export interface IGetUsersInputDTO {
+    token: string
+    search: string,
+    order: string,
+    sort: string,
+    limit: string,
+    page:string
+}
+
+export interface IGetUsersUser{
+    id: string,
+    name: string,
+    email:string
+}
+
+export interface IGetUsersOutputDTO {
+    users: IGetUsersUser[]
+}
 

@@ -1,5 +1,5 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { ILoginInputDTO, ISignupInputDTO, User, USER_ROLES } from "../models/User"
+import { IGetUsersInputDTO, IGetUsersOutputDTO, IGetUsersUser, ILoginInputDTO, ISignupInputDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -127,7 +127,7 @@ export class UserBusiness {
         return response
     }
 
-    public getUsers = async (input: any) => {
+    public getUsers = async (input: IGetUsersInputDTO) => {
         const token = input.token
         const search = input.search || ""
         const order = input.order || "name"
@@ -161,7 +161,7 @@ export class UserBusiness {
                 userDB.role
             )
 
-            const userResponse = {
+            const userResponse: IGetUsersUser = {
                 id: user.getId(),
                 name: user.getName(),
                 email: user.getEmail()
@@ -170,7 +170,7 @@ export class UserBusiness {
             return userResponse
         })
 
-        const response = {
+        const response:IGetUsersOutputDTO = {
             users
         }
 
