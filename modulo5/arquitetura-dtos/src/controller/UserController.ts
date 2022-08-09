@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserBusiness } from "../business/UserBusiness";
-import { ISignupInputDTO } from "../models/User";
+import { ILoginInputDTO, ISignupInputDTO } from "../models/User";
 
 export class UserController {
     public signup = async (req: Request, res: Response) => {
@@ -22,11 +22,13 @@ export class UserController {
 
     public login = async (req: Request, res: Response) => {
         try {
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.login({
+            const input: ILoginInputDTO ={
                 email: req.body.email,
                 password: req.body.password
-            })
+            }
+
+            const userBusiness = new UserBusiness()
+            const response = await userBusiness.login(input)
 
             res.status(200).send(response)
         } catch (error) {

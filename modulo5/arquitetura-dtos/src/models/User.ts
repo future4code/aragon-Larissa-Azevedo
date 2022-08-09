@@ -68,3 +68,10 @@ export interface ISignupInputDTO {
     email: string,
     password: string
 }
+
+export interface ILoginInputDTO {
+    email: string,
+    password: string
+}
+
+

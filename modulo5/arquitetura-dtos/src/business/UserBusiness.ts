@@ -1,5 +1,5 @@
 import { UserDatabase } from "../database/UserDatabase"
-import { ISignupInputDTO, User, USER_ROLES } from "../models/User"
+import { ILoginInputDTO, ISignupInputDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -69,7 +69,7 @@ export class UserBusiness {
         return response
     }
 
-    public login = async (input: any) => {
+    public login = async (input: ILoginInputDTO) => {
         const email = input.email
         const password = input.password
 
