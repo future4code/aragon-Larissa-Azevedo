@@ -3,6 +3,11 @@ import { UserBusiness } from "../business/UserBusiness";
 import { IDeleteUserInputDTO, IEditUserInputDTO, IGetUsersInputDTO, IGetUsersOutputDTO, ILoginInputDTO, ISignupInputDTO } from "../models/User";
 
 export class UserController {
+    constructor(
+        private userBusiness: UserBusiness
+    ){}
+
+
     public signup = async (req: Request, res: Response) => {
         try {
             const input: ISignupInputDTO = {
@@ -11,8 +16,7 @@ export class UserController {
                 password: req.body.password
             }
 
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.signup(input)
+            const response = await this.userBusiness.signup(input)
 
             res.status(201).send(response)
         } catch (error) {
@@ -27,8 +31,7 @@ export class UserController {
                 password: req.body.password
             }
 
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.login(input)
+            const response = await this.userBusiness.login(input)
 
             res.status(200).send(response)
         } catch (error) {
@@ -47,8 +50,7 @@ export class UserController {
                 page: req.query.page as string
             }
 
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.getUsers(input)
+            const response = await this.userBusiness.getUsers(input)
 
             res.status(200).send(response)
         } catch (error) {
@@ -63,8 +65,7 @@ export class UserController {
                 idToDelete: req.params.id
             }
 
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.deleteUser(input)
+            const response = await this.userBusiness.deleteUser(input)
 
             res.status(200).send(response)
         } catch (error) {
@@ -82,8 +83,7 @@ export class UserController {
                 password: req.body.password
             }
 
-            const userBusiness = new UserBusiness()
-            const response = await userBusiness.editUser(input)
+            const response = await this.userBusiness.editUser(input)
 
             res.status(200).send(response)
         } catch (error) {
