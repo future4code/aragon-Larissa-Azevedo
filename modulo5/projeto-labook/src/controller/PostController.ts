@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PostBusiness } from "../business/PostBusiness";
-import { ICreatePostDTO, IDeleteUserInputDTO, IGetPostsInputDTO } from "../models/Post";
+import { ICreatePostDTO, IDeleteUserInputDTO, IGetPostsInputDTO, ILikePostInputDTO } from "../models/Post";
 
 export class PostController {
     constructor(
@@ -51,6 +51,23 @@ export class PostController {
         } catch (error) {
             res.status(400).send({ message: error.message })
         }
+    }
+
+    public likePost = async (req:Request, res:Response) => {
+        try {
+            const input:ILikePostInputDTO = {
+                token: req.headers.authorization,
+                id: req.params.id
+            }
+
+            const response = await this.postBusiness.likePost(input)
+
+            res.status(200).send(response)
+            
+        } catch (error) {
+            res.status(400).send({ message: error.message })
+        }
+
     }
 
 }

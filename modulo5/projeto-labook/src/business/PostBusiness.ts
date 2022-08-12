@@ -1,5 +1,6 @@
+import { BaseDatabase } from "../database/BaseDatabase"
 import { PostDatabase } from "../database/PostDatabase"
-import { ICreatePostDTO, IDeleteUserInputDTO, IGetPostsInputDTO, Post } from "../models/Post"
+import { ICreatePostDTO, IDeleteUserInputDTO, IGetPostsInputDTO, IGetPoststOutputDTO, ILikeDB, ILikePostInputDTO, Post } from "../models/Post"
 import { USER_ROLES } from "../models/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
@@ -42,7 +43,7 @@ export class PostBusiness {
         await this.postDatabase.createPost(newPost)
 
         const response = {
-            message: "Post realizado com sucesso!",
+            message: "Post criado com sucesso!",
             newPost
         }
 
@@ -57,13 +58,22 @@ export class PostBusiness {
             throw new Error("Erro: Confira seu token.")
         }
 
-        const feed = await this.postDatabase.getPosts()
+        const postsDB = await this.postDatabase.getPosts()
 
-        const response = {
-            feed
+        const posts = postsDB.map(postDB =>{
+            return new Post (
+            postDB.id,
+            postDB.content,
+            postDB.user_id
+        )})
+
+        for (let post of posts){
+            const likes:any = await this.postDatabase.getLikes(post.getId())
+
+            post.setLikes(likes)
         }
 
-        return response                
+        return posts              
     }
 
     public deletePost = async(input:IDeleteUserInputDTO) => {
@@ -95,6 +105,46 @@ export class PostBusiness {
         }
 
         return response        
+    }
+
+    public likePost = async (input:ILikePostInputDTO) => {
+        const token = input.token
+        const id = input.id
+
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Erro: Confira seu token!")
+        }
+
+        const postExists = await this.postDatabase.findPostById(id)
+
+        if(!postExists){
+            throw new Error("Erro: Post não encontrado!");
+        }
+
+        const postAlreadyLikedByUser = await this.postDatabase.postAlreadyLikedByUser(id, payload.id)
+
+        if(postAlreadyLikedByUser){
+            throw new Error("Erro: Você já curtiu esse post!");       
+        }
+
+        const likeId = this.idGenerator.generate()
+
+        const likedPost:ILikeDB = {
+            id: likeId,
+            post_id: id,
+            user_id: payload.id
+        }
+
+        await this.postDatabase.likePost(likedPost)
+
+        const response = {
+            message: "Post curtido com sucesso!"
+        }
+
+        return response    
+
     }
 
 }

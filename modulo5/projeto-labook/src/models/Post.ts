@@ -68,11 +68,16 @@ export interface IGetPosts {
     likes:number
 }
 
-export interface IGetPoststOutpitDTO{
-    lista_de_posts: IGetPosts[]
+export interface IGetPoststOutputDTO{
+    posts: IGetPosts[]
 }
 
 export interface IDeleteUserInputDTO{
     token:string,
     idToDelete:string
+}
+
+export interface ILikePostInputDTO{
+    token:string,
+    id: string
 }
