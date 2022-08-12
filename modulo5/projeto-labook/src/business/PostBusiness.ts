@@ -1,5 +1,5 @@
 import { PostDatabase } from "../database/PostDatabase"
-import { ICreatePostDTO, Post } from "../models/Post"
+import { ICreatePostDTO, IGetPostsInputDTO, Post } from "../models/Post"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -46,7 +46,24 @@ export class PostBusiness {
         }
 
         return response   
+    }
 
+    public getPosts = async (input:IGetPostsInputDTO) => {
+        const token = input.token
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Erro: Confira seu token.")
+        }
+
+        const posts = await this.postDatabase.getPosts()
+
+        const response = {
+            posts
+        }
+
+        return response      
+          
     }
 
 

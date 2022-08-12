@@ -8,11 +8,19 @@ export class PostDatabase extends BaseDatabase {
     public createPost = async (input: Post)=>{
         const postDB: IPostDB = {
             id: input.getId(),
-            content: input.getId(),
+            content: input.getContent(),
             user_id: input.getUserId()
         }
 
         await BaseDatabase.connection(PostDatabase.TABLE_POSTS).insert(postDB)
+    }
+
+    public getPosts = async () => {
+
+        const postsDB:IPostDB[] = await BaseDatabase.connection(PostDatabase.TABLE_POSTS)
+        .select()
+
+        return postsDB
     }
 
 }

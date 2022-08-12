@@ -51,13 +51,23 @@ export class Post {
     }
 }
 
-// export interface ICreatePost {
-//     id: string,
-//     content: string,
-//     user_id:string
-// }
 
 export interface ICreatePostDTO {
     token: string,
     content:string
+}
+
+export interface IGetPostsInputDTO {
+    token: string
+}
+
+export interface IGetPosts {
+    id:string,
+    content:string,
+    userId:string,
+    likes:number
+}
+
+export interface IGetPoststOutpitDTO{
+    lista_de_posts: IGetPosts[]
 }

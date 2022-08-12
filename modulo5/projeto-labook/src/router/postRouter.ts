@@ -18,3 +18,4 @@ const postController = new PostController(
 )
 
 postRouter.post("/create", postController.createPost)
+postRouter.get("/", postController.getPosts)
