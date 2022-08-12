@@ -10,3 +10,12 @@ Content-Type: application/json
     "email": "larissa@mail.com",
     "password": "abc123"
 }
+
+### 2) Endpoint 2 - Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "larissa@mail.com",
+    "password": "abc123"
+}
