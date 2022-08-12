@@ -1,5 +1,6 @@
 import { PostDatabase } from "../database/PostDatabase"
-import { ICreatePostDTO, IGetPostsInputDTO, Post } from "../models/Post"
+import { ICreatePostDTO, IDeleteUserInputDTO, IGetPostsInputDTO, Post } from "../models/Post"
+import { USER_ROLES } from "../models/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -56,16 +57,44 @@ export class PostBusiness {
             throw new Error("Erro: Confira seu token.")
         }
 
-        const posts = await this.postDatabase.getPosts()
+        const feed = await this.postDatabase.getPosts()
 
         const response = {
-            posts
+            feed
         }
 
-        return response      
-          
+        return response                
     }
 
+    public deletePost = async(input:IDeleteUserInputDTO) => {
+        const token = input.token
+        const idToDelete = input.idToDelete
 
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Erro: Confira seu token!")
+        }
+
+        const postsDB = await this.postDatabase.findPostById(idToDelete)
+
+        if(payload.role === USER_ROLES.NORMAL){
+            if(payload.id !== postsDB.user_id)  {
+                throw new Error("Erro: Apenas usuários 'ADMIN' podem deletar posts de outros usuários. ");                
+            }          
+        }
+
+        if(!postsDB){
+            throw new Error("Erro: Este post não existe.");            
+        }
+
+        await this.postDatabase.deletePost(idToDelete)
+
+        const response = {
+            message: "Post deletado com sucesso!"
+        }
+
+        return response        
+    }
 
 }

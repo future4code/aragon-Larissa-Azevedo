@@ -27,9 +27,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA2ZGI4NzJmLTIyNTMt
 Content-Type: application/json
 
 {
-    "content": "Olá, mundo!"
+    "content": "Olá, mundo! / Hello!"
 }
 
 ### 4) Endpoint 4 - Lista de Posts
 GET http://localhost:3003/posts/
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA2ZGI4NzJmLTIyNTMtNGYyZi05ZTVmLWFjN2E5ZTlmODJiMiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjAzMjQwMjIsImV4cCI6MTY2MDQxMDQyMn0.Dal4R06_FQp6e8tGReeCeTX40beVDaxA1jLCVinyjYY
+
+### 5) Endpoint 5 - Deletar Post
+DELETE http://localhost:3003/posts/delete/202
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA2ZGI4NzJmLTIyNTMtNGYyZi05ZTVmLWFjN2E5ZTlmODJiMiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjAzMjQwMjIsImV4cCI6MTY2MDQxMDQyMn0.Dal4R06_FQp6e8tGReeCeTX40beVDaxA1jLCVinyjYY
