@@ -50,3 +50,14 @@ export class Post {
         this.likes = newLikes
     }
 }
+
+// export interface ICreatePost {
+//     id: string,
+//     content: string,
+//     user_id:string
+// }
+
+export interface ICreatePostDTO {
+    token: string,
+    content:string
+}
