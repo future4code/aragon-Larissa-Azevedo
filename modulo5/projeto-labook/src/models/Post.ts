@@ -81,3 +81,8 @@ export interface ILikePostInputDTO{
     token:string,
     id: string
 }
+
+export interface IDislikePostInputDTO {
+    token:string,
+    id: string
+}

@@ -7,9 +7,10 @@ Content-Type: application/json
 
 {
     "name": "Larissa",
-    "email": "larissa@mail.com",
+    "email": "larissa@email.com",
     "password": "abc123"
 }
+
 
 ### 2) Endpoint 2 - Login
 POST http://localhost:3003/users/login
@@ -20,24 +21,32 @@ Content-Type: application/json
     "password": "bananinha"
 }
 
-### 3) Endpoint 3 - Criar Post
 
+### 3) Endpoint 3 - Criar Post
 POST http://localhost:3003/posts/create
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDMzNDA5NSwiZXhwIjoxNjYwNDIwNDk1fQ.z92QDafTMKaMPW6apxMGfChtn9Plq6rfSsu8uKEhBU8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFmOGJjOWM1LTRhOTAtNDQxYi1hNzAzLTJiMzg3NTQzZWZlNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MTI1NzUsImV4cCI6MTY2MDQ5ODk3NX0.oI0uae9ug5sOOK0pkKGxjAAqep8t_fhg5kCXAzoPTT4
 Content-Type: application/json
 
 {
-    "content": "Olá, mundo! / Hello!"
+    "content": "Finalizando projeto da semana da Labenu :)"
 }
+
 
 ### 4) Endpoint 4 - Lista de Posts
 GET http://localhost:3003/posts/
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDMzMTA0MSwiZXhwIjoxNjYwNDE3NDQxfQ.TNy1P71m5Ow3SVNayS4QIshJ3GYl5S5pwgBiBLmGLg8
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFmOGJjOWM1LTRhOTAtNDQxYi1hNzAzLTJiMzg3NTQzZWZlNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MTI1NzUsImV4cCI6MTY2MDQ5ODk3NX0.oI0uae9ug5sOOK0pkKGxjAAqep8t_fhg5kCXAzoPTT4
+
 
 ### 5) Endpoint 5 - Deletar Post
 DELETE http://localhost:3003/posts/delete/202
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDMzMTA0MSwiZXhwIjoxNjYwNDE3NDQxfQ.TNy1P71m5Ow3SVNayS4QIshJ3GYl5S5pwgBiBLmGLg8
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFmOGJjOWM1LTRhOTAtNDQxYi1hNzAzLTJiMzg3NTQzZWZlNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MTI1NzUsImV4cCI6MTY2MDQ5ODk3NX0.oI0uae9ug5sOOK0pkKGxjAAqep8t_fhg5kCXAzoPTT4
+
 
 ### 6) Endpoint 6 - Curtir Post
-POST http://localhost:3003/posts/like/0bdcc932-4868-4184-ae6b-d2ca8decb05e
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDMzNTQ2NiwiZXhwIjoxNjYwNDIxODY2fQ.YipFJ05zoVNJzc2oRK0whLH0ZO-xq7P_o6mnUQq2AkU
+POST http://localhost:3003/posts/like/588fb6bc-b579-4846-a088-e59fd0f0cafe
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDQxMjg4MywiZXhwIjoxNjYwNDk5MjgzfQ.7nEdnmhKeAFjre01Vl76yecLX9l4CPWrt9jVboi1mPw
+
+
+### 7) Endpoint 7 - Descurtir Post
+POST http://localhost:3003/posts/dislike/588fb6bc-b579-4846-a088-e59fd0f0cafe
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFmOGJjOWM1LTRhOTAtNDQxYi1hNzAzLTJiMzg3NTQzZWZlNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA0MTI1NzUsImV4cCI6MTY2MDQ5ODk3NX0.oI0uae9ug5sOOK0pkKGxjAAqep8t_fhg5kCXAzoPTT4

@@ -1,6 +1,6 @@
 import { BaseDatabase } from "../database/BaseDatabase"
 import { PostDatabase } from "../database/PostDatabase"
-import { ICreatePostDTO, IDeleteUserInputDTO, IGetPostsInputDTO, IGetPoststOutputDTO, ILikeDB, ILikePostInputDTO, Post } from "../models/Post"
+import { ICreatePostDTO, IDeleteUserInputDTO, IDislikePostInputDTO, IGetPostsInputDTO, IGetPoststOutputDTO, ILikeDB, ILikePostInputDTO, Post } from "../models/Post"
 import { USER_ROLES } from "../models/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
@@ -144,6 +144,37 @@ export class PostBusiness {
         }
 
         return response    
+    }
+
+    public dislikePost = async (input:IDislikePostInputDTO) => {
+        const token = input.token
+        const postId = input.id
+
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new Error("Erro: Confira seu token!")
+        }
+
+        const postExists = await this.postDatabase.findPostById(postId)
+
+        if(!postExists){
+            throw new Error("Erro: Post não encontrado!");
+        }
+
+        const postAlreadyLikedByUser = await this.postDatabase.postAlreadyLikedByUser(postId, payload.id)
+
+        if(!postAlreadyLikedByUser){
+            throw new Error("Erro: Para descurtir um post é necessário curti-lo primeiro!");
+        }
+
+        await this.postDatabase.dislikePost(postId, payload.id)
+
+        const response = {
+            message: "Post descurtido com sucesso!"
+        }
+
+        return response  
 
     }
 

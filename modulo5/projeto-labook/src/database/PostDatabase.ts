@@ -67,4 +67,11 @@ export class PostDatabase extends BaseDatabase {
         return likes[0]["count(`id`)"]
     }
 
+    public dislikePost = async (postId: string, userId:string) => {
+        await BaseDatabase.connection(PostDatabase.TABLE_LIKES)
+        .delete()
+        .where("post_id", "=", `${postId}`)
+        .andWhere("user_id", "=", `${userId}`)
+
+    }
 }
