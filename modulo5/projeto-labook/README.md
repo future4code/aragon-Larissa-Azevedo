@@ -1,4 +1,4 @@
-# Labook
+# Labook :computer: :woman:
 
 ## Um projeto Backend da Labenu
 
@@ -6,9 +6,9 @@
 
 Dando continuidade aos aprendizados do módulo de **Back-end**, o projeto _Labook_ busca simular uma rede social ao estilo "Facebook".
 
-O deploy foi feito no Heroku (<https://>) e testado no Postman.
+O deploy foi feito no Heroku (<https://labook-larissa-aragon.herokuapp.com/>) e testado no Postman.
 
-A documentação pode ser acessada neste link do [Postman](https:// ) :link:
+A documentação pode ser acessada neste link do [Postman](https://documenter.getpostman.com/view/20783829/VUjSG49J) :link:
 
 Também há um documento requests.rest que poderá ser acessado diretamente do VSCode, caso o usuário possua extensão "REST Client" instalada.
 
