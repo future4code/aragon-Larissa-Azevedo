@@ -1,4 +1,5 @@
 import { UserBusiness } from "../../src/business/UserBusiness"
+import { UserDatabase } from "../../src/database/UserDatabase"
 import { ISignupInputDTO } from "../../src/models/User"
 import { AuthenticatorMock } from "../mocks/services/AuthenticatorMock"
 import { HashManagerMock } from "../mocks/services/HashManagerMock"
@@ -13,5 +14,16 @@ describe("Testando UserBusiness", () => {
         new AuthenticatorMock()
     )
 
-    // implemente seu teste aqui
-})
+        test("signup bem sucedido!", async() => {
+            const input:ISignupInputDTO = {
+                name:"alice",
+                email: "alice@gmail.com",
+                password: "alice99"
+            }
+
+            const response = await userBusiness.signup(input)
+
+            expect(response.message).toEqual("Cadastro realizado com sucesso")
+            expect(response.token).toEqual("token-mock")
+        })
+    })

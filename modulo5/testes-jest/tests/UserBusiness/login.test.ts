@@ -13,5 +13,16 @@ describe("Testando UserBusiness", () => {
         new AuthenticatorMock()
     )
 
-    // implemente seu teste aqui
+    test("login bem sucedido", async() => {
+        const input:ILoginInputDTO = {
+            email: "astrodev@gmail.com",
+            password: "bananinha"
+        }
+
+        const response = await userBusiness.login(input)
+
+        expect(response.message).toEqual("Login realizado com sucesso")
+        expect(response.token).toEqual("token-astrodev")
+
+    })
 })
