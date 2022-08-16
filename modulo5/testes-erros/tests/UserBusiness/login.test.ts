@@ -45,20 +45,20 @@ describe("Testando UserBusiness", () => {
         }
     })
 
-    test("deve retornar erro caso a senha não tenha mínimo de 6 caracteres", async () => {
+    test("deve retornar erro caso email não tenha sido cadastrado", async () => {
         expect.assertions(2)
 
         try {
             const input:ILoginInputDTO = {
-                email:"astrodev@gmail.com",
-                password:"astro"
+                email:"astro-dev@gmail.com",
+                password:"bananinha"
             }
             await userBusiness.login(input)
             
         } catch (error:unknown) {
             if(error instanceof BaseError){
-                expect(error.statusCode).toEqual(400)
-                expect(error.message).toEqual("Parâmetro 'password' inválido: mínimo de 6 caracteres")
+                expect(error.statusCode).toEqual(404)
+                expect(error.message).toEqual("Email não cadastrado")
 
             }
         }
