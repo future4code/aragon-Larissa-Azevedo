@@ -1,4 +1,6 @@
 import { PostDatabase } from "../database/PostDatabase"
+import { RequestError } from "../errors/RequestError"
+import { UnauthorizedError } from "../errors/UnauthorizedError"
 import { IAddLikeInputDTO, IAddLikeOutputDTO, ICreatePostInputDTO, ICreatePostOutputDTO, IDeletePostInputDTO, IDeletePostOutputDTO, IGetPostsInputDTO, IGetPostsOutputDTO, ILikeDB, IRemoveLikeInputDTO, IRemoveLikeOutputDTO, Post } from "../models/Post"
 import { USER_ROLES } from "../models/User"
 import { Authenticator } from "../services/Authenticator"
@@ -19,15 +21,15 @@ export class PostBusiness {
         const payload = this.authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Não autenticado")
+            throw new UnauthorizedError("Não autenticado")
         }
 
         if (typeof content !== "string") {
-            throw new Error("Parâmetro 'content' inválido")
+            throw new RequestError("Parâmetro 'content' inválido")
         }
 
         if (content.length < 1) {
-            throw new Error("Parâmetro 'content' inválido: mínimo de 1 caracteres")
+            throw new RequestError("Parâmetro 'content' inválido: mínimo de 1 caracteres")
         }
 
         const id = this.idGenerator.generate()
@@ -54,7 +56,7 @@ export class PostBusiness {
         const payload = this.authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Não autenticado")
+            throw new UnauthorizedError("Não autenticado")
         }
 
         const postsDB = await this.postDatabase.getPosts()
@@ -86,18 +88,18 @@ export class PostBusiness {
         const payload = this.authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Não autenticado")
+            throw new UnauthorizedError("Não autenticado")
         }
 
         const postDB = await this.postDatabase.findPostById(postId)
 
         if (!postDB) {
-            throw new Error("Post não encontrado")
+            throw new RequestError("Post não encontrado")
         }
 
         if (payload.role === USER_ROLES.NORMAL) {
             if (postDB.user_id !== payload.id) {
-                throw new Error("Sem autorização")
+                throw new UnauthorizedError("Sem autorização")
             }
         }
 
