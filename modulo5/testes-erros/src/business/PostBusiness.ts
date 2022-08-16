@@ -1,4 +1,5 @@
 import { PostDatabase } from "../database/PostDatabase"
+import { NotFoundError } from "../errors/NotFoundError"
 import { RequestError } from "../errors/RequestError"
 import { UnauthorizedError } from "../errors/UnauthorizedError"
 import { IAddLikeInputDTO, IAddLikeOutputDTO, ICreatePostInputDTO, ICreatePostOutputDTO, IDeletePostInputDTO, IDeletePostOutputDTO, IGetPostsInputDTO, IGetPostsOutputDTO, ILikeDB, IRemoveLikeInputDTO, IRemoveLikeOutputDTO, Post } from "../models/Post"
@@ -94,7 +95,7 @@ export class PostBusiness {
         const postDB = await this.postDatabase.findPostById(postId)
 
         if (!postDB) {
-            throw new RequestError("Post não encontrado")
+            throw new NotFoundError("Post não encontrado")
         }
 
         if (payload.role === USER_ROLES.NORMAL) {
