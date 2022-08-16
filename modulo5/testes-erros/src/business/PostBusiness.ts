@@ -158,13 +158,13 @@ export class PostBusiness {
         const payload = this.authenticator.getTokenPayload(token)
 
         if (!payload) {
-            throw new Error("Não autenticado")
+            throw new UnauthorizedError("Não autenticado")
         }
 
         const postDB = await this.postDatabase.findPostById(postId)
 
         if (!postDB) {
-            throw new Error("Post não encontrado")
+            throw new NotFoundError("Post não encontrado")
         }
 
         const isAlreadyLiked = await this.postDatabase.findLike(
@@ -173,7 +173,7 @@ export class PostBusiness {
         )
 
         if (!isAlreadyLiked) {
-            throw new Error("Ainda não deu like")
+            throw new RequestError("Ainda não deu like")
         }
 
         await this.postDatabase.removeLike(postId, payload.id)

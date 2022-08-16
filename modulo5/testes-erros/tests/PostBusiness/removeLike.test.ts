@@ -3,7 +3,7 @@ import { PostDatabaseMock } from "../mocks/PostDatabaseMock"
 import { IdGeneratorMock } from "../mocks/services/IdGeneratorMock"
 import { HashManagerMock } from "../mocks/services/HashManagerMock"
 import { AuthenticatorMock } from "../mocks/services/AuthenticatorMock"
-import { IAddLikeInputDTO } from "../../src/models/Post"
+import { IAddLikeInputDTO, IRemoveLikeInputDTO } from "../../src/models/Post"
 import { BaseError } from "../../src/errors/BaseError"
 
 describe("Testando PostBusiness", () => {
@@ -14,8 +14,8 @@ describe("Testando PostBusiness", () => {
         new AuthenticatorMock()
     )
 
-    test("addLike bem sucedido", async () => {
-        const input: IAddLikeInputDTO = {
+    test("removeLike bem sucedido", async () => {
+        const input: IRemoveLikeInputDTO = {
             token: "token-mock",
             postId:"201"
         }
@@ -31,9 +31,9 @@ describe("Testando PostBusiness", () => {
         try {
             const input = {
                 token:undefined,
-            } as unknown as IAddLikeInputDTO
+            } as unknown as IRemoveLikeInputDTO
 
-            await postBusiness.addLike(input)
+            await postBusiness.removeLike(input)
         } catch (error:unknown) {
             if(error instanceof BaseError){
                 expect(error.statusCode).toEqual(401)
@@ -52,7 +52,7 @@ describe("Testando PostBusiness", () => {
                 postId:"205"
             }
 
-            await postBusiness.addLike(input)
+            await postBusiness.removeLike(input)
           }
          catch (error:unknown) {
              if(error instanceof BaseError){
@@ -63,21 +63,21 @@ describe("Testando PostBusiness", () => {
         }
     })
     
-    test("deve retornar erro caso já tenha dado like", async () => {
+    test("deve retornar erro caso não tenha dado like", async () => {
         expect.assertions(2)
 
         try {
-            const input: IAddLikeInputDTO = {
-                    token: "token-astrodev",
+            const input: IRemoveLikeInputDTO = {
+                    token: "token-mock",
                     postId:"201"
             }
 
-            await postBusiness.addLike(input)
+            await postBusiness.removeLike(input)
           }
          catch (error:unknown) {
              if(error instanceof BaseError){
                  expect(error.statusCode).toEqual(400)
-                 expect(error.message).toEqual("Já deu like")
+                 expect(error.message).toEqual("Ainda não deu like")
              }
         }
     })
