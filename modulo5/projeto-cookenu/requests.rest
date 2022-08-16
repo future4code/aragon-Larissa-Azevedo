@@ -1,0 +1,62 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Signup
+POST https://cookenu-larissa-aragon.herokuapp.com/users/signup
+Content-Type: application/json
+
+{   
+    "nickname":"larissa",
+    "email":"larissa@dev.com",
+    "password":"abc123"
+}
+
+### Login
+POST https://cookenu-larissa-aragon.herokuapp.com/users/login
+Content-Type: application/json
+
+{
+    "email": "astrodev@gmail.com",
+    "password": "bananinha"
+}
+
+### get all users
+GET https://cookenu-larissa-aragon.herokuapp.com/users/
+Authorization: 
+
+### create recipe
+POST https://cookenu-larissa-aragon.herokuapp.com/recipes/create
+Authorization: 
+Content-Type: application/json
+
+{
+    "title":"Mousse de Maracujá",
+    "description":"para testar o filtro"
+}
+
+### Get all recipes by name
+GET https://cookenu-larissa-aragon.herokuapp.com/recipes/?name=mousse
+Authorization:
+
+### Get all recipes 
+GET https://cookenu-larissa-aragon.herokuapp.com/recipes
+Authorization: 
+
+### Edit Recipe
+PUT http://cookenu-larissa-aragon.herokuapp.com/recipes/edit?creatorId= <inserir creatorId>
+Authorization: 
+Content-Type: application/json
+
+{
+    "recipeId":"103",
+    "title":"Kibe Vegan",
+    "description":"Kibe de trigo com alho-poró"
+}
+
+### deletar receita
+DELETE https://cookenu-larissa-aragon.herokuapp.com/recipes/:recipeId
+Authorization: 
+
+###deletar usuário
+DELETE https://cookenu-larissa-aragon.herokuapp.com/users/:userId
+Authorization: 
