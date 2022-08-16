@@ -68,26 +68,46 @@ describe("Testando UserBusiness", () => {
         }
     })
 
-    test("deve retornar erro caso email já seja cadastrado", async () => {
+    test("deve retornar erro caso email não seja string", async () => {
         expect.assertions(2)
-
+        
         try {
             const input = {
-                name: "dev-astro",
-                email:"astrodev@gmail.com",
-                password:"docedebanana"
-            }
+                name: "Alice",
+                email:undefined,
+                password:"alice99"
+            } as unknown as ISignupInputDTO
 
             await userBusiness.signup(input)
-
-        } catch (error:unknown) {
-            if(error instanceof BaseError) {
-                expect(error.statusCode).toEqual(409)
-                expect(error.message).toEqual("Email já cadastrado")
-            }
             
+        } catch (error:unknown) {
+            if(error instanceof BaseError){
+                expect(error.statusCode).toEqual(400)
+                expect(error.message).toEqual("Parâmetro 'email' inválido: deve ser uma string")
+            }            
         }
     })
+
+    test("deve retornar erro caso password não seja string", async () => {
+        expect.assertions(2)
+        
+        try {
+            const input = {
+                name: "Alice",
+                email:"alice@gmail.com",
+                password:undefined
+            } as unknown as ISignupInputDTO
+
+            await userBusiness.signup(input)
+            
+        } catch (error:unknown) {
+            if(error instanceof BaseError){
+                expect(error.statusCode).toEqual(400)
+                expect(error.message).toEqual("Parâmetro 'password' inválido: deve ser uma string")
+            }            
+        }
+    })
+
 
     test("deve retornar erro caso nome seja menor que 3 caracteres", async () => {
         expect.assertions(2)
@@ -130,5 +150,45 @@ describe("Testando UserBusiness", () => {
             
         }
     })  
+
+    test("deve retornar erro caso o email seja inválido",async () => {
+        expect.assertions(2)
+
+        try {
+            const input:ISignupInputDTO = {
+                name:"Astrodev",
+                email:"astrodevgmail.com",
+                password:"bananinha"
+            }
+            await userBusiness.signup(input)
+            
+        } catch (error:unknown) {
+            if(error instanceof BaseError){
+                expect(error.statusCode).toEqual(400)
+                expect(error.message).toEqual("Parâmetro 'email' inválido")
+            }            
+        }
+    })
+
+    test("deve retornar erro caso email já seja cadastrado", async () => {
+        expect.assertions(2)
+
+        try {
+            const input = {
+                name: "dev-astro",
+                email:"astrodev@gmail.com",
+                password:"docedebanana"
+            }
+
+            await userBusiness.signup(input)
+
+        } catch (error:unknown) {
+            if(error instanceof BaseError) {
+                expect(error.statusCode).toEqual(409)
+                expect(error.message).toEqual("Email já cadastrado")
+            }
+            
+        }
+    })
     
 })
