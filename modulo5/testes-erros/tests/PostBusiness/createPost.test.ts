@@ -26,4 +26,5 @@ describe("Testando PostBusiness", () => {
         expect(response.post.getContent()).toEqual("Oi mundo!")
         expect(response.post.getUserId()).toEqual("101")
     })
+    
 })
