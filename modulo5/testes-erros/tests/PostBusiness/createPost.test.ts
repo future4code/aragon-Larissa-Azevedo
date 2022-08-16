@@ -67,7 +67,7 @@ describe("Testando PostBusiness", () => {
 
     })
 
-    test("deve retornar erro caso content não seja string vazia", async () => {
+    test("deve retornar erro caso content seja string vazia", async () => {
         expect.assertions(2)
 
         try {
@@ -84,7 +84,6 @@ describe("Testando PostBusiness", () => {
             }
         }
 
-    })
-    
+    })    
     
 })
