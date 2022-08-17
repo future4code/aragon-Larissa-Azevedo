@@ -59,4 +59,16 @@ export class User {
     public setRole = (newRole: USER_ROLES) => {
         this.role = newRole
     }
+    
+}
+
+export interface ISignupInputDTO {
+    name: string,
+    email: string,
+    password: string
+}
+
+export interface ISignupOutputDTO {
+    message: string,
+    token: string
 }
