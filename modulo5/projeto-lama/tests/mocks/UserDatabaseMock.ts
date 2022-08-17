@@ -43,4 +43,5 @@ export class UserDatabaseMock extends BaseDatabase {
 
         return result[0]
     }
+
 }

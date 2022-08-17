@@ -1,7 +1,9 @@
 import { UserDatabase } from "../database/UserDatabase"
 import { ConflictError } from "../errors/ConflictError"
+import { NotFoundError } from "../errors/NotFoundError"
 import { RequestError } from "../errors/RequestError"
-import { ISignupInputDTO, ISignupOutputDTO, User, USER_ROLES } from "../models/User"
+import { UnauthorizedError } from "../errors/UnauthorizedError"
+import { ILoginInputDTO, ILoginOutputDTO, ISignupInputDTO, ISignupOutputDTO, User, USER_ROLES } from "../models/User"
 import { Authenticator, ITokenPayload } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -15,10 +17,7 @@ export class UserBusiness {
     ) {}
 
     public signup = async (input:ISignupInputDTO) => {
-        const name = input.name
-        const email = input.email
-        const password = input.password
-
+        const {name, email, password } = input      
 
         if (typeof name !== "string" || name.length < 3) {
             throw new RequestError("Erro: Parâmetro 'name' deve ser 'string' e ter ao menos 3 caracteres.")
@@ -37,8 +36,8 @@ export class UserBusiness {
             throw new RequestError("Erro: Parâmetro 'email' inválido.")
         }
 
-        const emailExists = await this.userDatabase.checksIfEmailExists(email)
-        if (emailExists) {
+        const ifEmailExists = await this.userDatabase.checksIfEmailExists(email)
+        if (ifEmailExists) {
             throw new ConflictError("Erro: E-mail já cadastrado!");
         }
 
@@ -70,5 +69,61 @@ export class UserBusiness {
         return response    
 
     }
+
+    public login = async(input:ILoginInputDTO) => {
+        const {email, password} = input
+
+        if (typeof email !== "string") {
+            throw new RequestError("Erro: Parâmetro 'email' deve ser do tipo 'string.'")
+        }
+
+        if (!email.includes("@") || !email.includes(".com")) {
+            throw new RequestError("Erro: Parâmetro 'email' inválido.")
+        }
+
+        if (typeof password !== "string") {
+            throw new RequestError("Erro: Parâmetro 'password' deve ser do tipo 'string.'")
+        }
+
+        if(password.length < 6){
+            throw new RequestError("Erro: Parâmetro 'password' deve ter ao menos 6 caracteres.")
+        }
+
+        const userDB = await this.userDatabase.checksIfEmailExists(email)
+        if (!userDB) {
+            throw new NotFoundError("Erro: E-mail não cadastrado no sistema!");
+        }
+
+        const user = new User(
+            userDB.id,
+            userDB.name,
+            userDB.email,
+            userDB.password,
+            userDB.role
+        )
+
+        const ifPasswordIsCorrect = await this.hashManager.compare(password, user.getPassword())
+
+        if(!ifPasswordIsCorrect){
+            throw new UnauthorizedError("Erro: password incorreta!");            
+        }
+
+        const payload:ITokenPayload = {
+            id:user.getId(),
+            role:user.getRole()
+        }
+
+        const token = this.authenticator.generateToken(payload)
+
+        const response:ILoginOutputDTO = {
+            message:"Login realizado com sucesso!",
+            token
+        }
+
+        return response           
+            
+    }
+
+    
 
 }

@@ -61,7 +61,6 @@ export class User {
     }
     
 }
-
 export interface ISignupInputDTO {
     name: string,
     email: string,
@@ -71,4 +70,14 @@ export interface ISignupInputDTO {
 export interface ISignupOutputDTO {
     message: string,
     token: string
+}
+
+export interface ILoginInputDTO {
+    email:string,
+    password:string
+}
+
+export interface ILoginOutputDTO{
+    message:string,
+    token:string
 }

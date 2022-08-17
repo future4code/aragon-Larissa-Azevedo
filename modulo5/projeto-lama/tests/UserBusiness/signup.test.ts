@@ -1,4 +1,3 @@
-import { getMaxListeners } from "process"
 import { UserBusiness } from "../../src/business/UserBusiness"
 import { UserDatabase } from "../../src/database/UserDatabase"
 import { BaseError } from "../../src/errors/BaseError"
