@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { ShowBusiness } from "../business/ShowBusiness";
 import { BaseError } from "../errors/BaseError";
-import { ICreateShowInputDTO } from "../models/Show";
+import { RequestError } from "../errors/RequestError";
+import { ICreateShowInputDTO, ITicketReservationInputDTO } from "../models/Show";
 
 export class ShowController {
     constructor(
@@ -38,6 +39,26 @@ export class ShowController {
             }
 
             res.status(500).send({message: "Erro inesperado ao buscar shows"})
+        }
+    }
+
+    public ticketReservation = async (req:Request, res:Response) => {
+        try {
+            const input:ITicketReservationInputDTO = {
+                token: req.headers.authorization,
+                show_id: req.params.show_id
+            }
+
+            const response = await this.showBusiness.ticketReservation(input)
+            res.status(200).send(response)
+            
+        } catch (error:unknown) {
+            if( error instanceof BaseError){
+                return res.status(error.statusCode).send({message: error.message})
+            }
+
+            res.status(500).send({message: "Erro inesperado ao buscar shows"})
+            
         }
     }
 

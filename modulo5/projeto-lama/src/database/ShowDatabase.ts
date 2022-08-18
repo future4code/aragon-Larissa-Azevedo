@@ -1,4 +1,4 @@
-import { IShowDB, Show } from "../models/Show"
+import { IShowDB, ITicketDB, ITicketReservationInputDTO, Show } from "../models/Show"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class ShowDatabase extends BaseDatabase {
@@ -31,6 +31,29 @@ export class ShowDatabase extends BaseDatabase {
         .where({show_id: show_id})
 
         return result[0].tickets as number
+    }
+
+    public ticketReservation = async (ticket:ITicketDB) => {
+
+        await BaseDatabase.connection(ShowDatabase.TABLE_TICKETS).insert(ticket)        
+
+    }
+
+    public checksIfShowExists = async (show_id:string) => {
+        const result = await BaseDatabase.connection(ShowDatabase.TABLE_SHOWS)
+        .select()
+        .where({id: show_id})
+
+        return result[0]
+    }
+
+    public checksTicketAlreadyBought = async (show_id:string, user_id:string) => {
+        const ticketBoughtDB:ITicketDB[] = await BaseDatabase.connection(ShowDatabase.TABLE_TICKETS)
+        .select()
+        .where({show_id: show_id})
+        .andWhere({user_id: user_id})
+
+        return ticketBoughtDB[0]
     }
 
 }

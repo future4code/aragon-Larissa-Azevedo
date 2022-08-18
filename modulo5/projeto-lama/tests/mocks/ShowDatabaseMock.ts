@@ -1,5 +1,5 @@
 import { BaseDatabase } from "../../src/database/BaseDatabase"
-import { IShowDB, Show } from "../../src/models/Show"
+import { IShowDB, ITicketDB, Show } from "../../src/models/Show"
 
 export class ShowDatabaseMock extends BaseDatabase {
     public static TABLE_SHOWS = "Lama_Shows"
@@ -45,6 +45,39 @@ export class ShowDatabaseMock extends BaseDatabase {
               return 0
       }
     }
+
+    public ticketReservation = async (ticket:ITicketDB) => {
+       
+
+  }
+
+    public checksIfShowExists = async (show_id:string) => {
+      switch(show_id){
+        case "201":
+          return {
+            id: "201",
+            band: "Foo Fighters",
+            starts_at: new Date("2022-12-05")
+          } as IShowDB
+
+          default:
+            undefined
+      }
+  }
+
+  public checksTicketAlreadyBought = async (show_id:string, user_id:string) => {
+    switch(show_id){
+      case "201":
+        return user_id === "101" ? {
+          id:"301",
+          show_id:"201",
+          user_id:"101"
+        } as ITicketDB : undefined
+    }
+  
+}
+
+    
 
 
 }

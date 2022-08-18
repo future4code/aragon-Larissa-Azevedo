@@ -66,3 +66,12 @@ export interface ICreateShowOutputDTO{
 export interface IGetShowsOutputDTO {
     shows: Show[]
 }
+
+export interface ITicketReservationInputDTO {
+    token:string,
+    show_id:string
+}
+
+export interface ITicketReservationOutputDTO{
+    message: string,
+}
