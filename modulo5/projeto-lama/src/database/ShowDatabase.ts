@@ -16,5 +16,22 @@ export class ShowDatabase extends BaseDatabase {
     
     }
 
+    public getShows =async () => {
+        const showsDB:IShowDB[] = await BaseDatabase.connection(ShowDatabase.TABLE_SHOWS)
+        .select()
+
+        return showsDB
+
+    }
+
+    public getTickets =async (show_id:string) => {
+        const result = await BaseDatabase.connection(ShowDatabase.TABLE_TICKETS)
+        .select()
+        .count("id AS tickets")
+        .where({show_id: show_id})
+
+        return result[0].tickets as number
+    }
+
 }
 

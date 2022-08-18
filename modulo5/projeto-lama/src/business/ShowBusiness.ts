@@ -2,7 +2,7 @@ import { ShowDatabase } from "../database/ShowDatabase"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
-import { ICreateShowInputDTO, ICreateShowOutputDTO, Show } from "../models/Show"
+import { ICreateShowInputDTO, ICreateShowOutputDTO, IGetShowsOutputDTO, Show } from "../models/Show"
 import { UnauthorizedError } from "../errors/UnauthorizedError"
 import { USER_ROLES } from "../models/User"
 
@@ -43,7 +43,32 @@ export class ShowBusiness {
         }
 
         return response
-        
+    }
+
+    public getShows = async () => {
+        const showsDB = await this.showDatabase.getShows()
+
+        const shows = showsDB.map(showDB => {
+            return new Show(
+                showDB.id,
+                showDB.band,
+                showDB.starts_at
+            )
+        })
+
+        for(let show of shows){
+            const show_id = show.getId()
+            const tickets:any = await this.showDatabase.getTickets(show_id)
+
+            show.setTickets(show.getTickets() - tickets)
+        }
+
+        const response:IGetShowsOutputDTO = {
+            shows
+        }
+
+        return response        
+
     }
 
 }

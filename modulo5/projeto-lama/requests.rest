@@ -29,3 +29,6 @@ Content-Type: application/json
     "band":"Daisy Jones & The Six",
     "starts_at":"12/12/22"
 }
+
+### 4) Get Shows
+GET http://localhost:3003/shows/
