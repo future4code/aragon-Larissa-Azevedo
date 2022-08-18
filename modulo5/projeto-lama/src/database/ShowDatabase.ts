@@ -47,14 +47,31 @@ export class ShowDatabase extends BaseDatabase {
         return result[0]
     }
 
+    public findTicket = async (show_id: string) => {
+        const result: ITicketDB[] = await BaseDatabase
+            .connection(ShowDatabase.TABLE_TICKETS)
+            .select()
+            .where({ show_id })
+
+        return result[0]
+    }
+
+
     public checksTicketAlreadyBought = async (show_id:string, user_id:string) => {
         const ticketBoughtDB:ITicketDB[] = await BaseDatabase.connection(ShowDatabase.TABLE_TICKETS)
         .select()
-        .where({show_id: show_id})
-        .andWhere({user_id: user_id})
+        .where({show_id, user_id})        
 
         return ticketBoughtDB[0]
     }
+
+
+    public removeReservation = async (show_id:string, user_id:string) => {
+        await BaseDatabase.connection(ShowDatabase.TABLE_TICKETS)
+        .delete()
+        .where({show_id, user_id})
+    }
+
 
 }
 

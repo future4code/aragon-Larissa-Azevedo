@@ -77,7 +77,39 @@ export class ShowDatabaseMock extends BaseDatabase {
   
 }
 
-    
+public removeReservation = async (show_id:string, user_id:string) => {
+
+}  
+
+public findTicket = async (ticketId: string) => {
+  switch (ticketId) {
+      case "201":
+          return {
+              id: "301",
+              show_id: "201",
+              user_id: "101"
+          } as ITicketDB
+      default:
+          return undefined
+  }
+}
+
+
+
+public checksIfTicketExists = async (show_id:string, user_id:string) => {
+  if (show_id === "201" && user_id === "101") {
+    return {
+        id: "301",
+        show_id: "201",
+        user_id: "101"
+    } as ITicketDB
+} else {
+    return undefined
+}
+
+ 
+}
+
 
 
 }

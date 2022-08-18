@@ -2,7 +2,7 @@ import { ShowDatabase } from "../database/ShowDatabase"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
-import { ICreateShowInputDTO, ICreateShowOutputDTO, IGetShowsOutputDTO, ITicketDB, ITicketReservationInputDTO, ITicketReservationOutputDTO, Show } from "../models/Show"
+import { ICreateShowInputDTO, ICreateShowOutputDTO, IGetShowsOutputDTO, IRemoveReservationInputDTO, IRemoveReservationOutputDTO, ITicketDB, ITicketReservationInputDTO, ITicketReservationOutputDTO, Show } from "../models/Show"
 import { UnauthorizedError } from "../errors/UnauthorizedError"
 import { USER_ROLES } from "../models/User"
 import { NotFoundError } from "../errors/NotFoundError"
@@ -73,7 +73,7 @@ export class ShowBusiness {
         return response        
     }
 
-    public ticketReservation =async (input:ITicketReservationInputDTO) => {
+    public ticketReservation = async (input:ITicketReservationInputDTO) => {
         const {token, show_id} = input
 
         const payload = this.authenticator.getTokenPayload(token)
@@ -96,20 +96,57 @@ export class ShowBusiness {
 
         const id = this.idGenerator.generate()
 
-        const ticketDB:ITicketDB = {
+        const ticket:ITicketDB = {
             id: id,
             show_id: show_id,
             user_id:payload.id
         }
 
-        await this.showDatabase.ticketReservation(ticketDB)
+        await this.showDatabase.ticketReservation(ticket)
 
         const response:ITicketReservationOutputDTO = {
-            message:"Ingresso comprado com sucesso!"            
+            message:"Ingresso comprado com sucesso!",
+            ticket
+                    
         }
 
         return response
 
+    }
+
+    public removeReservation = async (input:IRemoveReservationInputDTO) => {
+        const {token, show_id} = input
+
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if (!payload) {
+            throw new UnauthorizedError("Erro: Usuário não autenticado.")
+        }
+        
+        const findShow = await this.showDatabase.checksIfShowExists(show_id)
+
+        if(!findShow){
+            throw new NotFoundError("Erro: Show não encontrado!");            
+        }
+    
+
+        const findTicket = await this.showDatabase.findTicket(show_id)
+
+        if(payload.role === USER_ROLES.NORMAL){  
+            if(findTicket.user_id !== payload.id){
+                throw new UnauthorizedError("Erro: Apenas usuários 'ADMIN' podem deletar qualquer compra.")
+            }                                         
+        }      
+
+        await this.showDatabase.removeReservation(show_id, payload.id)
+
+        const response:IRemoveReservationOutputDTO = {
+            message:"Compra de Ingresso deletada com sucesso!"
+        }
+
+        return response
+
+        
     }
 
 }

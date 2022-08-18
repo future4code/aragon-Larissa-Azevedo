@@ -74,4 +74,15 @@ export interface ITicketReservationInputDTO {
 
 export interface ITicketReservationOutputDTO{
     message: string,
+    ticket: ITicketDB
+}
+
+export interface IRemoveReservationInputDTO{
+    token: string,
+    show_id: string
+}
+
+export interface IRemoveReservationOutputDTO{
+    message: string,
+
 }

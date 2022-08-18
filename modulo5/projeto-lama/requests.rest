@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
     "name": "Larissa",
-    "email": "larissa@dev.com",
+    "email": "larissa@devvv.com",
     "password": "backend"
 }
 
@@ -16,8 +16,8 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "astrodev@gmail.com",
-    "password": "bananinha"
+    "email": "larissa@devvv.com",
+    "password": "backend"
 }
 
 ### 3) Create Show
@@ -34,5 +34,10 @@ Content-Type: application/json
 GET http://localhost:3003/shows/
 
 ### 5) Ticket Reservation
-POST http://localhost:3003/shows/tickets/2d7ddda0-8d61-4eb7-ad92-4d547d8dfe87
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMxM2M1MjAxLTY5NTYtNGM5Yy04ZGI1LWRmNDA3NmEzNWIxMiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA4NDQ1MjcsImV4cCI6MTY2MDkzMDkyN30.mkqOvbB3-5bnjoQykdyC-jiTaKtQv9ndDWtgOa18dIo
+POST http://localhost:3003/shows/tickets/543d74d0-8ad2-4487-9e09-a46167afc784 
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDg1OTMzMywiZXhwIjoxNjYwOTQ1NzMzfQ.ScqLry3dtYswZzlUuQFKoG4lE9XVW5pJqAXg8JovFRg 
+//token do astrodev ^
+
+### 6) Remove Reservation
+DELETE http://localhost:3003/shows/tickets/543d74d0-8ad2-4487-9e09-a46167afc784
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE5NjExNDFiLWEyMTQtNDE3ZC1iNTc4LWYxNzM1ZjgwMWM2NiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA4NTk0MTMsImV4cCI6MTY2MDk0NTgxM30.phpqecUW9LnjLR-U4mNYkG4So4HFUNtNBL1UKrD-u6M
