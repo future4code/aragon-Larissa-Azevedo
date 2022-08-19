@@ -9,6 +9,21 @@ export class ShowDatabaseMock extends BaseDatabase {
         
     }
 
+    public checkAvaiableDate =async (show_date: string) => {
+      switch(show_date){
+        case "2022-12-07":
+          return {
+            id: "203",
+            band: "Evanescence",
+            starts_at: new Date("2022-12-07"),
+          } as IShowDB
+
+          default:
+            return undefined
+      }
+  }
+
+
     public getShows =async () => {
       const shows: IShowDB[] = [
         {
@@ -29,7 +44,7 @@ export class ShowDatabaseMock extends BaseDatabase {
           {
             id: "2938d0ff-5b1e-4519-aace-bcf7ace62d57",
             band: "Daisy Jones & The Six",
-            starts_at: new Date("2012-12-22"),
+            starts_at: new Date("2022-12-22"),
           },
       ]          
       

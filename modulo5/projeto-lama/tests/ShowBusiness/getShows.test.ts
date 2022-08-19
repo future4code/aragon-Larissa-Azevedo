@@ -19,7 +19,7 @@ describe("Testing ShowBusiness", () => {
         expect(response.shows.length).toEqual(4)
         expect(response.shows[3].getId()).toEqual("2938d0ff-5b1e-4519-aace-bcf7ace62d57")
         expect(response.shows[3].getBand()).toEqual("Daisy Jones & The Six")
-        expect(response.shows[3].getStartsAt()).toEqual(new Date("2012-12-22"))
+        expect(response.shows[3].getStartsAt()).toEqual(new Date("2022-12-22"))
     })
 
 }) 

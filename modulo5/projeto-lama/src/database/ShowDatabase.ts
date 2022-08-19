@@ -16,6 +16,14 @@ export class ShowDatabase extends BaseDatabase {
     
     }
 
+    public checkAvaiableDate =async (show_date: string) => {
+        const result = await BaseDatabase.connection(ShowDatabase.TABLE_SHOWS)
+        .select()
+        .where({starts_at: show_date})
+
+        return result[0]
+    }
+
     public getShows =async () => {
         const showsDB:IShowDB[] = await BaseDatabase.connection(ShowDatabase.TABLE_SHOWS)
         .select()
