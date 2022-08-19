@@ -30,14 +30,14 @@ export class ShowBusiness {
             throw new UnauthorizedError("Erro: Apenas usuários 'ADMIN' podem criar shows.");                         
         }
 
-        if(starts_at < "2022-12-05"){
+        if(new Date(starts_at) < new Date("2022-12-05")){
             throw new RequestError
             ("Erro: o show não pode ser criado em dia anterior ao início do festival!");           
         }
 
-        if(starts_at > "2022-12-11"){
+        if(new Date(starts_at) > new Date("2022-12-11")){
             throw new RequestError("Erro: o show não pode ser criado em dia posterior ao fim do festival!");            
-        }
+        }       
 
         const checkAvaiableDate = await this.showDatabase.checkAvaiableDate(starts_at)
 

@@ -23,10 +23,11 @@ Content-Type: application/json
 ### 3) Create Show
 POST http://localhost:3003/shows/create
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDkzMTI0OSwiZXhwIjoxNjYxMDE3NjQ5fQ.IOn1QQ_wzguwrWCKl-Z7BoQoKNvrJX3IK7manMtLUww
+Content-Type: application/json
 
 {
     "band":"Daisy Jones & The Six",
-    "starts_at":"2022-12-10"
+    "starts_at":"2022/12/08 00:00:00 GMT-0300"
 }
 
 ### 4) Get Shows

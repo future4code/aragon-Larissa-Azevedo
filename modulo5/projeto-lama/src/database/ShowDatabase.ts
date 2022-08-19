@@ -11,6 +11,8 @@ export class ShowDatabase extends BaseDatabase {
             band:input.getBand(),
             starts_at:input.getStartsAt(),
         }
+        console.log(input)
+        console.log(input.getStartsAt())
 
         await BaseDatabase.connection(ShowDatabase.TABLE_SHOWS).insert(showDB)
     
