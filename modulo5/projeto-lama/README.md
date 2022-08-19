@@ -1,4 +1,4 @@
-# LAMA :computer: :woman
+# LAMA :microphone::guitar::sound:
 
 ## Um projeto Backend da Labenu
 
@@ -18,11 +18,12 @@ Este sistema permite, de forma simplificada, que a pessoa usuária possa se cada
 
 * cadastrar nova pessoa usuária, com o método **POST** signup;
 
-* fazer seu login para ccom **POST** login;
+* fazer seu login para com **POST** login;
   * Ao fazer login será gerado um token, guarde-o para acessar os endpoints protegidos. Será necessário informar o token no campo "Authorization" dos 'headers' em alguns endpoints, conforme documentação.
 
 * cadastrar novo show, com o método **POST** createShow;
   * funcionalidade restrita à pessoa usuária do tipo "ADMIN".
+  * o sistema apenas aceita o formato "YYYY/MM/DD **00:00:00 GMT-0300** para cadastro de show."
 
 * buscar todos os shows do LAMA  com **GET** allShows, independente de login;
 
@@ -39,15 +40,14 @@ Este sistema permite, de forma simplificada, que a pessoa usuária possa se cada
 
 <img align="left"  src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
 <img align="left"  src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white"/>
-<img align="left"  src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"/>
-<img align="left"  src="https://img.shields.io/badge/Knex.js-404D59?style=for-the-badge"/>
+<img align="left"  src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express&logoColor=white"/>
+<img align="left"  src="https://img.shields.io/badge/Knex.js-d34e36?style=for-the-badge"/>
 <img align="left"  src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white"/>
 <img align="left"  src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
+<img align="left"  src="https://img.shields.io/badge/Jest-30cb2d?style=for-the-badge&logo=jest&logoColor=white"/>
+
 
 <br><br>
 
-#### Testes Unitários feitos com Jest
-
-<img align="left" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" />
 
 ##### Feito com VSCode, Beekeeper-Studio e Postman
