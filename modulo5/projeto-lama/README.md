@@ -6,9 +6,9 @@
 
 Dando continuidade aos aprendizados do módulo de **Back-end**, o projeto _LAMA - Labenu Music Awards_ busca simular um site de festival de música.
 
-O deploy foi feito no Heroku (<>) e testado no Postman.
+O deploy foi feito no Heroku (<https://lama-larissa-aragon.herokuapp.com/>) e testado no Postman.
 
-A documentação pode ser acessada neste link do [Postman](url) :link:
+A documentação pode ser acessada neste link do [Postman](https://documenter.getpostman.com/view/20783829/VUqoRz4f) :link:
 
 Também há um documento requests.rest que poderá ser acessado diretamente do VSCode, caso o usuário possua extensão "REST Client" instalada.
 
@@ -48,6 +48,11 @@ Este sistema permite, de forma simplificada, que a pessoa usuária possa se cada
 
 
 <br><br>
+
+Foram realizados **testes unitários** neste projeto com o _framework_ Jest.
+Abaixo segue a imagem com os dados da cobertura dos testes.
+<br><br>
+![image](https://user-images.githubusercontent.com/90583823/185708728-7bfcad1c-9d55-4a1c-8c7d-f366c4d39ae0.png)
 
 
 ##### Feito com VSCode, Beekeeper-Studio e Postman
