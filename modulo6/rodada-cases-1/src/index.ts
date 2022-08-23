@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import { pingRouter } from './router/pingRouter';
+import { userRouter } from './router/userRouter';
 
 dotenv.config()
 const app = express()
@@ -15,3 +16,4 @@ app.listen(process.env.PORT || 3003, () => {
 })
 
 app.use("/ping", pingRouter)
+app.use("/users", userRouter)
