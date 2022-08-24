@@ -28,12 +28,8 @@ export class ProductController {
     }
 
     public getProducts = async (req:Request, res: Response) => {
-        try {
-            const input:IGetProductsInputDTO = {
-                query:req.query.query as string
-            } 
-
-            const response = await this.productBusiness.getProducts(input as unknown as string)
+        try {           
+            const response = await this.productBusiness.getProducts()
 
             res.status(200).send(response)
             
@@ -42,6 +38,47 @@ export class ProductController {
                 return res.status(error.statusCode).send({ message: error.message })
             }
             res.status(500).send({ message: "Erro inesperado ao buscar produtos!" })
+        }
+    }
+
+    public getProductSearch = async (req:Request, res: Response) => {
+        try {      
+
+            const search:IGetProductsInputDTO = {
+                search: req.query.search as string | number
+            }                         
+            
+            const response = await this.productBusiness.getProductSearch(search)
+
+            res.status(200).send(response)
+            
+        } catch (error:unknown) {
+            if (error instanceof BaseError) {
+                return res.status(error.statusCode).send({ message: error.message })
+            }
+            res.status(500).send({ message: "Erro inesperado ao buscar produtos por nome!" })
+        }
+    }
+
+    public getProductSearchByTag = async (req:Request, res: Response) => {
+        try {      
+
+            const search:IGetProductsInputDTO = {
+                search: req.query.search as string 
+            }
+
+            console.log({controller: search})                        
+            
+            const response = await this.productBusiness.getProductSearchByTag(search)
+
+            res.status(200).send(response)
+            
+        } catch (error:unknown) {
+            if (error instanceof BaseError) {
+                return res.status(error.statusCode).send({ message: error.message })
+            }
+            res.status(500).send({ message: "Erro inesperado ao buscar produtos por tag!" })
+            console.log(error)
         }
     }
 }

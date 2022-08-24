@@ -19,3 +19,5 @@ const productController = new ProductController(
 
 productRouter.post("/add", productController.addProduct)
 productRouter.get("/", productController.getProducts)
+productRouter.get("/search", productController.getProductSearch)
+productRouter.get("/byTag", productController.getProductSearchByTag)

@@ -61,7 +61,7 @@ export interface IAddProductOutputDTO{
 }
 
 export interface IGetProductsInputDTO{
-    query:string
+   search:string | number
 }
 
 export interface IGetProductsOutputDTO{

@@ -98,34 +98,69 @@ export const tags:ITagsDB[] = [
 
 export const tagsProduct:ITagsProductsDB[] = [
   {
-    id: 1,
+    id: 201,
     product_id: 8371,
     tag_id: 101
   },
   {
-    id: 2,
+    id: 202,
     product_id:8371,
     tag_id: 102
   },
   {
-    id: 3,
+    id: 203,
     product_id:8371,
     tag_id: 103
   },
   {
-    id: 4,
+    id: 204,
     product_id:8371,
     tag_id: 104
   },
   {
-    id: 5,
+    id:205,
     product_id:8367,
     tag_id: 105
   },
   {
-    id: 6,
+    id: 206,
     product_id:8367,
     tag_id: 106
+  },
+  {
+    id: 207,
+    product_id:8363,
+    tag_id: 107
+  },
+  {
+    id: 208,
+    product_id:8363,
+    tag_id: 103
+  },
+  {
+    id: 209,
+    product_id:8363,
+    tag_id: 108
+  },
+  {
+    id: 210,
+    product_id:8363,
+    tag_id: 109
+  },
+  {
+    id: 212,
+    product_id:8360,
+    tag_id: 110
+  },
+  {
+    id: 213,
+    product_id:8360,
+    tag_id: 111
+  },
+  {
+    id: 214,
+    product_id:8360,
+    tag_id: 112
   }
 ]
   

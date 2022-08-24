@@ -32,3 +32,11 @@ Content-Type: application/json
 
 ### 4) Get Products
 GET http://localhost:3003/products/
+
+### 4) Get Products By Search / id
+GET http://localhost:3003/products/search?search=8363
+
+### 5) Get Products By Search / name
+GET http://localhost:3003/products/search?search=com
+### 5) Get Products By Search / Tag
+GET http://localhost:3003/products/byTag?search=colorido
