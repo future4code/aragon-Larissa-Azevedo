@@ -1,18 +1,13 @@
-import { tags } from "../database/migrations/data";
 import { ProductDatabase } from "../database/ProductDatabase";
 import { RequestError } from "../errors/RequestError";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
-import { IAddProductInputDTO, IGetProductsInputDTO, Product } from "../models/Products";
+import { IAddProductInputDTO, IGetProductsByIdInputDTO, IGetProductsByNameInputDTO, IGetProductsByTagInputDTO, IGetProductsOutputDTO, Product } from "../models/Products";
 import { USER_ROLES } from "../models/User";
 import { Authenticator } from "../services/Authenticator";
-import { HashManager } from "../services/HashManager";
-import { IdGenerator } from "../services/IdGenerator";
 
 export class ProductBusiness{
     constructor(
         private productDatabase:ProductDatabase,
-        private idGenerator: IdGenerator,
-        private hashManager: HashManager,
         private authenticator: Authenticator
     ){}
 
@@ -75,15 +70,21 @@ export class ProductBusiness{
         return products
     }
 
-    public getProductSearch =async (input:IGetProductsInputDTO) => {
-    const  search  = input.search 
+    public getProductSearchById = async (input:IGetProductsByIdInputDTO) => {
+    const  search  = Number(input.search) //ERRO retorna NaN
+    
+    console.log(search)
 
     if(!search){
-        throw new RequestError("Erro: insira id ou nome do produto para busca!");
+        throw new RequestError("Erro: insira id do produto para busca!");
         
     }
 
-    const productsDB = await this.productDatabase.getProductSearch(search)
+    if(typeof search !== "number"){
+        throw new RequestError("Erro: id para busca deve ser um 'number'!")
+    }
+
+    const productsDB = await this.productDatabase.getProductSearchById(search)
     
     const products = productsDB.map(productDB => {
         return new Product(
@@ -99,24 +100,30 @@ export class ProductBusiness{
 
         product.setTags(tags)
     }
+
+    const response:IGetProductsOutputDTO = {
+        products
+    }
     
-    return products
+    return response
     
 }
 
-public getProductSearchByTag =async (input:IGetProductsInputDTO) => {
-    const  search  = input.search as string
-
-    console.log({business: search})
+public getProductSearchByName =async (input:IGetProductsByNameInputDTO) => {
+    const  search  = Number(input.search) 
 
     if(!search){
-        throw new RequestError("Erro: insira tag do produto para busca!");
+        throw new RequestError("Erro: insira nome do produto para busca!");
         
     }
 
-    const productsDB = await this.productDatabase.getProductSearchByTag(search as string)
+    if(typeof search !== "string"){
+        throw new RequestError("Erro: id para bsuca deve ser uma 'string'!")
+    }
+
+    const productsDB = await this.productDatabase.getProductSearchByName(search)
     
-    const products = productsDB.map((productDB:any) => {
+    const products = productsDB.map(productDB => {
         return new Product(
             productDB.id,
             productDB.name
@@ -130,8 +137,34 @@ public getProductSearchByTag =async (input:IGetProductsInputDTO) => {
 
         product.setTags(tags)
     }
+
+    const response:IGetProductsOutputDTO = {
+        products
+    }
     
-    return products
+    return response
+    
 }
+
+public getProductSearchByTag =async (input:IGetProductsByTagInputDTO) => {
+    const  search  = input.search 
+
+    if(!search){
+        throw new RequestError("Erro: insira tag do produto para busca!");
+
+    }
+
+    const tag = await this.productDatabase.getTagById(search)
+    const tag_id = tag.map(item => item.id)
+
+    const products = await this.productDatabase.getProductSearchByTag(tag_id[0])
+
+    const response: IGetProductsOutputDTO = {
+        products: products
+    }   
+
+    return response
+}
+
 }
 

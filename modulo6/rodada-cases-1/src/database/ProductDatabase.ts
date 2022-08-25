@@ -1,5 +1,5 @@
 import {BaseDatabase} from "../database/BaseDatabase";
-import {IProductDB, ITagsDB, Product} from "../models/Products"
+import { IProductDB, ITagsDB, Product} from "../models/Products"
 
 export class ProductDatabase extends BaseDatabase{
     public static TABLE_PRODUCTS = "Products_Amaro"
@@ -17,7 +17,7 @@ export class ProductDatabase extends BaseDatabase{
         .insert(productDB)
     }
 
-    public getProductById = async (id:number) => {
+    public getProductById = async (id:string | number) => {
         const productsDB:IProductDB[] = await BaseDatabase
         .connection(ProductDatabase.TABLE_PRODUCTS)
         .select()
@@ -35,12 +35,20 @@ export class ProductDatabase extends BaseDatabase{
         return productsDB
     }
 
-    public getProductSearch = async (search:string | number) => {
+    public getProductSearchById = async (search: number) => {
         const result = await BaseDatabase
         .connection(ProductDatabase.TABLE_PRODUCTS)
         .select()
         .where("id", "LIKE", `%${search}%`)
-        .orWhere("name", "LIKE", `%${search}%`)
+
+        return result
+    }
+
+     public getProductSearchByName = async (search:string) => {
+        const result = await BaseDatabase
+        .connection(ProductDatabase.TABLE_PRODUCTS)
+        .select()
+        .where("name", "LIKE", `%${search}%`)
 
         return result
     }
@@ -49,13 +57,13 @@ export class ProductDatabase extends BaseDatabase{
         const tagsDB:ITagsDB[] = await BaseDatabase
         .connection(ProductDatabase.TABLE_TAGS)
         .select()
-        .where({name:search})
+        .where("name","LIKE", `%${search}%`)
 
         return tagsDB
 
     }
 
-    public getProductSearchByTag = async (search:string) => {
+    public getProductSearchByTag = async (search:string | number) => {
 
         const result = await BaseDatabase.connection.raw(`
         SELECT Products_Amaro.id, Products_Amaro.name
@@ -64,14 +72,14 @@ export class ProductDatabase extends BaseDatabase{
         ON Tags_Products_Amaro.tag_id = Tags_Amaro.id
         JOIN Products_Amaro
         ON Tags_Products_Amaro.product_id = Products_Amaro.id
-        WHERE Products_Amaro.name = "%${search}%"
+        WHERE Tags_Products_Amaro.tag_id LIKE "%${search}%"
         `)
 
-        return result    
+        return result[0]   
     }
 
 
-    public getTags = async (id: number) => {
+    public getTags = async (id: string | number) => {
 
         const [result] = await BaseDatabase.connection.raw(`
         SELECT Tags_Amaro.name
@@ -83,5 +91,7 @@ export class ProductDatabase extends BaseDatabase{
         return result
         
     }
+
+
         
     }

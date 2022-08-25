@@ -60,9 +60,18 @@ export interface IAddProductOutputDTO{
     message:string
 }
 
-export interface IGetProductsInputDTO{
-   search:string | number
+export interface IGetProductsByNameInputDTO{
+   search:string
 }
+
+export interface IGetProductsByIdInputDTO{
+    search:number
+ }
+
+ export interface IGetProductsByTagInputDTO{
+    search:string
+ }
+ 
 
 export interface IGetProductsOutputDTO{
     products: Product[]

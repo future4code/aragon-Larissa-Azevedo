@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { ProductBusiness } from "../business/ProductBusiness"
 import { BaseError } from "../errors/BaseError"
-import { IAddProductInputDTO, IGetProductsInputDTO } from "../models/Products"
+import { IAddProductInputDTO, IGetProductsByIdInputDTO, IGetProductsByNameInputDTO, IGetProductsByTagInputDTO } from "../models/Products"
 
 export class ProductController {
     constructor(
@@ -41,14 +41,33 @@ export class ProductController {
         }
     }
 
-    public getProductSearch = async (req:Request, res: Response) => {
+    public getProductSearchById = async (req:Request, res: Response) => {
         try {      
 
-            const search:IGetProductsInputDTO = {
-                search: req.query.search as string | number
+            const search:IGetProductsByIdInputDTO = {
+                search: Number(req.params.search)
+            }                         
+            console.log(search)
+            const response = await this.productBusiness.getProductSearchById(search)
+
+            res.status(200).send(response)
+            
+        } catch (error:unknown) {
+            if (error instanceof BaseError) {
+                return res.status(error.statusCode).send({ message: error.message })
+            }
+            res.status(500).send({ message: "Erro inesperado ao buscar produtos por id!" })
+        }
+    }
+
+    public getProductSearchByName = async (req:Request, res: Response) => {
+        try {      
+
+            const search:IGetProductsByNameInputDTO = {
+                search: req.query.search as unknown as string
             }                         
             
-            const response = await this.productBusiness.getProductSearch(search)
+            const response = await this.productBusiness.getProductSearchByName(search)
 
             res.status(200).send(response)
             
@@ -63,16 +82,15 @@ export class ProductController {
     public getProductSearchByTag = async (req:Request, res: Response) => {
         try {      
 
-            const search:IGetProductsInputDTO = {
+            const search:IGetProductsByTagInputDTO= {
                 search: req.query.search as string 
             }
+                      
 
-            console.log({controller: search})                        
-            
             const response = await this.productBusiness.getProductSearchByTag(search)
 
             res.status(200).send(response)
-            
+
         } catch (error:unknown) {
             if (error instanceof BaseError) {
                 return res.status(error.statusCode).send({ message: error.message })
@@ -81,4 +99,5 @@ export class ProductController {
             console.log(error)
         }
     }
+
 }
