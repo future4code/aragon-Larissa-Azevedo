@@ -15,7 +15,7 @@ describe("Testando ProductBusiness", () => {
         
         const response = await productBusiness.getProducts()
         
-        expect(response.length).toEqual(6)
+        expect(response.length).toEqual(5)
         
     })
 

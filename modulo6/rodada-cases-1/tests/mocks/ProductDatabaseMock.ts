@@ -35,8 +35,7 @@ export class ProductDatabaseMock extends BaseDatabase {
              }
            ]
 
-           return products
-       
+           return products       
     }
 
     public getProductById = async (id:number) => {
@@ -54,7 +53,6 @@ export class ProductDatabaseMock extends BaseDatabase {
             default:
                 return undefined
         }
-        
     }
 
     public getProductsSearchById = async (search: number) => {
@@ -139,6 +137,27 @@ export class ProductDatabaseMock extends BaseDatabase {
     }
 
     public getTags =async (id:number) => {
+        const tags:ITagsDB[] = [
+            {
+                id: 101,
+                name: "balada"
+            },
+            {
+                id: 102,
+                name: "neutro"
+            },
+            {
+                id: 103,
+                name: "delicado"
+            }
+        ]
+
+        switch(id){
+            case 8371:
+                return tags
+
+            default: undefined
+        }
 
         
     }
