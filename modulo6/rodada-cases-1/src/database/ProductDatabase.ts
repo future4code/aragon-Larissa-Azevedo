@@ -17,7 +17,7 @@ export class ProductDatabase extends BaseDatabase{
         .insert(productDB)
     }
 
-    public getProductById = async (id:string | number) => {
+    public getProductById = async (id: number) => {
         const productsDB:IProductDB[] = await BaseDatabase
         .connection(ProductDatabase.TABLE_PRODUCTS)
         .select()

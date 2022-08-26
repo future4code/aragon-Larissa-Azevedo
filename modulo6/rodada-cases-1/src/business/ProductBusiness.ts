@@ -30,6 +30,14 @@ export class ProductBusiness{
             throw new RequestError("Erro: Preencha o nome do produto.")
         }
 
+        if (!id) {
+            throw new RequestError("Erro: Preencha id do produto.")
+        }
+
+        if (typeof id !== "number") {
+            throw new RequestError("Erro: Id deve ser do tipo 'number'.")
+        }
+
         const productExists = await this.productDatabase.getProductById(id)
 
         if(productExists){
