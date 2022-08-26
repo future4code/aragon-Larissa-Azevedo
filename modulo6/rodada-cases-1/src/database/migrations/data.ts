@@ -42,6 +42,10 @@ export const products:IProductDB[] =
       {
         id: 8360,
         name: "VESTIDO FEMININO CANELADO"
+      },
+      {
+        id:8314,
+        name:"VESTIDO PLISSADO ACINTURADO"
       }
     ]
 
@@ -161,6 +165,21 @@ export const tagsProduct:ITagsProductsDB[] = [
     id: 214,
     product_id:8360,
     tag_id: 112
+  },
+  {
+    id: 215,
+    product_id:8314,
+    tag_id: 105
+  },
+  {
+    id: 216,
+    product_id:8314,
+    tag_id: 111
+  },
+  {
+    id: 217,
+    product_id:8314,
+    tag_id: 103
   }
 ]
   

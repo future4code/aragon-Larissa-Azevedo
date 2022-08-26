@@ -1,4 +1,6 @@
+import { table } from "console";
 import { ProductDatabase } from "../database/ProductDatabase";
+import { NotFoundError } from "../errors/NotFoundError";
 import { RequestError } from "../errors/RequestError";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
 import { IAddProductInputDTO, IGetProductsByIdInputDTO, IGetProductsByNameInputDTO, IGetProductsByTagInputDTO, IGetProductsOutputDTO, Product } from "../models/Products";
@@ -71,10 +73,8 @@ export class ProductBusiness{
     }
 
     public getProductSearchById = async (input:IGetProductsByIdInputDTO) => {
-    const  search  = Number(input.search) //ERRO retorna NaN
-    
-    console.log(search)
-
+    const  search  = Number(input.search) 
+ 
     if(!search){
         throw new RequestError("Erro: insira id do produto para busca!");
         
@@ -82,6 +82,12 @@ export class ProductBusiness{
 
     if(typeof search !== "number"){
         throw new RequestError("Erro: id para busca deve ser um 'number'!")
+    }
+
+    const productExists = await this.productDatabase.getProductById(search)
+
+    if(!productExists){
+        throw new NotFoundError("Erro: Id não encontrada!")
     }
 
     const productsDB = await this.productDatabase.getProductSearchById(search)
@@ -110,7 +116,7 @@ export class ProductBusiness{
 }
 
 public getProductSearchByName =async (input:IGetProductsByNameInputDTO) => {
-    const  search  = Number(input.search) 
+    const  search  = input.search
 
     if(!search){
         throw new RequestError("Erro: insira nome do produto para busca!");
@@ -158,6 +164,10 @@ public getProductSearchByTag =async (input:IGetProductsByTagInputDTO) => {
     const tag_id = tag.map(item => item.id)
 
     const products = await this.productDatabase.getProductSearchByTag(tag_id[0])
+
+    if(tag_id.length === 0){
+        throw new NotFoundError("Erro: tag não encontrada!")
+    }
 
     const response: IGetProductsOutputDTO = {
         products: products

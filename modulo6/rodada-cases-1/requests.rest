@@ -22,23 +22,23 @@ Content-Type: application/json
 
 ### 3) Add Product
 POST http://localhost:3003/products/add
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MTI3NDgzMiwiZXhwIjoxNjYxMzYxMjMyfQ.IYxiNWdcWZPbFVUMGPZaGbp0-geQIVPRjDK85ZZ7bAU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MTUzNzczMSwiZXhwIjoxNjYxNjI0MTMxfQ.IYHtJgIr_SaNlp4niw6rE3kQCT9K-PmOtiSpET-v75M
 Content-Type: application/json
 
 {
-    "id": 8310,
-    "name": "VESTIDO CURTO PONTO ROMA MANGA"
+    "id": 8300,
+    "name": "VESTIDO MALHA COM FENDA"
 }
 
 ### 4) Get Products
 GET http://localhost:3003/products/
 
 ### 4) Get Products By Search / id
-GET http://localhost:3003/products/searchId/:8360
+GET http://localhost:3003/products/searchId/8360
 
 ### 5) Get Products By Search / name
 GET http://localhost:3003/products/searchName?search=com
 
 ### 6) Get Products By Search / Tag
-GET http://localhost:3003/products/byTag?search=colorido
+GET http://localhost:3003/products/byTag?search=metal
 

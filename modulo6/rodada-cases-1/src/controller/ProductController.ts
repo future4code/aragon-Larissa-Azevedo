@@ -45,9 +45,9 @@ export class ProductController {
         try {      
 
             const search:IGetProductsByIdInputDTO = {
-                search: Number(req.params.search)
+                search: req.params.product_id as unknown as number
             }                         
-            console.log(search)
+          
             const response = await this.productBusiness.getProductSearchById(search)
 
             res.status(200).send(response)
