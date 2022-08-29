@@ -1,10 +1,10 @@
-# Rodada de Cases :microphone::guitar::sound:
+# Rodada de Cases
 
 ## Um projeto para conclusão da Labenu
 
 ### por Larissa Azevedo, Turma Aragon
 
-Com a reta final do curso e para consolidar os aprendizados, a resolução do *case legado* da Amaro busca simular um site de cadastro e consulta de produtos.
+Com a reta final do curso e para consolidar os aprendizados do módulo **Backend**, a resolução do [*case legado* da Amaro](https://github.com/amaroteam/back-end-challenge) busca simular um site de cadastro e consulta de produtos.
 
 O deploy foi feito no Heroku (<>) e testado no Postman.
 
