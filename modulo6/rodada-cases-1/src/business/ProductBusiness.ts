@@ -71,8 +71,8 @@ export class ProductBusiness{
 
         for (let product of products){
 
-            const tagsDB:any = await this.productDatabase.getTags(product.getId())
-            const tags = tagsDB.map((tag:any) => tag.name )
+            const tagsDB:any = await this.productDatabase?.getTags(product.getId())
+            const tags = tagsDB?.map((tag:any) => tag.name )
 
             product.setTags(tags)
         }
@@ -98,7 +98,7 @@ export class ProductBusiness{
         throw new NotFoundError("Erro: Id não encontrada!")
     }
 
-    const productsDB = await this.productDatabase.getProductSearchById(search)
+    const productsDB = await this.productDatabase?.getProductSearchById(search)
     
     const products = productsDB.map(productDB => {
         return new Product(
@@ -109,8 +109,8 @@ export class ProductBusiness{
 
     for (let product of products){
 
-        const tagsDB:any = await this.productDatabase.getTags(product.getId())
-        const tags = tagsDB.map((tag:any) => tag.name )
+        const tagsDB:any = await this.productDatabase?.getTags(product.getId())
+        const tags = tagsDB?.map((tag:any) => tag.name )
 
         product.setTags(tags)
     }
@@ -132,10 +132,11 @@ public getProductSearchByName =async (input:IGetProductsByNameInputDTO) => {
     }
 
     if(typeof search !== "string"){
-        throw new RequestError("Erro: id para bsuca deve ser uma 'string'!")
+        throw new RequestError("Erro: id para busca deve ser uma 'string'!")
     }
 
-    const productsDB = await this.productDatabase.getProductSearchByName(search)
+
+    const productsDB = await this.productDatabase?.getProductSearchByName(search)
     
     const products = productsDB.map(productDB => {
         return new Product(
@@ -147,7 +148,7 @@ public getProductSearchByName =async (input:IGetProductsByNameInputDTO) => {
     for (let product of products){
 
         const tagsDB:any = await this.productDatabase.getTags(product.getId())
-        const tags = tagsDB.map((tag:any) => tag.name )
+        const tags = tagsDB?.map((tag:any) => tag.name )
 
         product.setTags(tags)
     }
@@ -169,7 +170,7 @@ public getProductSearchByTag =async (input:IGetProductsByTagInputDTO) => {
     }
 
     const tag = await this.productDatabase.getTagById(search)
-    const tag_id = tag.map(item => item.id)
+    const tag_id = tag?.map(item => item.id)
 
     const products = await this.productDatabase.getProductSearchByTag(tag_id[0])
 

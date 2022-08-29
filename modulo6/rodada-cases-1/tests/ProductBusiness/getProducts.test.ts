@@ -2,6 +2,8 @@ import { ProductBusiness } from "../../src/business/ProductBusiness";
 import { AuthenticatorMock } from "../mocks/services/AuthenticatorMock";
 import { ProductDatabaseMock } from "../mocks/ProductDatabaseMock";
 import { ProductDatabase } from "../../src/database/ProductDatabase";
+import { IGetProductsByIdInputDTO } from "../../src/models/Products";
+import { BaseError } from "../../src/errors/BaseError";
 
 
 describe("Testando ProductBusiness", () => {
@@ -18,6 +20,5 @@ describe("Testando ProductBusiness", () => {
         expect(response.length).toEqual(5)
         
     })
-
 
 })

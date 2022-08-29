@@ -55,7 +55,7 @@ export class ProductDatabaseMock extends BaseDatabase {
         }
     }
 
-    public getProductsSearchById = async (search: number) => {
+    public getProductSearchById = async (search: number) => {
         const products:IProductDB[] = [
             {
               id: 8371,
@@ -75,7 +75,7 @@ export class ProductDatabaseMock extends BaseDatabase {
 
     }
 
-    public getProductsSearchByName = async (search: string) => {
+    public getProductSearchByName = async (search: string) => {
         const products:IProductDB[] = [
             {
               id: 8371,
@@ -88,13 +88,13 @@ export class ProductDatabaseMock extends BaseDatabase {
         ]
 
         switch(search){
-            case "plissado":
+            case "tricot":
                 return products
             default: undefined
         }
     }
 
-    public getProductsSearchByTag = async (search: number) => {
+    public getProductSearchByTag = async (search: number) => {
         const products:IProductDB[] = [
             {
               id: 8371,
@@ -135,33 +135,5 @@ export class ProductDatabaseMock extends BaseDatabase {
                 return tag_test2
         }
     }
-
-    public getTags =async (id:number) => {
-        const tags:ITagsDB[] = [
-            {
-                id: 101,
-                name: "balada"
-            },
-            {
-                id: 102,
-                name: "neutro"
-            },
-            {
-                id: 103,
-                name: "delicado"
-            }
-        ]
-
-        switch(id){
-            case 8371:
-                return tags
-
-            default: undefined
-        }
-
-        
-    }
-
-
 
 }
