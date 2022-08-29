@@ -136,4 +136,32 @@ export class ProductDatabaseMock extends BaseDatabase {
         }
     }
 
+    public getTags =async (id:number) => {
+        const tags:ITagsDB[] = [
+            {
+                id: 101,
+                name: "balada"
+            },
+            {
+                id: 102,
+                name: "neutro"
+            },
+            {
+                id: 103,
+                name: "delicado"
+            }
+        ]
+
+        switch(id){
+            case 8371:
+                return tags
+
+            default: undefined
+        }
+
+        
+    }
+
+
+
 }
