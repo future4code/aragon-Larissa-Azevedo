@@ -54,16 +54,19 @@ Este sistema permite, de forma simplificada, que a pessoa usuária possa cadastr
 <img align="left"  src="https://img.shields.io/badge/Knex.js-d34e36?style=for-the-badge"/>
 <img align="left"  src="https://img.shields.io/badge/Jest-30cb2d?style=for-the-badge&logo=jest&logoColor=white"/>
 
+<br>
+
 ## Hosting
 <img align="left"  src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
 
-
 <br><br>
+
+## Testes
 
 Foram realizados **testes unitários** neste projeto com o _framework_ Jest.
 Abaixo segue a imagem com os dados da cobertura dos testes.
 <br><br>
-![image]()
+![image](https://user-images.githubusercontent.com/90583823/189214030-e13accd4-39b6-4ffb-8d4f-ca04a30f1b23.png)
 
 
 ##### Feito com VSCode, Beekeeper-Studio e Postman
