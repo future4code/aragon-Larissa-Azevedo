@@ -8,7 +8,7 @@ Para conclusão do curso, considerando que o [Teste Técnico Diversidev](https:/
 
 O deploy foi feito no Heroku e os endpoints foram testados no Postman.
 
-A documentação pode ser acessada neste link do [Postman]() :link:
+A documentação pode ser acessada neste link do [Postman](https://documenter.getpostman.com/view/20783829/VVBXxRK8) :link:
 
 ## Setup :electric_plug:
 
@@ -32,16 +32,18 @@ Neste sistema o preço do passeio é calculado dinamicamente da seguinte forma:
 
 Este sistema permite, de forma simplificada, que a pessoa usuária possa cadastrar um novo passeio, consultá-los de forma geral ou por data ou status('To Do', 'Doing' ou 'Done'), sendo possível:
 
+* buscar todos os passeios com **GET** allWalkings;
+  * buscar todos os passeios por data com **GET** getWalkingsByDate
+  * buscar todos os passeios por status com **GET** getWalkingsByStatus
+
 * cadastrar novo passeio, com o método **POST** createWalk
-  * Atenção: os passeios são de 30 ou 60 minutos. Nos campos 'start_walking' e 'finish_walking' é necessário se atentar a este detalhe;
+  * os campos que precisam ser preenchidos estão exemplificados no Postman;
+  * **Atenção**: os passeios são de 30 ou 60 minutos. Nos campos 'start_walking' e 'finish_walking' é necessário se atentar a este detalhe;
 
 * editar o status de um passeio com **PUT** editWalkingStatus;
   * não é possível alterar o status de passeio já concluído.
 
-* buscar todos os produtos com **GET** allWalkings;
 
-  * buscar todos os produtos por data com **GET** getWalkingsByDate
-  * buscar todos os passeios por status com **GET** getWalkingsByStatus
 
 
 <br>
@@ -54,7 +56,7 @@ Este sistema permite, de forma simplificada, que a pessoa usuária possa cadastr
 <img align="left"  src="https://img.shields.io/badge/Knex.js-d34e36?style=for-the-badge"/>
 <img align="left"  src="https://img.shields.io/badge/Jest-30cb2d?style=for-the-badge&logo=jest&logoColor=white"/>
 
-<br>
+<br> <br>
 
 ## Hosting
 <img align="left"  src="https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white"/>
